@@ -1,0 +1,12 @@
+{
+  "head": {
+    "ret": 0,
+    "msg": "OK"
+  },
+  "body": {
+    "userName": "liujian",
+    "nickName": "Maple",
+    "gender": 1,
+    "headPic": "//lh5.googleusercontent.com/-VdDfHIhwlKY/AAAAAAAAAAI/AAAAAAAAABA/_QESgxoOoaE/s120-c-pf/photo.jpg"
+  }
+}
