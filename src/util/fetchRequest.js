@@ -119,6 +119,11 @@ export const fetchRequest = async(url, options) => {
   return handleResponse(res, newOptions)
 }
 
+/**
+ * 请求用户基本信息
+ * @param id
+ * @returns {promise}
+ */
 export const fetchUserInfo = (id) => {
   return fetchRequest('userInfo', {
     mode:'cors',
@@ -128,6 +133,11 @@ export const fetchUserInfo = (id) => {
   })
 }
 
+/**
+ * 请求菜单数据
+ * @param id
+ * @returns {promise}
+ */
 export const fetchMenus = (id) => {
   return fetchRequest('menus', {
     mode:'cors',

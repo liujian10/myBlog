@@ -5,6 +5,12 @@ import { fetchUserInfo, fetchMenus } from '../../../util/fetchRequest'
 const { Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
 
+/**
+ * 列卡片自定义组件，返回卡片列表
+ * @param param
+ * @returns {XML}
+ * @constructor
+ */
 const ColCards = (param) => {
   let list = param.data
   const handleClick = (path) => {
@@ -44,6 +50,11 @@ const ColCards = (param) => {
   </Row>
 }
 
+/**
+ * 递归获取菜单全部内容
+ * @param data
+ * @returns {*}
+ */
 const getMenuItem = (data) => {
   let res
   if (data.key) {
@@ -91,7 +102,7 @@ class Blog extends React.Component {
       this.setState({ userInfo : res })
     })
     fetchMenus().then(res => {
-      var menus = res.menus
+      let menus = res.menus
       this.setState({ menuData : menus })
       let cards = []
       const addCards = (data) => {
@@ -150,7 +161,7 @@ class Blog extends React.Component {
             title={
               <div>
                 {this.state.userInfo.nickName}
-                <Icon type={this.state.userInfo.gender ? 'man' : 'woman'} style={{marginLeft:'5px' }} />
+                <Icon type={this.state.userInfo.gender ? 'man' : 'woman'} style={{ marginLeft:'5px' }} />
               </div>
             }
             placement='rightTop'
