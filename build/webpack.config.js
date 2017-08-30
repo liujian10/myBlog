@@ -39,7 +39,7 @@ const config = {
   },
   plugins: [
     new webpack.DefinePlugin(Object.assign({
-      'process.env': {NODE_ENV: JSON.stringify(project.env)},
+      'process.env': { NODE_ENV: JSON.stringify(project.env) },
       __DEV__,
       __TEST__,
       __PROD__,
@@ -195,14 +195,15 @@ config.module.rules.push({
 
 // Fonts
 // ------------------------------------
-[
+let Fonts = [
   ['woff', 'application/font-woff'],
   ['woff2', 'application/font-woff2'],
   ['otf', 'font/opentype'],
   ['ttf', 'application/octet-stream'],
   ['eot', 'application/vnd.ms-fontobject'],
   ['svg', 'image/svg+xml']
-].forEach((font) => {
+]
+Fonts.forEach((font) => {
   const extension = font[0]
   const mimetype = font[1]
 
@@ -231,11 +232,11 @@ config.plugins.push(new HtmlWebpackPlugin({
 // ------------------------------------
 if (__DEV__) {
   config.entry.main.push(
-     `webpack-hot-middleware/client.js?path=${config.output.publicPath}__webpack_hmr`
+    `webpack-hot-middleware/client.js?path=${config.output.publicPath}__webpack_hmr`
   )
   config.plugins.push(
-     new webpack.HotModuleReplacementPlugin(),
-     new webpack.NamedModulesPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
   )
 }
 
@@ -248,33 +249,33 @@ if (!__TEST__) {
     bundles.unshift('vendor')
     config.entry.vendor = project.vendors
   }
-  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({names: bundles}))
+  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ names: bundles }))
 }
 
 // Production Optimizations
 // ------------------------------------
 if (__PROD__) {
   config.plugins.push(
-     new webpack.LoaderOptionsPlugin({
-       minimize: true,
-       debug: false,
-     }),
-     new webpack.optimize.UglifyJsPlugin({
-       sourceMap: !!config.devtool,
-       comments: false,
-       compress: {
-         warnings: false,
-         screw_ie8: true,
-         conditionals: true,
-         unused: true,
-         comparisons: true,
-         sequences: true,
-         dead_code: true,
-         evaluate: true,
-         if_return: true,
-         join_vars: true,
-       },
-     })
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: !!config.devtool,
+      comments: false,
+      compress: {
+        warnings: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true,
+      },
+    })
   )
 }
 

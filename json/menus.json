@@ -1,0 +1,170 @@
+{
+  "head": {
+    "ret": 0,
+    "msg": "OK"
+  },
+  "body": {
+    "menus": [
+      {
+        "key": 1,
+        "icon": "star",
+        "desc": "star"
+      },
+      {
+        "key": 2,
+        "icon": "desktop",
+        "desc": "desktop"
+      },
+      {
+        "key": 3,
+        "icon": "user",
+        "desc": "user",
+        "children": [
+          {
+            "key": 31,
+            "icon": "tag",
+            "desc": "Tom and andy is playing in water"
+          },
+          {
+            "key": 32,
+            "desc": "Andy"
+          },
+          {
+            "key": 33,
+            "desc": "Andy"
+          },
+          {
+            "key": 34,
+            "desc": "Andy"
+          },
+          {
+            "key": 35,
+            "desc": "Andy"
+          },
+          {
+            "key": 36,
+            "desc": "Andy"
+          },
+          {
+            "key": 37,
+            "desc": "Andy"
+          },
+          {
+            "key": 38,
+            "desc": "Andy"
+          }
+        ]
+      },
+      {
+        "key": 4,
+        "icon": "team",
+        "desc": "team",
+        "children": [
+          {
+            "key": 41,
+            "icon": "team",
+            "desc": "team 1",
+            "children": [
+              {
+                "key": 411,
+                "icon": "team",
+                "desc": "team 1",
+                "children": [
+                  {
+                    "key": 4111,
+                    "desc": "team 1"
+                  },
+                  {
+                    "key": 4112,
+                    "desc": "team 2"
+                  },
+                  {
+                    "key": 4113,
+                    "desc": "team 3"
+                  },
+                  {
+                    "key": 4114,
+                    "desc": "team 4"
+                  },
+                  {
+                    "key": 4115,
+                    "desc": "team 5"
+                  },
+                  {
+                    "key": 4116,
+                    "desc": "team 6"
+                  }
+                ]
+              },
+              {
+                "key": 412,
+                "desc": "team 2"
+              },
+              {
+                "key": 413,
+                "desc": "team 3"
+              },
+              {
+                "key": 414,
+                "desc": "team 4"
+              },
+              {
+                "key": 415,
+                "desc": "team 5"
+              },
+              {
+                "key": 416,
+                "desc": "team 6"
+              }
+            ]
+          },
+          {
+            "key": 42,
+            "desc": "team 2"
+          },
+          {
+            "key": 43,
+            "desc": "team 3"
+          },
+          {
+            "key": 44,
+            "desc": "team 4"
+          },
+          {
+            "key": 45,
+            "desc": "team 5"
+          },
+          {
+            "key": 46,
+            "desc": "team 6"
+          }
+        ]
+      },
+      {
+        "key": 5,
+        "icon": "file",
+        "desc": "file"
+      },
+      {
+        "key": 6,
+        "icon": "picture",
+        "desc": "picture"
+      },
+      {
+        "key": 7,
+        "icon": "tag",
+        "desc": "tag"
+      },
+      {
+        "key": 8,
+        "icon": "loading",
+        "desc": "loading"
+      },
+      {
+        "key": 9,
+        "icon": "star",
+        "desc": "star"
+      }
+    ]
+  }
+}

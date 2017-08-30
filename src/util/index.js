@@ -8,9 +8,9 @@
  * @returns {string}
  */
 export const getUrlParam = params =>
-    Object.entries(params)
-        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-        .join('&');
+  Object.entries(params)
+    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .join('&')
 
 /**
  * 支持传参的 _.result 增强版 目前不支持多层级的 path
@@ -22,15 +22,15 @@ export const getUrlParam = params =>
  * @returns {*}
  */
 export const getResult = (obj, path, defaultResult, ...rest) => {
-    if (!(path in obj)) {
-        return defaultResult;
-    }
+  if (!(path in obj)) {
+    return defaultResult
+  }
 
-    const value = obj[path];
+  const value = obj[path]
 
-    if (typeof value === 'function') {
-        return value(...rest);
-    }
+  if (typeof value === 'function') {
+    return value(...rest)
+  }
 
-    return value;
-};
+  return value
+}

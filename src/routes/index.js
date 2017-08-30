@@ -8,13 +8,13 @@ import BlogRoute from './Blog'
  PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-    path: '/',
-    component: CoreLayout,
-    indexRoute: Home,
-    childRoutes: [
-        CounterRoute(store),
-        BlogRoute(store)
-    ]
+  path: '/',
+  component: CoreLayout,
+  indexRoute: Home,
+  childRoutes: [
+    CounterRoute(store),
+    BlogRoute(store),
+  ]
 })
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
