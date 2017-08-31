@@ -1,3 +1,5 @@
+import { createAction } from 'redux-actions'
+import { fetchUserInfo as getUserInfoService, fetchMenus as getMenusService } from '../../../util/fetchRequest'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -6,43 +8,60 @@ export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
 
 // ------------------------------------
 // Actions
-// ------------------------------------
-export function increment (value = 1) {
-  return {
-    type    : COUNTER_INCREMENT,
-    payload : value
-  }
-}
 
-/*  This is a thunk, meaning it is a function that immediately
-    returns a function for lazy evaluation. It is incredibly useful for
-    creating async actions, especially when combined with redux-thunk! */
+// 获取用户基本信息
+export const BLOG_GET_USER_INFO = 'BLOG_GET_USER_INFO'
 
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch({
-          type    : COUNTER_DOUBLE_ASYNC,
-          payload : getState().counter
-        })
-        resolve()
-      }, 200)
-    })
-  }
-}
+export const getUserInfo = createAction(BLOG_GET_USER_INFO, getUserInfoService, (params, resolved) => ({
+  resolved,
+  params,
+}))
+
+// 获取菜单列表
+export const BLOG_GET_MENUS = 'BLOG_GET_MENUS'
+export const getMenus = createAction(BLOG_GET_MENUS, getMenusService, (params, resolved) => ({
+  resolved,
+  params,
+}))
 
 export const actions = {
-  increment,
-  doubleAsync
+  getMenus,
+  getUserInfo
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [BLOG_GET_USER_INFO] : (state, action) => {
+    const { meta = {}, payload, error } = action
+    const { sequence = {} } = meta
+    const newState = {
+      ...state,
+      pending: sequence.type === 'start',
+    }
+
+    if (!error && sequence.type === 'next') {
+      newState.userInfo = {
+        ...state.userInfo,
+        ...payload
+      }
+    }
+    return newState
+  },
+  [BLOG_GET_MENUS] : (state, action) => {
+    const { meta = {}, payload, error } = action
+    const { sequence = {} } = meta
+    const newState = {
+      ...state,
+      pending: sequence.type === 'start',
+    }
+
+    if (!error && sequence.type === 'next') {
+      newState.menus = payload.menus
+    }
+    return newState
+  }
 }
 
 // ------------------------------------

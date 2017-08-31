@@ -1,7 +1,6 @@
 import { injectReducer } from '../../store/reducers'
 
 const getComponent = (store, name) => (nextState, cb) => {
-  console.log(nextState.params)
   /*  Webpack - use 'require.ensure' to create a split point
    and embed an async module loader (jsonp) when bundling   */
   require.ensure([], (require) => {

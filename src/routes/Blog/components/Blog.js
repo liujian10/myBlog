@@ -1,7 +1,7 @@
 import React from 'react'
-import { Layout, Menu, Row, Col, Card, Icon, Avatar, Popover } from 'antd'
+import { Layout, Menu, Row, Col, Card, Icon, Avatar, Popover, Spin } from 'antd'
 import './Blog.less'
-import { fetchUserInfo, fetchMenus } from '../../../util/fetchRequest'
+/* import waterFall from 'water-fall' */
 const { Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
 
@@ -14,7 +14,6 @@ const SubMenu = Menu.SubMenu
 const ColCards = (param) => {
   let list = param.data
   const handleClick = (path) => {
-    console.log(path)
     param.handleClick(path)
   }
   let getPDesc = (key, desc) => {
@@ -84,27 +83,59 @@ class Blog extends React.Component {
     this.state = {
       collapsed: true,
       currentKey:'1',
-      logoBackground:'#fff',
-      userInfo:{
-        userName: '',
-        nickName: '',
-        gender: 1,
-        headPic: 'http://i0.img.cp21.ott.cibntv.net/lc07_iscms/201704/24/17/09/3d91c0228e924d3bbfe61f978955e663.png',
-        eMail:'',
-        mobile:''
-      },
-      menuData:[],
-      cardData:[]
+      logoBackground:'#fff'
     }
   }
   componentWillMount () {
-    fetchUserInfo('user001').then(res => {
-      this.setState({ userInfo : res })
-    })
-    fetchMenus().then(res => {
-      let menus = res.menus
-      this.setState({ menuData : menus })
-      let cards = []
+    this.props.getUserInfo()
+    this.props.getMenus()
+  }
+  componentDidMount () {
+    /* waterFall.init({
+      container: document.getElementById('container'),
+      width: 210,
+      images: (function () {
+        let res = []
+        let i = 0
+        for (; i < 320 ; i++) {
+          let index = parseInt(i < 163 ? i : i - 162)
+          if (index < 10) {
+            index = '00' + index
+          } else if (index < 100) {
+            index = '0' + index
+          }
+          res.push('http://cued.xunlei.com/demos/publ/img/P_' + index + '.jpg')
+        }
+        return res
+      }()),
+      createColumn:function (index, img) {
+        let aEle = document.createElement('a')
+        aEle.href = '###'
+        aEle.className = 'pic_a'
+        try {
+          aEle.appendChild(img)
+        } catch (e) {
+          console.log(e)
+        }
+
+        let strong = document.createElement('strong')
+        strong.innerHTML = index < 10 ? ('00' + index) : index < 100 ? ('0' + index) : index
+        aEle.appendChild(strong)
+
+        let column = this.getShortestColumn()
+        column.appendChild(aEle)
+      }
+    }) */
+  }
+  onCollapse = (collapsed) => {
+    this.setState({ collapsed })
+  }
+  render () {
+    const { props, state } = this
+    const { blog, router } = props
+    const { userInfo = {}, menus = [] } = blog
+    let cards = []
+    if (Array.isArray(menus)) {
       const addCards = (data) => {
         for (let cardItem of data) {
           if (cardItem.children) {
@@ -115,19 +146,11 @@ class Blog extends React.Component {
         }
       }
       addCards(menus)
-      this.setState({ cardData : cards })
-    })
-  }
-  onCollapse = (collapsed) => {
-    this.setState({ collapsed })
-  }
-  render () {
-    const { props, state } = this
+    }
     const routerPush = (path) => {
-      props.router.push(path)
+      router.push(path)
     }
     const handleClick = (e) => {
-      console.log(e)
       routerPush('/blog/' + e.key)
     }
     const getSiderStyle = (collapsed) => {
@@ -144,60 +167,69 @@ class Blog extends React.Component {
     }
     const content = (
       <div>
-        <p>手机：<a href={'tel:' + this.state.userInfo.mobile}>{this.state.userInfo.mobile}</a></p>
-        <p>邮箱：{this.state.userInfo.email}</p>
+        <p>手机：<a href={'tel:' + userInfo.mobile}>{userInfo.mobile}</a></p>
+        <p>邮箱：{userInfo.email}</p>
       </div>
     )
-    return (
-      <Layout style={{ 'height' : '100%' }}>
-        <Sider
-          className='blog-layout-sider'
-          collapsible
-          collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
-          style={getSiderStyle(this.state.collapsed)}
-        >
-          <Popover
-            title={
-              <div>
-                {this.state.userInfo.nickName}
-                <Icon type={this.state.userInfo.gender ? 'man' : 'woman'} style={{ marginLeft:'5px' }} />
+    if (userInfo && menus) {
+      return (
+        <Layout style={{ 'height' : '100%' }}>
+          <Sider
+            className='blog-layout-sider'
+            collapsible
+            collapsed={this.state.collapsed}
+            onCollapse={this.onCollapse}
+            style={getSiderStyle(this.state.collapsed)}
+          >
+            <Popover
+              title={
+                <div>
+                  {userInfo.nickName}
+                  <Icon type={userInfo.gender ? 'man' : 'woman'} style={{ marginLeft:'5px' }} />
+                </div>
+              }
+              placement='rightTop'
+              content={content}
+            >
+              <div
+                className={state.collapsed ? 'blog-logo-normal' : 'blog-logo-collapsed'}
+                style={{ background:state.logoBackground }}>
+                <Avatar src={userInfo.headPic} style={{ background:state.logoBackground }} />
+                <span> About Me</span>
               </div>
-            }
-            placement='rightTop'
-            content={content}
-          >
-            <div
-              className={state.collapsed ? 'blog-logo-normal' : 'blog-logo-collapsed'}
-              style={{ background:state.logoBackground }}>
-              <Avatar src={state.userInfo.headPic} style={{ background:state.logoBackground }} />
-              <span> About Me</span>
-            </div>
-          </Popover>
-          <Menu
-            defaultSelectedKeys={[state.currentKey]}
-            onClick={handleClick}
-            mode='inline'
-            style={{ height:'100%' }}
-          >
-            {
-              this.state.menuData.map(function (item) {
-                return getMenuItem(item)
-              })
-            }
-          </Menu>
-        </Sider>
-        <Layout style={{ background : '#fff', height:'100%' }}>
-          <Content style={{ margin: '16px 0' }}>
-            <ColCards data={this.state.cardData} handleClick={routerPush} />
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2016 Created by Ant UED
-          </Footer>
+            </Popover>
+            <Menu
+              defaultSelectedKeys={[state.currentKey]}
+              onClick={handleClick}
+              mode='inline'
+              style={{ height:'100%' }}
+            >
+              {
+                menus && menus.map && menus.map(function (item) {
+                  return getMenuItem(item)
+                })
+              }
+            </Menu>
+          </Sider>
+          <Layout style={{ background : '#fff', height:'100%' }}>
+            <Content style={{ margin: '16px 0' }}>
+              {/* <div id='container'>123</div> */}
+              <ColCards data={cards} handleClick={routerPush} />
+            </Content>
+            <Footer style={{ textAlign: 'center' }}>
+              Ant Design ©2016 Created by Ant UED
+            </Footer>
+          </Layout>
         </Layout>
-      </Layout>
-    )
+      )
+    }
+    return (<Spin size='large' />)
   }
+}
+
+Blog.propTypes = {
+  getUserInfo: React.PropTypes.func,
+  getMenus: React.PropTypes.func
 }
 
 export default Blog
