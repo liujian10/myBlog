@@ -6,10 +6,10 @@ import { actions } from '../modules/Blog'
     wiring in the actions and state necessary to render a presentational
     component - in this case, the counter:   */
 
-import Blog from '../components/Blog'
+import BlogDetail from '../components/BlogDetail'
 
-const mapStateToProps = (state) => ({
-  ...state
+const mapStateToProps = ({ blog }) => ({
+  ...blog
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
@@ -26,4 +26,4 @@ const mapStateToProps = (state) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export default connect(mapStateToProps, actions)(Blog)
+export default connect(mapStateToProps, actions)(BlogDetail)

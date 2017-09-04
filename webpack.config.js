@@ -1,4 +1,4 @@
-var path = require('path')
+const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
@@ -13,6 +13,12 @@ module.exports = {
         use:[
           'style-loader',
           'css-loader'
+        ]
+      },
+      {
+        test: /\.md$/,
+        use: [
+          'html!markdown'
         ]
       },
       {

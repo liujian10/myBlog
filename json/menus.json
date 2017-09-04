@@ -8,12 +8,14 @@
       {
         "key": 1,
         "icon": "star",
-        "desc": "star"
+        "desc": "star",
+        "path": "/1"
       },
       {
         "key": 2,
         "icon": "desktop",
-        "desc": "desktop"
+        "desc": "desktop",
+        "path": "/2"
       },
       {
         "key": 3,
@@ -23,35 +25,43 @@
           {
             "key": 31,
             "icon": "tag",
-            "desc": "Tom and andy is playing in water"
+            "desc": "Tom and andy is playing in water",
+            "path": "/31"
           },
           {
             "key": 32,
-            "desc": "Andy"
+            "desc": "Andy",
+            "path": "/32"
           },
           {
             "key": 33,
-            "desc": "Andy"
+            "desc": "Andy",
+            "path": "/33"
           },
           {
             "key": 34,
-            "desc": "Andy"
+            "desc": "Andy",
+            "path": "/34"
           },
           {
             "key": 35,
-            "desc": "Andy"
+            "desc": "Andy",
+            "path": "/35"
           },
           {
             "key": 36,
-            "desc": "Andy"
+            "desc": "Andy",
+            "path": "/36"
           },
           {
             "key": 37,
-            "desc": "Andy"
+            "desc": "Andy",
+            "path": "/37"
           },
           {
             "key": 38,
-            "desc": "Andy"
+            "desc": "Andy",
+            "path": "/38"
           }
         ]
       },
@@ -72,7 +82,8 @@
                 "children": [
                   {
                     "key": 4111,
-                    "desc": "team 1"
+                    "desc": "team 1",
+                    "path": "/4111"
                   },
                   {
                     "key": 4112,

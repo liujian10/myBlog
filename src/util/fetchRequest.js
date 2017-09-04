@@ -12,10 +12,6 @@ import menus from '../../json/menus.json'
 
 const SUCCESS_CODE = 0
 const BASE_HOST = 'http://localhost:3000/json/'
-const jsonConfig = {
-  'userInfo' : userInfo,
-  'menus' : menus
-}
 
 // 后端定义的全局错误返回码
 const GLOBAL_CODES = {
@@ -45,20 +41,42 @@ const handleResponse = ({ head, body }, { globalError }) => new Promise((resolve
   }
 })
 
+const jsonConfig = {
+  'userInfo' : userInfo,
+  'menus' : menus
+}
+
+const getJson = (url, { params }) => {
+  console.log('params:')
+  console.log(params)
+  if (url === 'blog') {
+    return {
+      'head': {
+        'ret': 0,
+        'msg': 'OK'
+      },
+      'body': {
+        url,
+        ...params
+      }
+    }
+  }
+  return jsonConfig[url]
+}
+
 const doFetch = (url, option) => {
   if (local.isLocal()) {
-    let res = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       resolve({
         ...option,
         status:200,
-        body:jsonConfig[url],
+        body:getJson(url, option),
         json:() => {
           let type = url.split('?')[0]
-          return jsonConfig[type]
+          return getJson(type, option)
         }
       })
     })
-    return res
   } else {
     return fetch(BASE_HOST + url, option)
   }
@@ -75,6 +93,10 @@ const doFetch = (url, option) => {
  * @returns {promise}
  */
 export const fetchRequest = async(url, options) => {
+  let defaultOptions = {
+    mode:'cors'
+  }
+  Object.assign(options, defaultOptions)
   const newOptions = { ...options }
   let newUrl = url
   if (options.params) {
@@ -124,13 +146,8 @@ export const fetchRequest = async(url, options) => {
  * @param id
  * @returns {promise}
  */
-export const fetchUserInfo = (id) => {
-  return fetchRequest('userInfo', {
-    mode:'cors',
-    params:{
-      userId:id
-    }
-  })
+export const fetchUserInfo = id => {
+  return fetchRequest('userInfo', { ...arguments })
 }
 
 /**
@@ -138,13 +155,12 @@ export const fetchUserInfo = (id) => {
  * @param id
  * @returns {promise}
  */
-export const fetchMenus = (id) => {
-  return fetchRequest('menus', {
-    mode:'cors',
-    params:id ? {
-      menuId:id
-    } : {}
-  })
+export const fetchMenus = () => {
+  return fetchRequest('menus', { ...arguments })
+}
+
+export const fetchBlogDetail = params => {
+  return fetchRequest('blog', { params })
 }
 
 export default fetchRequest

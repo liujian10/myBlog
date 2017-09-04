@@ -6,6 +6,9 @@ const project = require('../project.config')
 
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
+// markdown conver to html
+const marked = require('marked')
+const renderer = new marked.Renderer()
 
 const __DEV__ = project.env === 'development'
 const __TEST__ = project.env === 'test'
@@ -104,6 +107,11 @@ const extractStyles = new ExtractTextPlugin({
 })
 
 config.module.rules.push({
+  test: /\.css$/,
+  loader: 'css-loader'
+})
+
+config.module.rules.push({
   test: /\.(sass|scss)$/,
   loader: extractStyles.extract({
     fallback: 'style-loader',
@@ -191,6 +199,23 @@ config.module.rules.push({
   options: {
     limit: 8192,
   },
+})
+
+// Markdown
+// ------------------------------------
+config.module.rules.push({
+  test: /\.md$/,
+  use: [
+    {
+      loader: 'html-loader'
+    },
+    {
+      loader: 'markdown-loader',
+      options: {
+        renderer
+      }
+    }
+  ]
 })
 
 // Fonts

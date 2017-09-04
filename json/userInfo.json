@@ -4,10 +4,10 @@
     "msg": "OK"
   },
   "body": {
-    "userName": "liujian",
+    "userName": "Liu Jian",
     "nickName": "Maple",
     "gender": 1,
-    "headPic": "http://lh5.googleusercontent.com/-VdDfHIhwlKY/AAAAAAAAAAI/AAAAAAAAABA/_QESgxoOoaE/s120-c-pf/photo.jpg",
+    "headPic": "logo.jpg",
     "email":"mapleliu1@gmail.com",
     "mobile":"12345678901"
   }

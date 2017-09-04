@@ -44,18 +44,21 @@ export default function promiseMiddleware ({ dispatch }) {
             },
           },
         }),
-        error => dispatch({
-          ...action,
-          payload: error,
-          error: true,
-          meta: {
-            ...meta,
-            sequence: {
-              type: 'next',
-              id,
+        error => {
+          console.log(error)
+          return dispatch({
+            ...action,
+            payload: error,
+            error: true,
+            meta: {
+              ...meta,
+              sequence: {
+                type: 'next',
+                id,
+              },
             },
-          },
-        })
+          })
+        }
       )
     }
     return next(action)
