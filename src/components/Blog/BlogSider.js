@@ -9,8 +9,12 @@ const BlogSider = (props) => {
   const { blog } = props
   const { menus = [], userInfo = {} } = blog
   const { nickName, gender, mobile, email, headPic } = userInfo
-  const handleClick = (e) => {
-    props.routerPush('/blog/' + e.key)
+  const handleClick = ({ item, key }) => {
+    props.routerPush('/blog/' + key)
+    props.getDetail({
+      name: item.props.name,
+      key: key
+    })
   }
   const getSiderStyle = (collapsed) => {
     return collapsed ? {
@@ -30,7 +34,9 @@ const BlogSider = (props) => {
       if (data.children) {
         res = <SubMenu
           key={data.key}
-          title={<span><Icon type={data.icon} /><span>{data.desc}</span></span>}>
+          title={<span>
+            <span>{data.name || data.desc}</span>
+          </span>}>
           {
             data.children.map(function (child) {
               return getMenuItem(child)
@@ -38,9 +44,8 @@ const BlogSider = (props) => {
           }
         </SubMenu>
       } else {
-        res = <Menu.Item key={data.key} >
-          {data.icon ? <Icon type={data.icon} className={data.class} /> : <Icon className={data.class} />}
-          <span>{data.desc} </span>
+        res = <Menu.Item {...data} >
+          <span>{data.name || data.desc} </span>
         </Menu.Item>
       }
     }
@@ -63,14 +68,14 @@ const BlogSider = (props) => {
   return (
     <Sider
       className='blog-layout-sider'
-      collapsible
+      // collapsible
       collapsed={props.collapsed}
       onCollapse={props.onCollapse}
       style={getSiderStyle(props.collapsed)}
     >
       <Popover
         title={userTitle}
-        placement='rightTop'
+        placement='bottom'
         content={userContent}
       >
         <div
@@ -81,7 +86,8 @@ const BlogSider = (props) => {
         </div>
       </Popover>
       <Menu
-        defaultSelectedKeys={[props.currentKey]}
+        defaultSelectedKeys={[blog.currentKey]}
+        selectedKeys={[blog.currentKey]}
         onClick={handleClick}
         mode='inline'
         style={{ height:'100%' }}
@@ -101,8 +107,8 @@ BlogSider.propTypes = {
   collapsed: PropTypes.bool,
   onCollapse: PropTypes.func,
   routerPush: PropTypes.func,
-  logoBackground: PropTypes.string,
-  currentKey: PropTypes.string
+  getDetail: PropTypes.func,
+  logoBackground: PropTypes.string
 }
 
 export default BlogSider

@@ -9,59 +9,60 @@
         "key": 1,
         "icon": "star",
         "desc": "star",
-        "path": "/1"
+        "name": "React Redux Starter Kit"
       },
       {
         "key": 2,
         "icon": "desktop",
         "desc": "desktop",
-        "path": "/2"
+        "name": "markdown-loader"
       },
       {
         "key": 3,
         "icon": "user",
+        "name": "user",
         "desc": "user",
         "children": [
           {
             "key": 31,
             "icon": "tag",
             "desc": "Tom and andy is playing in water",
-            "path": "/31"
+            "name": "31"
           },
           {
             "key": 32,
             "desc": "Andy",
-            "path": "/32"
+            "name": "32"
           },
           {
             "key": 33,
             "desc": "Andy",
-            "path": "/33"
+            "name": "33"
           },
           {
             "key": 34,
             "desc": "Andy",
-            "path": "/34"
+            "name": "34"
           },
           {
             "key": 35,
             "desc": "Andy",
-            "path": "/35"
+            "name": "35"
           },
           {
             "key": 36,
             "desc": "Andy",
-            "path": "/36"
+            "name": "36"
           },
           {
             "key": 37,
             "desc": "Andy",
-            "path": "/37"
+            "name": "37"
           },
           {
             "key": 38,
             "desc": "Andy",
-            "path": "/38"
+            "name": "38"
           }
         ]
       },
@@ -69,21 +70,24 @@
         "key": 4,
         "icon": "team",
         "desc": "team",
+        "name": "team",
         "children": [
           {
             "key": 41,
             "icon": "team",
             "desc": "team 1",
+            "name": "team 1",
             "children": [
               {
                 "key": 411,
                 "icon": "team",
                 "desc": "team 1",
+                "name": "team 1",
                 "children": [
                   {
                     "key": 4111,
                     "desc": "team 1",
-                    "path": "/4111"
+                    "name": "4111"
                   },
                   {
                     "key": 4112,
@@ -109,33 +113,40 @@
               },
               {
                 "key": 412,
+                "name": "team 2",
                 "desc": "team 2"
               },
               {
                 "key": 413,
+                "name": "team 3",
                 "desc": "team 3"
               },
               {
                 "key": 414,
+                "name": "team 4",
                 "desc": "team 4"
               },
               {
                 "key": 415,
+                "name": "team 5",
                 "desc": "team 5"
               },
               {
                 "key": 416,
+                "name": "team 6",
                 "desc": "team 6"
               }
             ]
           },
           {
             "key": 42,
+            "name": "team 2",
             "desc": "team 2"
           },
           {
             "key": 43,
-            "desc": "team 3"
+            "desc": "team 3",
+            "name": "team 3"
           },
           {
             "key": 44,

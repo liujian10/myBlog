@@ -7,8 +7,7 @@ class Blog extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      collapsed: true,
-      currentKey:'1',
+      collapsed: false,
       logoBackground:'#fff'
     }
   }
@@ -28,14 +27,13 @@ class Blog extends React.Component {
     this.props.router.push(path)
   }
   render () {
-    let params = {
-      ...this.props,
-      ...this.state,
-      routerPush:this.routerPush,
-      onCollapse:this.onCollapse
-    }
     if (this.props.children && this.props.blog) {
-      return <BlogLayout {...params} >{this.props.children}</BlogLayout>
+      return <BlogLayout {...{
+        ...this.props,
+        ...this.state,
+        routerPush:this.routerPush,
+        onCollapse:this.onCollapse
+      }} >{this.props.children}</BlogLayout>
     }
     return (<Spin size='large' />)
   }
@@ -48,7 +46,8 @@ Blog.propTypes = {
   children: PropTypes.element,
   menus: PropTypes.array,
   router: PropTypes.object.isRequired,
-  blog:PropTypes.object.isRequired
+  blog:PropTypes.object.isRequired,
+  currentKey:PropTypes.any
 }
 
 export default Blog

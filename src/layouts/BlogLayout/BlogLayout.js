@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BlogSider from '../../components/Blog/BlogSider'
-import { Layout } from 'antd'
+import { Layout, Input } from 'antd'
 import './BlogLayout.less'
-const { Content, Footer } = Layout
+const { Content, Footer, Header } = Layout
+const { Search } = Input
 
 const BlogLayout = (props) => {
   const { children } = props
@@ -11,6 +12,13 @@ const BlogLayout = (props) => {
     <Layout className='blog-layout'>
       {BlogSider({ ...props })}
       <Layout className='blog-main' >
+        <Header className='blog-main-header'>
+          <Search
+            placeholder='input search text'
+            style={{ width: 200 }}
+            onSearch={value => console.log(value)}
+          />
+        </Header>
         <Content className='blog-main-content' >
           {children}
         </Content>

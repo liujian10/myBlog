@@ -47,8 +47,6 @@ const jsonConfig = {
 }
 
 const getJson = (url, { params }) => {
-  console.log('params:')
-  console.log(params)
   if (url === 'blog') {
     return {
       'head': {

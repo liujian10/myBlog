@@ -6,8 +6,7 @@ class BlogDetail extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      ...props,
-      detail:''
+      ...props
     }
   }
   componentWillMount () {
@@ -17,8 +16,12 @@ class BlogDetail extends React.Component {
   }
   render () {
     const { detail } = this.props
-    console.log(this.props)
-    const content = detail && detail.key && require('../../../../docs/' + detail.key + '.md')
+    let content
+    try {
+      content = detail && detail.name && require('../../../../docs/' + detail.name + '.md')
+    } catch (e) {
+      console.log('Cannot find file \'../../../../docs/' + detail.name + '.md\' ')
+    }
     if (content) {
       return <Markdown content={content} />
     }

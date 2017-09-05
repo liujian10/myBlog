@@ -39,9 +39,9 @@ export const getDetail = createAction(BLOG_GET_DETAIL, getDetailService, (params
 export const getIndexPath = (callback) => (dispatch, getState) => {
   const state = getState()
   let home = state.blog.menus[0]
-  if (home) home = home.path ? home.path : ('/' + home.key)
+  home = home && home.key
   if (state.location.pathname === '/blog') {
-    return '/blog' + home
+    return '/blog/' + home
   }
   return null
 }
@@ -51,6 +51,16 @@ export const actions = {
   getUserInfo,
   getIndexPath,
   getDetail
+}
+
+const getItemByKey = (key, items) => {
+  let item = {}
+  for (item of items) {
+    if (item.key.toString() === key.toString()) {
+      return item
+    }
+  }
+  return null
 }
 
 // ------------------------------------
@@ -83,20 +93,20 @@ const ACTION_HANDLERS = {
 
     if (!error && sequence.type === 'next') {
       newState.menus = payload.menus
-      let cards = []
+      let menuItems = []
       if (Array.isArray(payload.menus)) {
         const addCards = (data) => {
           for (let cardItem of data) {
             if (cardItem.children) {
               addCards(cardItem.children)
             } else {
-              cards.push(cardItem)
+              menuItems.push(cardItem)
             }
           }
         }
         addCards(payload.menus)
       }
-      newState.cards = cards
+      newState.menuItems = menuItems
     }
     return newState
   },
@@ -113,7 +123,10 @@ const ACTION_HANDLERS = {
         ...state.detail,
         ...payload
       }
+      const { menuItems } = state
       if (params.key) {
+        const item = getItemByKey(params.key, menuItems)
+        newState.detail.name = item && item.name
         newState.currentKey = params.key
       }
     }
