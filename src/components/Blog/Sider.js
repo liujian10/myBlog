@@ -1,32 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Menu, Avatar, Popover, Icon } from 'antd'
-import './BlogSider.less'
+import { Menu, Avatar, Popover, Icon } from 'antd'
+import QueueAnim from 'rc-queue-anim'
+import './Sider.less'
 
-const { Sider } = Layout
 const { SubMenu } = Menu
 const BlogSider = (props) => {
   const { blog } = props
   const { menus = [], userInfo = {} } = blog
   const { nickName, gender, mobile, email, headPic } = userInfo
   const handleClick = ({ item, key }) => {
-    props.routerPush('/blog/' + key)
+    props.routerPush('/blog/detail/' + key)
     props.getDetail({
       name: item.props.name,
       key: key
     })
-  }
-  const getSiderStyle = (collapsed) => {
-    return collapsed ? {
-      background : '#fff',
-      height:'100%'
-    } : {
-      background : '#fff',
-      height:'100%',
-      overflowY:'auto',
-      overflowX:'hidden',
-      paddingBottom: '50px'
-    }
   }
   const getMenuItem = (data) => {
     let res
@@ -35,6 +23,7 @@ const BlogSider = (props) => {
         res = <SubMenu
           key={data.key}
           title={<span>
+            <Icon type='bars' />
             <span>{data.name || data.desc}</span>
           </span>}>
           {
@@ -45,6 +34,7 @@ const BlogSider = (props) => {
         </SubMenu>
       } else {
         res = <Menu.Item {...data} >
+          <Icon type='book' />
           <span>{data.name || data.desc} </span>
         </Menu.Item>
       }
@@ -63,49 +53,45 @@ const BlogSider = (props) => {
       <Icon type={gender ? 'man' : 'woman'} style={{ marginLeft:'5px' }} />
     </div>
   )
-
   const headPicImg = headPic && require('../../static/images/' + headPic)
   return (
-    <Sider
-      className='blog-layout-sider'
-      // collapsible
-      collapsed={props.collapsed}
-      onCollapse={props.onCollapse}
-      style={getSiderStyle(props.collapsed)}
-    >
-      <Popover
-        title={userTitle}
-        placement='bottom'
-        content={userContent}
-      >
+    <QueueAnim type={['left', 'right']} ease={['easeOutQuart', 'easeInOutQuart']}>
+      {props.collapsed ? null : [
         <div
+          key='sider-logo'
           className={props.collapsed ? 'blog-logo-normal' : 'blog-logo-collapsed'}
           style={{ background:props.logoBackground }}>
-          <Avatar src={headPicImg} style={{ background:props.logoBackground }} />
-          <span> {nickName}</span>
-        </div>
-      </Popover>
-      <Menu
-        defaultSelectedKeys={[blog.currentKey]}
-        selectedKeys={[blog.currentKey]}
-        onClick={handleClick}
-        mode='inline'
-        style={{ height:'100%' }}
-      >
-        {
-          menus && menus.map && menus.map(function (item) {
-            return getMenuItem(item)
-          })
-        }
-      </Menu>
-    </Sider>
+          <Popover
+            title={userTitle}
+            placement={props.collapsed ? 'rightTop' : 'bottom'}
+            content={userContent}
+          >
+            <Avatar src={headPicImg} style={{ background:props.logoBackground }} />
+            <span className='blog-log-text' >{nickName}</span>
+          </Popover>
+        </div>,
+        <Menu
+          key='sider-menu'
+          defaultSelectedKeys={[blog.currentKey]}
+          selectedKeys={[blog.currentKey]}
+          onClick={handleClick}
+          mode='inline'
+          style={{ height:'100%' }}
+        >
+          {
+            menus && menus.map && menus.map(function (item) {
+              return getMenuItem(item)
+            })
+          }
+        </Menu>
+      ]}
+    </QueueAnim>
   )
 }
 
 BlogSider.propTypes = {
   blog: PropTypes.object,
   collapsed: PropTypes.bool,
-  onCollapse: PropTypes.func,
   routerPush: PropTypes.func,
   getDetail: PropTypes.func,
   logoBackground: PropTypes.string

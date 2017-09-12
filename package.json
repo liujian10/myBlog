@@ -32,6 +32,7 @@
     "object-assign": "^4.1.1",
     "promise": "^7.1.1",
     "prop-types": "^15.5.10",
+    "rc-queue-anim": "^1.2.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-markdown-loader": "^1.1.12",

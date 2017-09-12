@@ -11,6 +11,11 @@ class Blog extends React.Component {
       logoBackground:'#fff'
     }
   }
+  componentDidMount () {
+    this.setState({
+      scrollTarget: document.getElementsByName('blog-main')[0]
+    })
+  }
   componentWillMount () {
     this.props.getUserInfo()
     this.props.getMenus({}, ({ menus }) => {
@@ -21,6 +26,8 @@ class Blog extends React.Component {
     })
   }
   onCollapse = collapsed => {
+    console.log('collapsed:')
+    console.log(collapsed)
     this.setState({ collapsed })
   }
   routerPush = path => {

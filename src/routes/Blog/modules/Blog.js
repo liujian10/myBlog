@@ -40,8 +40,10 @@ export const getIndexPath = (callback) => (dispatch, getState) => {
   const state = getState()
   let home = state.blog.menus[0]
   home = home && home.key
-  if (state.location.pathname === '/blog') {
-    return '/blog/' + home
+  const pathname = state.location.pathname
+  if (/^\/blog((?!\/).)*$/.test(pathname)) {
+    console.log(pathname)
+    return pathname + '/detail/' + home
   }
   return null
 }
