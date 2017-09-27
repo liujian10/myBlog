@@ -1,15 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BlogSider from '../../components/Blog/Sider'
-import { Layout, Input, BackTop, Affix, Icon } from 'antd'
+import BlogHeader from '../../components/Blog/Header'
+import { Layout, BackTop } from 'antd'
 import './BlogLayout.less'
-const { Content, Footer, Header, Sider } = Layout
-const { Search } = Input
+const { Content, Footer, Sider } = Layout
 
 const BlogLayout = (props) => {
   const { children, collapsed, onCollapse } = props
   const getTarget = () => document.getElementsByClassName('blog-main')[0] || window
-  const changeCollapsed = () => props.onCollapse(!collapsed)
   const getSiderStyle = (collapsed) => {
     return collapsed ? {
       background : '#fff',
@@ -34,18 +33,7 @@ const BlogLayout = (props) => {
         <BlogSider {...props} />
       </Sider>
       <Layout className='blog-main' >
-        <Affix target={getTarget}>
-          <Header className='blog-main-header'>
-            <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}
-              style={{ fontSize: 16, marginRight:20 }}
-              onClick={changeCollapsed} />
-            <Search
-              placeholder='input search text'
-              style={{ width: 200 }}
-              onSearch={value => console.log(value)}
-            />
-          </Header>
-        </Affix>
+        <BlogHeader {...props} />
         <Content className='blog-main-content'>
           {children}
         </Content>
