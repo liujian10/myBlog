@@ -25,7 +25,7 @@ const BlogLayout = (props) => {
     <Layout className='blog-layout'>
       <Sider
         className='blog-layout-sider'
-        // collapsible
+        collapsible
         collapsed={collapsed}
         onCollapse={onCollapse}
         style={getSiderStyle(collapsed)}

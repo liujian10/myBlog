@@ -19,20 +19,19 @@
       },
       {
         "key": 3,
-        "icon": "user",
-        "name": "user",
-        "desc": "user",
+        "name": "activity",
+        "desc": "activity",
         "children": [
           {
             "key": 31,
             "icon": "tag",
-            "desc": "Tom and andy is playing in water",
-            "name": "31"
+            "desc": "The tv area of limit free activity",
+            "name": "limitedFree"
           },
           {
             "key": 32,
-            "desc": "Andy",
-            "name": "32"
+            "desc": "The h5'cashier of tv",
+            "name": "tvCashier"
           },
           {
             "key": 33,
@@ -70,97 +69,7 @@
         "key": 4,
         "icon": "team",
         "desc": "team",
-        "name": "team",
-        "children": [
-          {
-            "key": 41,
-            "icon": "team",
-            "desc": "team 1",
-            "name": "team 1",
-            "children": [
-              {
-                "key": 411,
-                "icon": "team",
-                "desc": "team 1",
-                "name": "team 1",
-                "children": [
-                  {
-                    "key": 4111,
-                    "desc": "team 1",
-                    "name": "4111"
-                  },
-                  {
-                    "key": 4112,
-                    "desc": "team 2"
-                  },
-                  {
-                    "key": 4113,
-                    "desc": "team 3"
-                  },
-                  {
-                    "key": 4114,
-                    "desc": "team 4"
-                  },
-                  {
-                    "key": 4115,
-                    "desc": "team 5"
-                  },
-                  {
-                    "key": 4116,
-                    "desc": "team 6"
-                  }
-                ]
-              },
-              {
-                "key": 412,
-                "name": "team 2",
-                "desc": "team 2"
-              },
-              {
-                "key": 413,
-                "name": "team 3",
-                "desc": "team 3"
-              },
-              {
-                "key": 414,
-                "name": "team 4",
-                "desc": "team 4"
-              },
-              {
-                "key": 415,
-                "name": "team 5",
-                "desc": "team 5"
-              },
-              {
-                "key": 416,
-                "name": "team 6",
-                "desc": "team 6"
-              }
-            ]
-          },
-          {
-            "key": 42,
-            "name": "team 2",
-            "desc": "team 2"
-          },
-          {
-            "key": 43,
-            "desc": "team 3",
-            "name": "team 3"
-          },
-          {
-            "key": 44,
-            "desc": "team 4"
-          },
-          {
-            "key": 45,
-            "desc": "team 5"
-          },
-          {
-            "key": 46,
-            "desc": "team 6"
-          }
-        ]
+        "name": "team"
       },
       {
         "key": 5,

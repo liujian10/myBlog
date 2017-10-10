@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Affix, Icon, Select } from 'antd'
+import { Layout, Affix, Avatar, Select } from 'antd'
 import './Header.less'
 const { Header } = Layout
 const { Option, OptGroup } = Select
 
 const BlogHeader = (props) => {
-  const { blog, collapsed } = props
+  const { blog, collapsed, showSearch, onSearch } = props
   const { menus = [], menuItems = [] } = blog
   const getTarget = () => document.getElementsByClassName('blog-main')[0] || window
   const changeCollapsed = () => props.onCollapse(!collapsed)
@@ -43,26 +43,42 @@ const BlogHeader = (props) => {
       key: key
     })
   }
+  const hideSearch = () => onSearch(!collapsed)
   return (
     <Affix target={getTarget}>
-      <Header className='blog-main-header'>
-        <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}
-          style={{ fontSize: 16, marginRight:20 }}
-          onClick={changeCollapsed} />
+      <Header className={collapsed ? 'blog-main-fold' : 'blog-main-header'}>
+        <Avatar
+          icon='search'
+          style={{
+            display : (collapsed ? 'inline-block' : 'none'),
+            verticalAlign : 'middle',
+            marginRight: '5px'
+          }}
+          onClick={onSearch}
+        />
         <Select
           showSearch
-          style={{ width: 200 }}
+          style={{
+            width: 200,
+            display : (showSearch ? 'inline-block' : 'none'),
+            borderRadius: '20px',
+            boxShadow: '0px 0px 10px 3px #e9e9e9'
+          }}
           placeholder='Select'
           optionFilterProp='children'
           onChange={handleChange}
-          // onFocus={handleFocus}
-          // onBlur={handleBlur}
+          onBlur={hideSearch}
           filterOption={(input, option) => {
             return option.props.children && option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }}
         >
           {getSelectOptions(menus)}
         </Select>
+        <Avatar
+          icon='right'
+          style={{ display : (collapsed ? 'block' : 'none') }}
+          onClick={changeCollapsed}
+        />
       </Header>
     </Affix>
   )
@@ -72,8 +88,10 @@ BlogHeader.propTypes = {
   blog: PropTypes.object,
   onCollapse: PropTypes.func,
   collapsed: PropTypes.bool,
+  showSearch: PropTypes.bool,
   routerPush: PropTypes.func,
-  getDetail: PropTypes.func
+  getDetail: PropTypes.func,
+  onSearch: PropTypes.func,
 }
 
 export default BlogHeader

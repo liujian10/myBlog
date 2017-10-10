@@ -72,6 +72,7 @@ const BlogSider = (props) => {
         </div>,
         <Menu
           key='sider-menu'
+          collapsible
           defaultSelectedKeys={[blog.currentKey]}
           selectedKeys={[blog.currentKey]}
           onClick={handleClick}

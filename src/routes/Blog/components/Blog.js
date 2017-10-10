@@ -8,6 +8,7 @@ class Blog extends React.Component {
     super(props)
     this.state = {
       collapsed: false,
+      showSearch:true,
       logoBackground:'#fff'
     }
   }
@@ -28,7 +29,10 @@ class Blog extends React.Component {
   onCollapse = collapsed => {
     console.log('collapsed:')
     console.log(collapsed)
-    this.setState({ collapsed })
+    this.setState({ collapsed, showSearch : !collapsed })
+  }
+  onSearch = folded => {
+    this.setState({ showSearch : typeof folded === 'boolean' ? folded : !this.state.showSearch })
   }
   routerPush = path => {
     this.props.router.push(path)
@@ -39,10 +43,11 @@ class Blog extends React.Component {
         ...this.props,
         ...this.state,
         routerPush:this.routerPush,
-        onCollapse:this.onCollapse
+        onCollapse:this.onCollapse,
+        onSearch:this.onSearch,
       }} >{this.props.children}</BlogLayout>
     }
-    return (<Spin size='large' />)
+    return <Spin size='large' />
   }
 }
 
@@ -54,7 +59,8 @@ Blog.propTypes = {
   menus: PropTypes.array,
   router: PropTypes.object.isRequired,
   blog:PropTypes.object.isRequired,
-  currentKey:PropTypes.any
+  currentKey:PropTypes.any,
+  showSearch:PropTypes.bool
 }
 
 export default Blog

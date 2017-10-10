@@ -24,8 +24,7 @@ const getComponent = (store, name) => (nextState, cb) => {
   }, 'blog')
 }
 
-export default (store) => {
-  console.log(store)
+export default store => {
   return {
     path: 'blog',
     getComponent: getComponent(store, 'Blog'),

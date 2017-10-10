@@ -32,6 +32,7 @@ export const HomeView = () => (
     <Content className='page-content'>
       <Row className='page-content-row' type='flex' align='middle' justify='space-around' gutter={24}>
         <RowCol info={{ link:'/counter', img:DuckImage, title:'Counter', desc:'To demo counter' }} />
+        <RowCol info={{ link:'/fallWater', img:DuckImage, title:'fallWater', desc:'To demo fallWater' }} />
         <RowCol info={{ link:'/blog', img:MapleImage, title:'My blog', desc:'To my blog' }} />
         <RowCol info={{ link:'/cashier',
           img:'http://i0.letvimg.com/lc07_pay/201704/18/12/22/levip-logo.png',

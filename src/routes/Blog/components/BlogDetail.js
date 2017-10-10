@@ -16,6 +16,8 @@ class BlogDetail extends React.Component {
   }
   render () {
     const { detail } = this.props
+    console.log('detail:')
+    console.log(detail)
     let content
     try {
       content = detail && detail.name && require('../../../../docs/' + detail.name + '.md')
