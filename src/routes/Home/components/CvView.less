@@ -1,0 +1,160 @@
+body,html{
+  overflow: hidden;
+}
+
+.cv-layout{
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+  line-height: 1.6;
+  color: rgba(0,0,0,0.6);
+}
+
+.cv-header,.cv-sider,.cv-main{
+  background: none;
+}
+
+.cv-sider{
+  display: block;
+  text-align: center;
+  padding: 20px 0;
+  box-shadow: 3px 0 3px #e9e9e9;
+}
+
+.cv-sider-head{
+  width: 80px;
+  height: auto;
+}
+
+.cv-text-caps{
+  font-weight: normal;
+  font-variant: small-caps;
+}
+
+.cv-sider-baseInfo{
+  font-size: 12px;
+  display: inline-block;
+  text-align: left;
+  padding: 10px 20px;
+  h3{
+    border-bottom: 1px solid #e9e9e9;
+    padding: 5px 0;
+  }
+  &>li{
+    margin: 5px 0;
+  }
+}
+
+.cv-main{
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.cv-content{
+  padding: 10px 40px;
+}
+
+.cv-text:first-letter{
+  color: #25a186;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.cv-card{
+  margin: 5px 0;
+}
+
+.cv-header,.cv-footer{
+  text-align: center;
+}
+
+.code-box-shape{
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: #0e77ca;
+}
+
+.cv-works-group{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.cv-works-item{
+  display: inline-block;
+  width: 190px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.cv-works-card{
+  display: block;
+  h3{
+    color: #25a186;
+    font-size: .2rem;
+  }
+  p{
+    padding: 0 10px 10px;
+    font-size: .16rem;
+  }
+}
+
+.cv-modal{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  right:0;
+  width:100%;
+  height:100%;
+  text-align:center;
+  background: rgba(255,255,255,0.8);
+  z-index: 1;
+}
+
+.cv-modal-content{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  right:0;
+  width:100%;
+  height:100%;
+  text-align:center;
+  z-index: 2;
+}
+
+.cv-modal-box{
+  display:inline-block;
+  margin-top:1rem;
+  width:12rem;
+  height:6rem;
+  box-shadow: 0 0 10px 0 #000;
+}
+
+.cv-modal-close,.cv-modal-link{
+  display: inline-block;
+  width: .7rem;
+  height: .7rem;
+  line-height: .7rem;
+  font-size: .5rem;
+  margin: .2rem;
+  border-radius: 1rem;
+  vertical-align: top;
+  transition: transform 1s;
+  &:hover{
+    background: #616161;
+    color: #fff;
+    transform: rotate(180deg);
+  }
+}
+
+.ant-layout-sider-zero-width-trigger{
+  z-index: 1;
+}

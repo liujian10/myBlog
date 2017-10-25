@@ -80,7 +80,7 @@ const BlogSider = (props) => {
           style={{ height:'100%' }}
         >
           {
-            menus && menus.map && menus.map(function (item) {
+            menus && menus.map && menus.map(item => {
               return getMenuItem(item)
             })
           }
