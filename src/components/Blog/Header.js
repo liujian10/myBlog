@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Affix, Avatar, Select } from 'antd'
+import { Layout, Icon, Select } from 'antd'
 import './Header.less'
 const { Header } = Layout
 const { Option, OptGroup } = Select
 
 const BlogHeader = (props) => {
-  const { blog, collapsed, showSearch, onSearch } = props
+  const { blog, collapsed, onSearch } = props
   const { menus = [], menuItems = [] } = blog
-  const getTarget = () => document.getElementsByClassName('blog-main')[0] || window
   const changeCollapsed = () => props.onCollapse(!collapsed)
   const getSelectOptions = (array) => {
     let item = null
@@ -45,42 +44,35 @@ const BlogHeader = (props) => {
   }
   const hideSearch = () => onSearch(!collapsed)
   return (
-    <Affix target={getTarget}>
-      <Header className={collapsed ? 'blog-main-fold' : 'blog-main-header'}>
-        <Avatar
-          icon='search'
-          style={{
-            display : (collapsed ? 'inline-block' : 'none'),
-            verticalAlign : 'middle',
-            marginRight: '5px'
-          }}
-          onClick={onSearch}
-        />
-        <Select
-          showSearch
-          style={{
-            width: 200,
-            display : (showSearch ? 'inline-block' : 'none'),
-            borderRadius: '20px',
-            boxShadow: '0px 0px 10px 3px #e9e9e9'
-          }}
-          placeholder='Select'
-          optionFilterProp='children'
-          onChange={handleChange}
-          onBlur={hideSearch}
-          filterOption={(input, option) => {
-            return option.props.children && option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }}
-        >
-          {getSelectOptions(menus)}
-        </Select>
-        <Avatar
-          icon='right'
-          style={{ display : (collapsed ? 'block' : 'none') }}
-          onClick={changeCollapsed}
-        />
-      </Header>
-    </Affix>
+    <Header
+      className='blog-main-header'
+      style={{
+        background:'#fff'
+      }}
+    >
+      <Icon
+        type={collapsed ? 'menu-unfold' : 'menu-fold'}
+        className='blog-header-icon-menu'
+        onClick={changeCollapsed}
+      />
+      <Select
+        showSearch
+        style={{
+          width: 200,
+          borderRadius: '20px',
+          // boxShadow: '0px 0px 10px 3px #e9e9e9'
+        }}
+        placeholder='Search'
+        optionFilterProp='children'
+        onChange={handleChange}
+        onBlur={hideSearch}
+        filterOption={(input, option) => {
+          return option.props.children && option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        }}
+      >
+        {getSelectOptions(menus)}
+      </Select>
+    </Header>
   )
 }
 
@@ -88,7 +80,6 @@ BlogHeader.propTypes = {
   blog: PropTypes.object,
   onCollapse: PropTypes.func,
   collapsed: PropTypes.bool,
-  showSearch: PropTypes.bool,
   routerPush: PropTypes.func,
   getDetail: PropTypes.func,
   onSearch: PropTypes.func,

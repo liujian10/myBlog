@@ -6,7 +6,6 @@ const setRem = () => {
 }
 
 export const initRem = () => {
-  setRem()
   if (window.addEventListener) {
     document.addEventListener('DOMContentLoaded', function () {
       setRem()
@@ -20,7 +19,4 @@ export const initRem = () => {
       setTimeout(setRem, 300)
     })
   }
-}
-
-export default () => {
 }

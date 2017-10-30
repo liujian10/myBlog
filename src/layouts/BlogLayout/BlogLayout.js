@@ -9,32 +9,28 @@ const { Content, Footer, Sider } = Layout
 const BlogLayout = (props) => {
   const { children, collapsed, onCollapse } = props
   const getTarget = () => document.getElementsByClassName('blog-main')[0] || window
-  const getSiderStyle = (collapsed) => {
-    return collapsed ? {
-      background : '#fff',
-      height:'100%'
-    } : {
-      background : '#fff',
-      height:'100%',
-      overflowY:'auto',
-      overflowX:'hidden',
-      paddingBottom: '50px'
-    }
-  }
   return (
     <Layout className='blog-layout'>
       <Sider
         className='blog-layout-sider'
-        collapsible
+        breakpoint='lg'
+        collapsedWidth='0'
         collapsed={collapsed}
         onCollapse={onCollapse}
-        style={getSiderStyle(collapsed)}
+        style={{
+          background:'#fff'
+        }}
       >
         <BlogSider {...props} />
       </Sider>
       <Layout className='blog-main' >
         <BlogHeader {...props} />
-        <Content className='blog-main-content'>
+        <Content
+          className='blog-main-content'
+          style={{
+            background:'#fff'
+          }}
+        >
           {children}
         </Content>
         <Footer className='blog-main-footer' >

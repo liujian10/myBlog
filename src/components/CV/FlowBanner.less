@@ -1,0 +1,31 @@
+.flow-banner-container {
+  display: block;
+  perspective: 4000px;
+}
+
+.flow-banner-items {
+  margin: 50px auto;
+  /*指定子元素定位在三维空间内*/
+  transform-style: preserve-3d;
+  /*让所有item的父级元素（即items）旋转，item就是围绕着旋转了*/
+  // animation: autoMove 1s infinite linear;
+}
+
+.flow-banner-item {
+  text-align: center;
+  position: absolute;
+  border: 1px solid #e9e9e9;
+}
+
+@keyframes autoMove {
+  from {
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
+}
+
+.flow-banner-animate-enter {
+  transition: transform 1.5s ease-in-out;
+  transform: rotateY(-60deg);
+}

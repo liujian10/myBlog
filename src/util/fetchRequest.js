@@ -11,7 +11,7 @@ import userInfo from '../../json/userInfo.json'
 import menus from '../../json/menus.json'
 
 const SUCCESS_CODE = 0
-const BASE_HOST = 'http://localhost:3000/json/'
+const BASE_HOST = 'http://' + location.host + '/json/'
 
 // 后端定义的全局错误返回码
 const GLOBAL_CODES = {

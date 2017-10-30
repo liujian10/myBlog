@@ -36,6 +36,7 @@
     "rc-queue-anim": "^1.2.2",
     "rc-scroll-anim": "^1.0.7",
     "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^15.5.4",
     "react-markdown-loader": "^1.1.12",
     "react-redux": "^5.0.4",

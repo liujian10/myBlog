@@ -47,7 +47,13 @@ class Blog extends React.Component {
         onSearch:this.onSearch,
       }} >{this.props.children}</BlogLayout>
     }
-    return <Spin size='large' />
+    return <Spin
+      size='large'
+      style={{
+        display:'block',
+        margin:'40% auto'
+      }}
+    />
   }
 }
 
