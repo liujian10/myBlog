@@ -20,6 +20,7 @@ import {
 import './CvView.less';
 import MapleImage from '../assets/maple.png';
 import WorkCard from '../../../components/CV/WorkCard';
+import CvCard from '../../../components/CV/CvCard';
 import WorksBanner from '../../../components/CV/WorksBanner';
 import FlowBanner from '../../../components/CV/FlowBanner';
 
@@ -40,24 +41,15 @@ class CvView extends React.Component {
   componentDidMount () {
     let bodyWidth = document.getElementsByClassName('cv-main')[0].clientWidth;
     let bodyHeight = document.documentElement.clientHeight;
+    let isMobile = bodyWidth <= bodyHeight
     this.setState({
       bodyWidth: bodyWidth,
       bodyHeight: bodyHeight,
-      isMobile: bodyWidth <= bodyHeight
+      isMobile: isMobile
     });
   }
 
   render () {
-    const CvCard = param => {
-      const { title = '', children = '' } = param;
-      return (
-        <Card
-          className='cv-card' title={<div className='cv-text'>{title}</div>}
-          bordered={false}>
-          {children}
-        </Card>
-      );
-    };
     const { router } = this.props;
     // 头像动画配置
     const logoAnimation = {
@@ -139,27 +131,23 @@ class CvView extends React.Component {
       window;
     // 动态动画key值
     let animateKey = 0;
-    // 动态项目&作品key值
-    let worksKey = -1;
     // 获取项目&作品卡片动画动态属性
-    const getCardAnimationProps = key => {
+    const getCardAnimationProps = (key, style, bindClick) => {
       let cardKey = 'card' + key;
-      let cardProps = this.state.cardProps[cardKey] || {
-        paused: true,
-        reverse: false,
-        moment: null
-      };
       let res = {
         key: cardKey,
         animation: {
           scale: 1.2,
           duration: 500
         },
-        ...cardProps,
-        onMouseOver: onCardMouseOver.bind(this, cardKey),
-        onMouseOut: onCardMouseOut.bind(this, cardKey),
-        onClick: onCardClick.bind(this, key),
-        style: { width: '200px', height: '150px' }
+        ...(this.state.cardProps[cardKey] || {
+          paused: true,
+          reverse: false,
+          moment: null
+        }),
+        onMouseOver: onCardMouseOver.bind(null, cardKey),
+        onMouseOut: onCardMouseOut.bind(null, cardKey),
+        style: style
       };
       return res;
     };
@@ -182,9 +170,7 @@ class CvView extends React.Component {
               onMouseOut={onLogoMouseOut}>
               <img className='cv-sider-head' src={MapleImage}/>
             </TweenOne>
-            <h2 key={++animateKey} className='cv-text-caps'>{introduction.name}
-              <Icon type='man'/>
-            </h2>
+            <h2 key={++animateKey} className='cv-sider-username'>{introduction.name} <Icon type='man'/></h2>
             <ul key={++animateKey} className='cv-sider-baseInfo'>
               <li className='cv-text'>
                 我{introduction.age}，{introduction.nationality}，{introduction.party}</li>
@@ -219,12 +205,16 @@ class CvView extends React.Component {
                         className='cv-works-group' delay={300}
                         type='right' duration={1000}>
                         {
-                          works.map(work => {
+                          works.map((work, index) => {
                             return <div
                               key={++animateKey}
                               className='cv-works-item'>
-                              <TweenOne {...getCardAnimationProps(++worksKey)}>
-                                <WorkCard {...work} />
+                              <TweenOne {...getCardAnimationProps(index, { width: '200px', height: '150px' }, true)}>
+                                <WorkCard
+                                  {...work}
+                                  fns={{
+                                    onOpen: onCardClick.bind(null, index)
+                                  }}/>
                               </TweenOne>
                             </div>;
                           })
@@ -232,7 +222,12 @@ class CvView extends React.Component {
                       </QueueAnim> : <QueueAnim
                         className='cv-works-group' delay={300}
                         type='right' duration={1000}>
-                        <FlowBanner {...this.state} works={works}/>
+                        <FlowBanner
+                          {...this.state}
+                          works={works}
+                          getCardAnimationProps={getCardAnimationProps}
+                          clickFunc={onCardClick}
+                        />
                       </QueueAnim>
                   }
                 </CvCard>
