@@ -48,6 +48,15 @@ const WorkCard = props => {
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
+      <Tag key='open' color={colors[5]} style={{
+        display: 'inline-block',
+        position:'absolute',
+        top:'5px',
+        right:'0px',
+        zIndex:'2'
+      }}>
+        <Icon type='arrows-alt' onClick={onOpen}/>
+      </Tag>
       <div
         style={{
           background: 'rgba(255, 255, 255, 0.8)',
@@ -61,7 +70,6 @@ const WorkCard = props => {
         <h3>{title}</h3>
         <p>{desc}</p>
         <div>
-          <Tag key='open' {...getTagProp(0)}><Icon type='arrows-alt' onClick={onOpen}/></Tag>
           {
             keyWords.map((keyWord, index) => {
               return keyWord.url ? <a href={keyWord.url} key={index}>

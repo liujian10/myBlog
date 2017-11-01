@@ -33,7 +33,7 @@
   #ccc 8px 11px 10px;
 }
 
-.cv-sider-username{
+.cv-sider-username {
   font-size: 20px;
   font-weight: normal;
 }
@@ -97,7 +97,18 @@
 .cv-works-item {
   display: inline-block;
   width: 190px;
-  margin: 10px;
+  margin: 20px;
+  & > div:after {
+    content: '';
+    width: 100px;
+    height: 100px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.2);
+    transform: rotate(252deg) translate(20px, -20px) skew(-20deg);
+  }
 }
 
 .cv-works-card {

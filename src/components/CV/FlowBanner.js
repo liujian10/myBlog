@@ -41,6 +41,11 @@ class FlowBanner extends React.Component {
 
   render () {
     const { works, bodyWidth, getCardAnimationProps, clickFunc = () => {} } = this.props;
+    if(this.props.showModal){
+      this.bannerTimer && clearInterval(this.bannerTimer);
+    }else{
+      this.setBannerTimer();
+    }
     let bannerElementKey = 0;
     let itemNum = works.length; // 要旋转的div的数量
     let centerNum = itemNum / 2;
@@ -69,7 +74,7 @@ class FlowBanner extends React.Component {
       height: '100%',
       padding: '10px',
       border: '1px solid #ccc',
-      borderTopRightRadius: '6px 50px'
+      borderTopLeftRadius: '6px 50px'
     };
 
     const handleMouseOver = ()=> {
@@ -77,7 +82,7 @@ class FlowBanner extends React.Component {
     };
 
     const handleMouseOut = ()=> {
-      this.setBannerTimer();
+      this.props.showModal || this.setBannerTimer();
     };
 
     return (
@@ -129,7 +134,8 @@ FlowBanner.propTypes = {
   bodyWidth: PropTypes.number,
   getCardAnimationProps: PropTypes.func,
   clickFunc: PropTypes.func,
-  isMobile: PropTypes.bool
+  isMobile: PropTypes.bool,
+  showModal: PropTypes.bool
 };
 
 export default FlowBanner;

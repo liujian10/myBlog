@@ -5,7 +5,7 @@ import { OverPack } from 'rc-scroll-anim';
 import PropTypes from 'prop-types';
 import {
   Layout,
-  Icon, Card,
+  Icon,
   Timeline,
   BackTop
 } from 'antd';
