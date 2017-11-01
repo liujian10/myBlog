@@ -263,7 +263,7 @@ class CvView extends React.Component {
                   <CvCard title={titles.technologies}>
                     {
                       technologies.map((technology, index) => {
-                        return <div key={index} style={{ margin: '.1rem 0' }}>
+                        return <div key={index} style={{ marginBottom: '.2rem' }}>
                           <h3>{technology.name}</h3>
                           <ul>
                             {
