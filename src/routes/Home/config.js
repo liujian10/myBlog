@@ -43,7 +43,7 @@ export const works = [
       },
       {
         name: 'Blog',
-        url: '/blog'
+        url: '/myBlog'
       }
     ],
     poster: posters[0],

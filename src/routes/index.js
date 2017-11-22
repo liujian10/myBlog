@@ -13,7 +13,7 @@ export const createRoutes = store => ({
   childRoutes: [
     CounterRoute(store),
     BlogRoute(store),
-    WaterFallRoute(store),
+    WaterFallRoute(store)
   ]
 })
 

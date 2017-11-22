@@ -1,7 +1,7 @@
-const argv = require('yargs').argv
-const webpackConfig = require('./webpack.config')
+const argv = require('yargs').argv;
+const webpackConfig = require('./webpack.config');
 
-const TEST_BUNDLER = './tests/test-bundler.js'
+const TEST_BUNDLER = './tests/test-bundler.js';
 
 const karmaConfig = {
   basePath: '../',
@@ -9,25 +9,26 @@ const karmaConfig = {
   singleRun: !argv.watch,
   coverageReporter: {
     reporters: [
-      { type: 'text-summary' },
-    ],
+      { type: 'text-summary' }
+    ]
   },
-  files: [{
-    pattern  : TEST_BUNDLER,
-    watched  : false,
-    served   : true,
-    included : true
-  }],
+  files: [
+    {
+      pattern: TEST_BUNDLER,
+      watched: false,
+      served: true,
+      included: true
+    }],
   frameworks: ['mocha'],
   reporters: ['mocha'],
   preprocessors: {
-    [TEST_BUNDLER]: ['webpack'],
+    [TEST_BUNDLER]: ['webpack']
   },
   logLevel: 'WARN',
   browserConsoleLogOptions: {
     terminal: true,
     format: '%b %T: %m',
-    level: '',
+    level: ''
   },
   webpack: {
     entry: TEST_BUNDLER,
@@ -38,13 +39,13 @@ const karmaConfig = {
     externals: {
       'react/addons': 'react',
       'react/lib/ExecutionEnvironment': 'react',
-      'react/lib/ReactContext': 'react',
-    },
+      'react/lib/ReactContext': 'react'
+    }
   },
   webpackMiddleware: {
     stats: 'errors-only',
-    noInfo: true,
-  },
-}
+    noInfo: true
+  }
+};
 
-module.exports = (cfg) => cfg.set(karmaConfig)
+module.exports = (cfg) => cfg.set(karmaConfig);

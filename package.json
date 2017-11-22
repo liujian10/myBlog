@@ -30,6 +30,7 @@
     "lodash": "^4.17.4",
     "markdown-loader": "^2.0.1",
     "object-assign": "^4.1.1",
+    "path": "^0.12.7",
     "promise": "^7.1.1",
     "prop-types": "^15.5.10",
     "rc-banner-anim": "^0.5.16",
