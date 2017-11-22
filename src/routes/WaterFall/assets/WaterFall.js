@@ -1,8 +1,8 @@
 const waterFall = {
-  columnNumber: 1,// 当前列数量
-  columns: [],// 列表集合
+  columnNumber: 1,//当前列数量
+  columns: [],//列表集合
   scrollTop: document.documentElement.scrollTop || document.body.scrollTop,
-  // 获取列数量
+  //获取列数量
   getColumnNumber: function () {
     return Math.floor((document.body.clientWidth - 20) / (this.columnWidth + 20));
   },
