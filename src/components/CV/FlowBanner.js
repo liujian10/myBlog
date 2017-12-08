@@ -8,19 +8,19 @@ class FlowBanner extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentIndex: 0,
       currentDeg: 0
     };
+
     this.setBannerTimer = () => {
       this.bannerTimer && clearInterval(this.bannerTimer);
       this.bannerTimer = this.props.isMobile ? null : setInterval(() => {
         const { works } = this.props;
-        const currentIndex = this.state.currentIndex;
+        const currentIndex = this.props.bannerCurIndex;
         let itemNum = works.length; // 要旋转的div的数量
         let centerNum = itemNum / 2;
         let itemDeg = 360 / itemNum; // 计算平均偏移角度，后面的itemDeg*index是不同索引div的偏移角度
         let itemIndex = currentIndex === itemNum - 1 ? 0 : currentIndex + 1;
-        let nextStep = itemIndex - this.state.currentIndex;
+        let nextStep = itemIndex - this.props.bannerCurIndex;
         let dot = this.state.currentDeg -
           (nextStep > -1 * centerNum && nextStep < centerNum
             ? nextStep
@@ -28,31 +28,27 @@ class FlowBanner extends React.Component {
               ? nextStep + itemNum
               : nextStep - itemNum) * itemDeg;
         this.setState({
-          currentIndex: itemIndex,
           currentDeg: dot
         });
+        this.props.setBannerIndex(this.props.bannerCurIndex, itemIndex);
       }, 5000);
+      this.cardMouseOver = false;
     };
-  }
-
-  componentDidMount () {
-    this.setBannerTimer();
   }
 
   render () {
     const { works, bodyWidth, getCardAnimationProps, clickFunc = () => {} } = this.props;
-    if(this.props.showModal){
+    if (this.props.showModal || this.cardMouseOver) {
       this.bannerTimer && clearInterval(this.bannerTimer);
-    }else{
+    } else {
       this.setBannerTimer();
     }
-    let bannerElementKey = 0;
     let itemNum = works.length; // 要旋转的div的数量
     let centerNum = itemNum / 2;
     let itemDeg = 360 / itemNum; // 计算平均偏移角度，后面的itemDeg*index是不同索引div的偏移角度
     const handleClick = (workItem, itemIndex) => {
       this.bannerTimer && clearInterval(this.bannerTimer);
-      let nextStep = itemIndex - this.state.currentIndex;
+      let nextStep = itemIndex - this.props.bannerCurIndex;
       let dot = this.state.currentDeg -
         (nextStep > -1 * centerNum && nextStep < centerNum
           ? nextStep
@@ -60,14 +56,13 @@ class FlowBanner extends React.Component {
             ? nextStep + itemNum
             : nextStep - itemNum) * itemDeg;
       this.setState({
-        currentIndex: itemIndex,
         currentDeg: dot
       });
-      this.setBannerTimer();
+      this.props.setBannerIndex(this.props.bannerCurIndex, itemIndex);
     };
 
-    let bannerWidth = bodyWidth * 0.24;
-    let bannerHeight = bodyWidth * 0.13;
+    let bannerWidth = bodyWidth * 0.25;
+    let bannerHeight = bodyWidth * 0.14;
 
     const cardStyle = {
       width: '100%',
@@ -77,12 +72,16 @@ class FlowBanner extends React.Component {
       borderTopLeftRadius: '6px 50px'
     };
 
-    const handleMouseOver = ()=> {
+    const handleMouseOver = () => {
+      this.cardMouseOver = true;
       this.bannerTimer && clearInterval(this.bannerTimer);
     };
 
-    const handleMouseOut = ()=> {
-      this.props.showModal || this.setBannerTimer();
+    const handleMouseOut = () => {
+      this.cardMouseOver = false;
+      if (!this.props.showModal) {
+        this.setBannerTimer();
+      }
     };
 
     return (
@@ -104,8 +103,9 @@ class FlowBanner extends React.Component {
               onMouseOver: handleMouseOver,
               onMouseOut: handleMouseOut
             };
+            // let baseSize = this.props.bannerCurIndex === itemIndex ? 1.2 : 1;
             return <div
-              key={bannerElementKey++}
+              key={itemIndex}
               className='flow-banner-item'
               style={{
                 transform: transformValue,
@@ -134,6 +134,7 @@ FlowBanner.propTypes = {
   bodyWidth: PropTypes.number,
   getCardAnimationProps: PropTypes.func,
   clickFunc: PropTypes.func,
+  setBannerIndex: PropTypes.func,
   isMobile: PropTypes.bool,
   showModal: PropTypes.bool
 };

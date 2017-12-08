@@ -1,10 +1,10 @@
 // 个人简介信息
 export const introduction = {
-  name: 'Maple',
+  name: 'Maple Liu',
   age: 'xx',
   nationality: 'xx',
   party: 'xx',
-  desc: '我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介,我是简介',
+  desc: '我是简介内容，我是简介内容，我是简介内容，我是简介内容，我是简介内容，我是简介内容，我是简介内容，我是简介内容，我是简介内容，我是简介内容，我是简介内容，我是简介内容',
   mobile: '12345678901',
   email: '123@mail.com',
   website: 'test.com',
@@ -123,38 +123,6 @@ export const works = [
         title: '会员俱乐部',
         desc: '展示乐视影视会员专题，活动信息',
         img: posters[9]
-      }
-    ]
-  },
-  {
-    title: '博客',
-    desc: '基于React的博客demo',
-    keyWords: [
-      {
-        name: 'React',
-        url: 'https://reactjs.org/'
-      },
-      {
-        name: 'Ant Design',
-        url: 'https://ant.design/'
-      },
-      {
-        name: 'Blog',
-        url: '/blog'
-      }
-    ],
-    poster: posters[0],
-    url: '/blog',
-    detail: [
-      {
-        title: '主页面',
-        desc: '左侧菜单栏，头部搜索栏，右侧为博客内容',
-        img: posters[0]
-      },
-      {
-        title: '主页面',
-        desc: '隐藏菜单栏的主页面',
-        img: posters[1]
       }
     ]
   },

@@ -1,6 +1,6 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "3.0.1",
+  "name": "Maple Blog",
+  "version": "1.0.2",
   "description": "Get started with React, Redux, and React-Router!",
   "main": "index.js",
   "scripts": {
@@ -17,10 +17,10 @@
     "type": "git",
     "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
+  "author": "Maple Liu <mapleliu1@gmail.com> (http://mapleliu.com)",
   "license": "MIT",
   "dependencies": {
-    "antd": "^2.10.4",
+    "antd": "^3.0.0",
     "babel-plugin-import": "^1.2.1",
     "bootstrap": "^4.0.0-alpha",
     "compression": "^1.6.2",
@@ -36,9 +36,9 @@
     "rc-banner-anim": "^0.5.16",
     "rc-queue-anim": "^1.2.2",
     "rc-scroll-anim": "^1.0.7",
-    "react": "^15.5.4",
+    "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
-    "react-dom": "^15.5.4",
+    "react-dom": "^16.2.0",
     "react-markdown-loader": "^1.1.12",
     "react-redux": "^5.0.4",
     "react-router": "^3.0.0",
@@ -95,7 +95,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "mocha": "^3.2.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.7.2",
     "phantomjs-prebuilt": "^2.1.14",
     "react-addons-test-utils": "^15.5.1",
     "react-test-renderer": "^15.5.4",

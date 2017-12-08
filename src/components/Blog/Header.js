@@ -1,53 +1,54 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Layout, Icon, Select } from 'antd'
-import './Header.less'
-const { Header } = Layout
-const { Option, OptGroup } = Select
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Layout, Icon, Select } from 'antd';
+import './Header.less';
+
+const { Header } = Layout;
+const { Option, OptGroup } = Select;
 
 const BlogHeader = (props) => {
-  const { blog, collapsed, onSearch } = props
-  const { menus = [], menuItems = [] } = blog
-  const changeCollapsed = () => props.onCollapse(!collapsed)
+  const { blog, collapsed, onSearch } = props;
+  const { menus = [], menuItems = [] } = blog;
+  const changeCollapsed = () => props.onCollapse(!collapsed);
   const getSelectOptions = (array) => {
-    let item = null
-    let options = []
+    let item = null;
+    let options = [];
     for (item of array) {
       if (item && item.key) {
         if (item.children) {
           options.push(<OptGroup key={item.key} label={item.name}>
             {getSelectOptions(item.children)}
-          </OptGroup>)
+          </OptGroup>);
         } else {
-          options.push(<Option key={item.key} value={item.key.toString()}>{item.name || item.desc}</Option>)
+          options.push(<Option key={item.key} value={item.key.toString()}>{item.name || item.desc}</Option>);
         }
       }
     }
-    return options
-  }
+    return options;
+  };
   const getItemByKey = (key, items) => {
-    let item = {}
+    let item = {};
     for (item of items) {
       if (item.key.toString() === key.toString()) {
-        return item
+        return item;
       }
     }
-    return null
-  }
+    return null;
+  };
   const handleChange = key => {
-    let item = getItemByKey(key, menuItems)
-    props.routerPush('/blog/detail/' + item.key)
+    let item = getItemByKey(key, menuItems);
+    props.routerPush('/blog/detail/' + item.key);
     props.getDetail({
       name: item.name,
       key: key
-    })
-  }
-  const hideSearch = () => onSearch(!collapsed)
+    });
+  };
+  const hideSearch = () => onSearch(!collapsed);
   return (
     <Header
       className='blog-main-header'
       style={{
-        background:'#fff'
+        background: '#fff'
       }}
     >
       <Icon
@@ -59,7 +60,7 @@ const BlogHeader = (props) => {
         showSearch
         style={{
           width: 200,
-          borderRadius: '20px',
+          borderRadius: '20px'
           // boxShadow: '0px 0px 10px 3px #e9e9e9'
         }}
         placeholder='Search'
@@ -67,14 +68,14 @@ const BlogHeader = (props) => {
         onChange={handleChange}
         onBlur={hideSearch}
         filterOption={(input, option) => {
-          return option.props.children && option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          return option.props.children && option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
         }}
       >
         {getSelectOptions(menus)}
       </Select>
     </Header>
-  )
-}
+  );
+};
 
 BlogHeader.propTypes = {
   blog: PropTypes.object,
@@ -82,7 +83,7 @@ BlogHeader.propTypes = {
   collapsed: PropTypes.bool,
   routerPush: PropTypes.func,
   getDetail: PropTypes.func,
-  onSearch: PropTypes.func,
-}
+  onSearch: PropTypes.func
+};
 
-export default BlogHeader
+export default BlogHeader;

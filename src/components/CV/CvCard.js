@@ -5,7 +5,9 @@ const CvCard = param => {
   const { title = '', children = '' } = param;
   return (
     <Card
-      className='cv-card' title={<div className='cv-text'>{title}</div>}
+      hoverable
+      className='cv-card'
+      title={<div className='cv-text'>{title}</div>}
       bordered={false}>
       {children}
     </Card>
