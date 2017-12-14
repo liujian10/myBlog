@@ -8,7 +8,8 @@ const CvCard = param => {
       hoverable
       className='cv-card'
       title={<div className='cv-text'>{title}</div>}
-      bordered={false}>
+      bordered={false}
+    >
       {children}
     </Card>
   );

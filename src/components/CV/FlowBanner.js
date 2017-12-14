@@ -61,8 +61,8 @@ class FlowBanner extends React.Component {
       this.props.setBannerIndex(this.props.bannerCurIndex, itemIndex);
     };
 
-    let bannerWidth = bodyWidth * 0.25;
-    let bannerHeight = bodyWidth * 0.14;
+    let bannerWidth = bodyWidth * 0.2;
+    let bannerHeight = bannerWidth * 0.6;
 
     const cardStyle = {
       width: '100%',
@@ -90,7 +90,7 @@ class FlowBanner extends React.Component {
           className='flow-banner-items'
           style={{
             width: bannerWidth,
-            height: bannerHeight,
+            height: bannerHeight*1.1,
             transition: 'transform 1.5s ease-in-out',
             transform: 'rotateY(' + this.state.currentDeg + 'deg)'
           }}

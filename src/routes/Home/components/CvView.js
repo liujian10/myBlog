@@ -38,7 +38,7 @@ class CvView extends React.Component {
   }
 
   componentDidMount () {
-    let bodyWidth = document.getElementsByClassName('cv-main')[0].clientWidth;
+    let bodyWidth = document.getElementsByClassName('cv-content')[0].clientWidth;
     let bodyHeight = document.documentElement.clientHeight;
     let isMobile = bodyWidth <= bodyHeight;
     this.setState({
@@ -178,7 +178,7 @@ class CvView extends React.Component {
     return (
       <Layout className='cv-layout'>
         <Sider
-          width="220"
+          width="230"
           className='cv-sider'
           breakpoint='lg'
           collapsedWidth='0'

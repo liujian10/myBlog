@@ -69,7 +69,7 @@ const CvSider = (props) => {
       <List
         key='user-base'
         style={{
-          padding: '0 16px',
+          padding: '0 20px 0 30px',
           marginTop: '16px'
         }}
         size="small"
