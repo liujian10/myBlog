@@ -21,14 +21,20 @@ const CvMain = (props) => {
     technologies,
     educations,
     getCardAnimationProps,
-    onCardClick
+    onCardClick,
+    bannerCurIndex,
+    setBannerIndex
   } = props;
+
+  const cardStyle = {
+    padding: '20px 0'
+  };
 
   return (
     <Content className='cv-content'>
       <QueueAnim key='anim-work' type='top' duration={1000}>
         <div key='cv-works'>
-          <CvCard title={titles.works} style={{ padding: '5px 0' }}>
+          <CvCard title={titles.works} style={cardStyle}>
             {
               isMobile
                 ? <QueueAnim
@@ -38,14 +44,19 @@ const CvMain = (props) => {
                     works.map((work, index) => {
                       return <div
                         key={index}
-                        className='cv-works-item'>
+                        style={{
+                          zIndex: bannerCurIndex === index ? 9999 : 0
+                        }}
+                        className='cv-works-item'
+                      >
                         <TweenOne {...getCardAnimationProps(index, {
-                          width: '200px',
-                          height: '150px'
+                          width: '250px',
+                          height: '139px'
                         }, true)}>
                           <WorkCard
                             {...work}
                             fns={{
+                              onMouseOver: setBannerIndex.bind(null, 0, index),
                               onOpen: onCardClick.bind(null, index)
                             }}/>
                         </TweenOne>
@@ -65,7 +76,7 @@ const CvMain = (props) => {
         </div>
       </QueueAnim>
       <QueueAnim key='anim-career' type='bottom' duration={1000}>
-        <div key='cv-careers' style={{ padding: '5px 0' }}>
+        <div key='cv-careers' style={cardStyle}>
           <CvCard title={titles.careers}>
             <Timeline>
               {
@@ -88,9 +99,9 @@ const CvMain = (props) => {
       </QueueAnim>
       <OverPack
         targetId='cv-main'
-        playScale={0}>
+        playScale={0.01}>
         <QueueAnim key='anim-technologies' type='bottom'>
-          <div key='cv-technologies' style={{ padding: '5px 0' }}>
+          <div key='cv-technologies' style={cardStyle}>
             <CvCard title={titles.technologies}>
               {
                 technologies.map((technology, index) => {
@@ -121,7 +132,7 @@ const CvMain = (props) => {
         targetId='cv-main'
         playScale={0.1}>
         <QueueAnim key='anim-education' type='bottom'>
-          <div key='cv-education' style={{ padding: '5px 0' }}>
+          <div key='cv-education' style={cardStyle}>
             <CvCard title={titles.educations}>
               <Timeline>
                 {

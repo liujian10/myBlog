@@ -35,7 +35,7 @@ const BlogLayout = (props) => {
           {children}
         </Content>
         <Footer className='blog-main-footer'>
-          Ant Design ©2016 Created by Ant UED
+          Created by Maple Liu
         </Footer>
       </Layout>
       <BackTop target={getTarget}/>

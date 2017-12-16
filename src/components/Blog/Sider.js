@@ -8,7 +8,7 @@ const { SubMenu } = Menu;
 const BlogSider = (props) => {
   const { blog } = props;
   const { menus = [], userInfo = {} } = blog;
-  const { nickName, gender, mobile, email, headPic } = userInfo;
+  const { nickName, gender, github, email, headPic } = userInfo;
   const handleClick = ({ item, key }) => {
     props.routerPush('/blog/detail/' + key);
     props.getDetail({
@@ -43,7 +43,7 @@ const BlogSider = (props) => {
   };
   const userContent = (
     <div>
-      <p>手机：<a href={'tel:' + mobile}>{mobile}</a></p>
+      <p>Git：<a href={github}>{github}</a></p>
       <p>邮箱：<a href={'mailto:' + email}>{email}</a></p>
     </div>
   );

@@ -9,92 +9,49 @@
         "key": 1,
         "icon": "star",
         "desc": "star",
-        "name": "React Redux Starter Kit"
+        "name": "myBlog"
       },
       {
         "key": 2,
         "icon": "desktop",
         "desc": "desktop",
-        "name": "markdown-loader"
-      },
-      {
-        "key": 3,
-        "name": "activity",
-        "desc": "activity",
-        "children": [
-          {
-            "key": 31,
-            "icon": "tag",
-            "desc": "The tv area of limit free activity",
-            "name": "limitedFree"
-          },
-          {
-            "key": 32,
-            "desc": "The h5'cashier of tv",
-            "name": "tvCashier"
-          },
-          {
-            "key": 33,
-            "desc": "Andy",
-            "name": "33"
-          },
-          {
-            "key": 34,
-            "desc": "Andy",
-            "name": "34"
-          },
-          {
-            "key": 35,
-            "desc": "Andy",
-            "name": "35"
-          },
-          {
-            "key": 36,
-            "desc": "Andy",
-            "name": "36"
-          },
-          {
-            "key": 37,
-            "desc": "Andy",
-            "name": "37"
-          },
-          {
-            "key": 38,
-            "desc": "Andy",
-            "name": "38"
-          }
-        ]
+        "name": "git-common-command"
       },
       {
         "key": 4,
-        "icon": "team",
-        "desc": "team",
-        "name": "team"
+        "icon": "desktop",
+        "desc": "vDrawer",
+        "name": "feStack"
       },
       {
         "key": 5,
-        "icon": "file",
-        "desc": "file"
+        "icon": "desktop",
+        "desc": "",
+        "name": "feui"
       },
       {
         "key": 6,
-        "icon": "picture",
-        "desc": "picture"
+        "icon": "desktop",
+        "desc": "",
+        "name": "marquee-js"
       },
       {
-        "key": 7,
-        "icon": "tag",
-        "desc": "tag"
-      },
-      {
-        "key": 8,
-        "icon": "loading",
-        "desc": "loading"
-      },
-      {
-        "key": 9,
-        "icon": "star",
-        "desc": "star"
+        "key": 10,
+        "name": "Collection",
+        "desc": "Collection",
+        "children": [
+          {
+            "key": 101,
+            "icon": "tag",
+            "desc": "The tv area of limit free activity",
+            "name": "React Redux Starter Kit"
+          },
+          {
+            "key": 102,
+            "desc": "The h5'cashier of tv",
+            "name": "markdown-loader"
+          }
+        ]
       }
     ]
   }

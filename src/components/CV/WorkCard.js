@@ -36,9 +36,6 @@ const WorkCard = props => {
       className='cv-works-card'
       style={{
         ...style,
-        display: 'block',
-        width: '100%',
-        height: '100%',
         backgroundRepeat: 'no-repeat',
         backgroundImage: 'url(' + poster + ')',
         backgroundSize: '100% auto',

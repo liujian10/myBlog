@@ -4,9 +4,7 @@ export const introduction = {
   age: '24岁',
   nationality: '汉族',
   party: '党员',
-  desc: '热爱前端技术，有很好的自学、处理问题的能力，接触较多线上页面，' +
-  '对页面交互、页面兼容及数据处理有较好理解，有过管理十余人开发团队的经验，' +
-  '能够独立负责完整项目，善用技术书籍，官方文档学习、解决问题，Node，React爱好者，不断学习实践中',
+  desc: '前端攻城狮，热爱学习，喜欢探索，React,Vue爱好者，努力学习中...',
   mobile: '18600935074',
   email: 'mapleliu1@gmail.com',
   website: 'mapleliu.com',
@@ -182,9 +180,8 @@ export const careers = [
     from: '2016年1月',
     to: '至今',
     work: [
-      '1. 负责乐视影视会员运营活动前端开发；',
-      '2. 负责开发及维护乐视网影视会员相关页面；',
-      '3. 管理前端运营活动组开发工作。'
+      '1. 负责开发乐视影视会员web前端项目，主要为运营活动开发与乐视网会员页面开发/维护两块，开发内容包含移动端/PC站/TV端三端页面；',
+      '2. 负责一个前端开发小组【最多时15人】项目/团队管理工作，带领团队出色完成数十个运营活动及项目的开发工作。'
     ]
   },
   {
@@ -226,7 +223,7 @@ export const technologies = [
   {
     name: 'JavaScript',
     desc: [
-      '熟悉原生JavaScript、ES6，可以开发符合ES6标准的代码；',
+      '熟悉原生JavaScript、ES6；',
       '能够熟练使用 jQuery/Zepto等js框架、Ajax、Fetch 等数据交互技术；',
       '能够熟练使用自动化构建工具Gulp，了解Webpack；',
       '熟悉Echarts、Swiper等js插件。'
@@ -235,7 +232,13 @@ export const technologies = [
   {
     name: 'React',
     desc: [
-      '自学React，可以开发简单的React组件，熟悉Ant Design组件库，做过一些个人小项目。'
+      '熟悉React，熟悉Ant Design组件库，做过一些个人小项目。'
+    ]
+  },
+  {
+    name: 'Vue',
+    desc: [
+      '熟悉Vue，写过一个npm组件，参与维护组件库 Milk-vue。'
     ]
   },
   {

@@ -1,4 +1,5 @@
 import './CvView.less';
+
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import PropTypes from 'prop-types';
@@ -19,7 +20,7 @@ import {
   careers,
   technologies,
   titles
-} from '../config-test';
+} from '../config';
 
 const { Footer, Sider } = Layout;
 
@@ -32,20 +33,36 @@ class CvView extends React.Component {
       showModal: false,
       modalWorks: [],
       bannerCurIndex: 0,
-      bannerLastIndex: 0
+      bannerLastIndex: 0,
+      cardWidth: 0,
+      bodyHeight: 0,
+      collapsed: false,
+      isMobile: false
     };
     this.showKey = '';
   }
 
+  adaptiveToUpdate () {
+    setTimeout(function (_this) {
+      let cardWidth = document.getElementsByClassName('cv-content')[0].clientWidth;
+      let bodyWidth = document.documentElement.clientWidth;
+      let bodyHeight = document.documentElement.clientHeight;
+      let isMobile = bodyWidth <= bodyHeight;
+      _this.setState({
+        cardWidth,
+        bodyHeight,
+        isMobile
+      });
+    }, 100, this);
+  }
+
   componentDidMount () {
-    let bodyWidth = document.getElementsByClassName('cv-content')[0].clientWidth;
-    let bodyHeight = document.documentElement.clientHeight;
-    let isMobile = bodyWidth <= bodyHeight;
-    this.setState({
-      bodyWidth: bodyWidth,
-      bodyHeight: bodyHeight,
-      isMobile: isMobile
-    });
+    window.addEventListener('resize', this.adaptiveToUpdate.bind(this));
+    this.adaptiveToUpdate();
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.adaptiveToUpdate.bind(this));
   }
 
   render () {
@@ -53,16 +70,21 @@ class CvView extends React.Component {
 
     // 左侧菜单onCollapse事件
     const onCollapse = (collapsed, type) => {
-      console.log(collapsed, type);
+      this.setState({
+        collapsed
+      });
     };
+
     // 个人头像onMouseOver事件
     const onLogoMouseOver = () => {
       this.setState({ logoPaused: false });
     };
+
     // 个人头像onMouseOut事件
     const onLogoMouseOut = () => {
       this.setState({ logoPaused: true });
     };
+
     // 项目&作品卡片onMouseOver事件
     const onCardMouseOver = key => {
       let cardProps = this.state.cardProps;
@@ -75,6 +97,7 @@ class CvView extends React.Component {
         cardProps: cardProps
       });
     };
+
     // 项目&作品卡片onCardMouseOut事件
     const onCardMouseOut = key => {
       let cardProps = this.state.cardProps;
@@ -89,6 +112,7 @@ class CvView extends React.Component {
         });
       }
     };
+
     // 项目&作品卡片onClick事件
     const onCardClick = key => {
       const { detail = [] } = works[key];
@@ -105,12 +129,14 @@ class CvView extends React.Component {
       });
       this.showKey = key;
     };
+
     // 模态窗口关闭按钮onClick事件
     const onModalCloseClick = () => {
       this.setState({
         showModal: false
       });
     };
+
     // 模态窗口链接按钮onClick事件
     const onModalLinkClick = () => {
       const { url = '#' } = works[this.showKey];
@@ -120,12 +146,14 @@ class CvView extends React.Component {
         router.push(url);
       }
     };
+
     // 获取滚动条元素
     const getTarget = () => document.getElementById('cv-main') || window;
+
     // 获取项目&作品卡片动画动态属性
-    const getCardAnimationProps = (key, style, bindClick) => {
+    const getCardAnimationProps = (key, style) => {
       let cardKey = 'card' + key;
-      let res = {
+      return {
         key: cardKey,
         animation: {
           scale: 1.3,
@@ -140,7 +168,6 @@ class CvView extends React.Component {
         onMouseOut: onCardMouseOut.bind(null, cardKey),
         style: style
       };
-      return res;
     };
 
     // 设置 bannerIndex
@@ -152,7 +179,7 @@ class CvView extends React.Component {
     };
 
     const sideProps = {
-      logoPaused: this.state.logoPaused,
+      ...this.state,
       introduction,
       onLogoMouseOver,
       onLogoMouseOut

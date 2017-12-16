@@ -6,13 +6,15 @@ import {
   List,
   Avatar
 } from 'antd';
+import Maple from './assets/logo.jpg'
 
 const CvSider = (props) => {
   const {
     logoPaused,
     introduction,
     onLogoMouseOver,
-    onLogoMouseOut
+    onLogoMouseOut,
+    collapsed
   } = props;
 
   // 头像动画配置
@@ -58,42 +60,44 @@ const CvSider = (props) => {
     <QueueAnim
       key='sider' type={['left', 'right']}
       ease={['easeOutQuart', 'easeInOutQuart']}>
-      <TweenOne
-        key='logo-anim'
-        animation={logoAnimation}
-        paused={logoPaused}
-        onMouseOver={onLogoMouseOver}
-        onMouseOut={onLogoMouseOut}>
-        <img className='cv-sider-head' src='https://avatars0.githubusercontent.com/u/17332112?s=460&v=4'/>
-      </TweenOne>
-      <List
-        key='user-base'
-        style={{
-          padding: '0 20px 0 30px',
-          marginTop: '16px'
-        }}
-        size="small"
-        itemLayout="horizontal"
-        dataSource={listData}
-        renderItem={item => (
-          <List.Item style={item.style || {
-            border: 'none',
-            padding: '1px 0'
-          }}>
-            <List.Item.Meta
-              avatar={item.text && <Avatar
-                size='small'
-                style={{
-                  backgroundColor: '#25a186'
-                }}
-              >{item.text}</Avatar>}
-              title={item.title}
-              description={item.desc}
-            />
-            {item.content}
-          </List.Item>
-        )}
-      />
+      {collapsed ? null : [
+        <TweenOne
+          key='logo-anim'
+          animation={logoAnimation}
+          paused={logoPaused}
+          onMouseOver={onLogoMouseOver}
+          onMouseOut={onLogoMouseOut}>
+          <img className='cv-sider-head' src={Maple}/>
+        </TweenOne>,
+        <List
+          key='user-base'
+          style={{
+            padding: '0 20px 0 30px',
+            marginTop: '16px'
+          }}
+          size="small"
+          itemLayout="horizontal"
+          dataSource={listData}
+          renderItem={item => (
+            <List.Item style={item.style || {
+              border: 'none',
+              padding: '1px 0'
+            }}>
+              <List.Item.Meta
+                avatar={item.text && <Avatar
+                  size='small'
+                  style={{
+                    backgroundColor: '#25a186'
+                  }}
+                >{item.text}</Avatar>}
+                title={item.title}
+                description={item.desc}
+              />
+              {item.content}
+            </List.Item>
+          )}
+        />
+      ]}
     </QueueAnim>
   );
 };

@@ -10,10 +10,13 @@ class FlowBanner extends React.Component {
     this.state = {
       currentDeg: 0
     };
+  }
 
-    this.setBannerTimer = () => {
-      this.bannerTimer && clearInterval(this.bannerTimer);
-      this.bannerTimer = this.props.isMobile ? null : setInterval(() => {
+  setBannerTimer () {
+    if (this.props.isMobile) return;
+    // this.clearBannerTimer();
+    this.bannerTimer = setInterval(() => {
+      if (!this.cardMouseOver && !this.props.showModal) {
         const { works } = this.props;
         const currentIndex = this.props.bannerCurIndex;
         let itemNum = works.length; // 要旋转的div的数量
@@ -31,23 +34,30 @@ class FlowBanner extends React.Component {
           currentDeg: dot
         });
         this.props.setBannerIndex(this.props.bannerCurIndex, itemIndex);
-      }, 5000);
-      this.cardMouseOver = false;
-    };
+      }
+    }, 5000);
+  }
+
+  clearBannerTimer () {
+    this.bannerTimer && clearInterval(this.bannerTimer);
+  }
+
+  componentDidMount () {
+    this.setBannerTimer();
+  }
+
+  componentWillUnmount () {
+    this.clearBannerTimer();
   }
 
   render () {
-    const { works, bodyWidth, getCardAnimationProps, clickFunc = () => {} } = this.props;
-    if (this.props.showModal || this.cardMouseOver) {
-      this.bannerTimer && clearInterval(this.bannerTimer);
-    } else {
-      this.setBannerTimer();
-    }
+    const { works, cardWidth, getCardAnimationProps, clickFunc = () => {} } = this.props;
     let itemNum = works.length; // 要旋转的div的数量
     let centerNum = itemNum / 2;
     let itemDeg = 360 / itemNum; // 计算平均偏移角度，后面的itemDeg*index是不同索引div的偏移角度
+
     const handleClick = (workItem, itemIndex) => {
-      this.bannerTimer && clearInterval(this.bannerTimer);
+      this.clearBannerTimer();
       let nextStep = itemIndex - this.props.bannerCurIndex;
       let dot = this.state.currentDeg -
         (nextStep > -1 * centerNum && nextStep < centerNum
@@ -59,29 +69,21 @@ class FlowBanner extends React.Component {
         currentDeg: dot
       });
       this.props.setBannerIndex(this.props.bannerCurIndex, itemIndex);
+      this.setBannerTimer();
     };
 
-    let bannerWidth = bodyWidth * 0.2;
-    let bannerHeight = bannerWidth * 0.6;
+    let bannerWidth = cardWidth * 0.3;
 
     const cardStyle = {
-      width: '100%',
-      height: '100%',
-      padding: '10px',
-      border: '1px solid #ccc',
       borderTopLeftRadius: '6px 50px'
     };
 
     const handleMouseOver = () => {
       this.cardMouseOver = true;
-      this.bannerTimer && clearInterval(this.bannerTimer);
     };
 
     const handleMouseOut = () => {
       this.cardMouseOver = false;
-      if (!this.props.showModal) {
-        this.setBannerTimer();
-      }
     };
 
     return (
@@ -90,7 +92,7 @@ class FlowBanner extends React.Component {
           className='flow-banner-items'
           style={{
             width: bannerWidth,
-            height: bannerHeight*1.1,
+            height: bannerWidth * 0.6,
             transition: 'transform 1.5s ease-in-out',
             transform: 'rotateY(' + this.state.currentDeg + 'deg)'
           }}
@@ -110,7 +112,7 @@ class FlowBanner extends React.Component {
               style={{
                 transform: transformValue,
                 width: bannerWidth,
-                height: bannerHeight
+                height: bannerWidth * 0.56
               }}
             >
               <TweenOne {...getCardAnimationProps(itemIndex, { width: '100%', height: '100%' })}>
