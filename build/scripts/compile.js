@@ -34,6 +34,10 @@ const compile = () => Promise.resolve().
   then((stats) => {
     logger.info(`Copying static assets from ./public to ./${project.outDir}.`);
     fs.copySync(
+      path.resolve(project.basePath, project.docDir),
+      path.resolve(project.basePath, `${project.outDir}/${project.docDir}`)
+    );
+    fs.copySync(
       path.resolve(project.basePath, 'public'),
       path.resolve(project.basePath, project.outDir)
     );

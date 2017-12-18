@@ -30,4 +30,5 @@ module.exports = {
     'redux-thunk',
     'react-router',
   ],
-}
+  docDir:'docs'
+};
