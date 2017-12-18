@@ -16,5 +16,5 @@ script:
   - cd dist
   - git init
   - git add -A
-    - git commit -m "Deploy mapleliu"
-    - git push -u https://$ML_TOKEN@github.com/liujian10/liujian10.github.io.git HEAD:master --force
+  - git commit -m "Deploy mapleliu"
+  - git push -u https://$ML_TOKEN@github.com/liujian10/liujian10.github.io.git HEAD:master --force
