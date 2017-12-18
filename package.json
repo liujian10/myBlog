@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/liujian10/myBlog"
   },
   "author": "Maple Liu <mapleliu1@gmail.com> (http://mapleliu.com)",
   "license": "MIT",
