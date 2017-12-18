@@ -8,7 +8,6 @@ before_install:
   - git config --global user.email "mapleliu1@gmail.com"
 
 cache:
-  yarn: true
   directories:
     - node_modules
 
@@ -20,6 +19,3 @@ script:
   - git add -A
     - git commit -m "Deploy mapleliu"
     - git push -u https://$ML_TOKEN@github.com/liujian10liujian10/liujian10.github.io.git HEAD:master --force
-
-after_success:
-  - yarn codecov
