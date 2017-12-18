@@ -1,7 +1,6 @@
 sudo: false
 language: node_js
 node_js:
-  - "6"
   - "7"
 
 before_install:
@@ -14,13 +13,13 @@ cache:
     - node_modules
 
 script:
-  - yarn lint
-  - yarn build
+  - npm run lint
+  - npm run build
   - cd dist
   - git init
   - git add -A
-    - git commit -m "Deploy GH"
-    - git push -u https://$GH_TOKEN@github.com/liujian10/v-drawer.git HEAD:master --force
+    - git commit -m "Deploy mapleliu"
+    - git push -u https://$ML_TOKEN@github.com/liujian10liujian10/liujian10.github.io.git HEAD:master --force
 
 after_success:
   - yarn codecov
