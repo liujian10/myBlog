@@ -1,8 +1,12 @@
 sudo: false
 language: node_js
 node_js:
-  - "5"
   - "6"
+  - "7"
+
+before_install:
+  - git config --global user.name "liujian10"
+  - git config --global user.email "mapleliu1@gmail.com"
 
 cache:
   yarn: true
@@ -11,8 +15,12 @@ cache:
 
 script:
   - yarn lint
-  - yarn test
   - yarn build
+  - cd dist
+  - git init
+  - git add -A
+    - git commit -m "Deploy GH"
+    - git push -u https://$GH_TOKEN@github.com/liujian10/v-drawer.git HEAD:master --force
 
 after_success:
   - yarn codecov

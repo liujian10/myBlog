@@ -1,5 +1,7 @@
 # 我的博客Demo
 
+[![Build Status](https://travis-ci.org/liujian10/myBlog.svg?branch=master)](https://travis-ci.org/liujian10/myBlog)
+
 本项目基于 [React Redux Starter Kit](https://github.com/davezuko/react-redux-starter-kit) 搭建。
 
 学习资源： [Starting out with react-redux-starter-kit](https://suspicious.website/2016/04/29/starting-out-with-react-redux-starter-kit)
@@ -34,10 +36,10 @@ yarn start
 │  .editorconfig                      # 代码缩进，换行等配置
 │  .eslintignore                      # 不做代码风格检查的文件
 │  .eslintrc                          # 代码风格检查配置
-│  .gitignore                         # 
+│  .gitignore                         #
 │  package.json                       # npm 包配置
-│  README.md                          # 
-│  
+│  README.md                          #
+│
 ├─build                               # 构建
 ├─dist                                # 打包结果目标目录
 │
@@ -46,7 +48,7 @@ yarn start
 │  │  config.js                         # 共用的配置
 │  │  index.html                        # 单页面入口，会打包到 dist/html
 │  │  main.js                           # 前端 js 入口文件
-│  │  
+│  │
 │  ├─components                         # 共用的组件
 │  ├─containers                         # 共用的容器
 │  ├─layouts                            # 共用的布局组件
@@ -58,9 +60,9 @@ yarn start
 │  │  │  ├─components                     # 路由下的组件
 │  │  │  ├─containers                     #  路由下的容器
 │  │  │  └─modules                        # 路由下的模块
-│  │  │            
+│  │  │
 │  │  └─Other
-│  │              
+│  │
 │  ├─static                             # 前端静态文件
 │  ├─store                              # Redux 的相关初始化
 │  ├─styles                             # 共用的样式

@@ -12,7 +12,7 @@ import {
   CvSider,
   CvModal,
   CvMain
-} from '../../../components/cv';
+} from '../../../components/CV';
 import {
   introduction,
   educations,
