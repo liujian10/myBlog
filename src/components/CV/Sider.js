@@ -6,7 +6,7 @@ import {
   List,
   Avatar
 } from 'antd';
-import Maple from './assets/logo.jpg'
+import IMG_MAPLE from './assets/maple.png';
 
 const CvSider = (props) => {
   const {
@@ -67,7 +67,7 @@ const CvSider = (props) => {
           paused={logoPaused}
           onMouseOver={onLogoMouseOver}
           onMouseOut={onLogoMouseOut}>
-          <img className='cv-sider-head' src={Maple}/>
+          <img className='cv-sider-head' src={IMG_MAPLE}/>
         </TweenOne>,
         <List
           key='user-base'
