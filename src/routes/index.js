@@ -1,13 +1,13 @@
 // We only need to import the modules necessary for initial render
-import Home from './Home'
-import CounterRoute from './Counter'
-import BlogRoute from './Blog'
-import WaterFallRoute from './WaterFall'
+import Home from './Home';
+import CounterRoute from './Counter';
+import BlogRoute from './Blog';
+import WaterFallRoute from './WaterFall';
 
 /*  Note: Instead of using JSX, we recommend using react-router
  PlainRoute objects to build route definitions.   */
 
-export const createRoutes = store => ({
+const createRoutes = store => ({
   path: '/',
   indexRoute: Home,
   childRoutes: [
@@ -15,7 +15,7 @@ export const createRoutes = store => ({
     BlogRoute(store),
     WaterFallRoute(store)
   ]
-})
+});
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
  using getChildRoutes with the following signature:
@@ -35,4 +35,4 @@ export const createRoutes = store => ({
  when the route exists and matches.
  */
 
-export default createRoutes
+export default createRoutes;

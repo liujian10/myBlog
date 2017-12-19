@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
@@ -6,11 +6,11 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
-        test:/\.css$/,
-        use:[
+        test: /\.css$/,
+        use: [
           'style-loader',
           'css-loader'
         ]
@@ -22,11 +22,11 @@ module.exports = {
         ]
       },
       {
-        test:/\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
-        use:[
+        test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
+        use: [
           'file-loader'
         ]
       }
     ]
   }
-}
+};

@@ -12,6 +12,14 @@ class FlowBanner extends React.Component {
     };
   }
 
+  componentDidMount () {
+    this.setBannerTimer();
+  }
+
+  componentWillUnmount () {
+    this.clearBannerTimer();
+  }
+
   setBannerTimer () {
     if (this.props.isMobile) return;
     // this.clearBannerTimer();
@@ -40,14 +48,6 @@ class FlowBanner extends React.Component {
 
   clearBannerTimer () {
     this.bannerTimer && clearInterval(this.bannerTimer);
-  }
-
-  componentDidMount () {
-    this.setBannerTimer();
-  }
-
-  componentWillUnmount () {
-    this.clearBannerTimer();
   }
 
   render () {
@@ -138,7 +138,9 @@ FlowBanner.propTypes = {
   clickFunc: PropTypes.func,
   setBannerIndex: PropTypes.func,
   isMobile: PropTypes.bool,
-  showModal: PropTypes.bool
+  showModal: PropTypes.bool,
+  bannerCurIndex:PropTypes.number,
+  cardWidth:PropTypes.number
 };
 
 export default FlowBanner;

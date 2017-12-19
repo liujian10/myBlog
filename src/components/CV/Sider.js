@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
 import {
@@ -75,8 +76,8 @@ const CvSider = (props) => {
             padding: '0 20px 0 30px',
             marginTop: '16px'
           }}
-          size="small"
-          itemLayout="horizontal"
+          size='small'
+          itemLayout='horizontal'
           dataSource={listData}
           renderItem={item => (
             <List.Item style={item.style || {
@@ -100,6 +101,14 @@ const CvSider = (props) => {
       ]}
     </QueueAnim>
   );
+};
+
+CvSider.propTypes = {
+  logoPaused: PropTypes.bool,
+  introduction: PropTypes.object,
+  onLogoMouseOver: PropTypes.func,
+  onLogoMouseOut: PropTypes.func,
+  collapsed: PropTypes.bool
 };
 
 export default CvSider;

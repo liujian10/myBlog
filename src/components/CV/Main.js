@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
 import { OverPack } from 'rc-scroll-anim';
@@ -153,6 +154,19 @@ const CvMain = (props) => {
       </OverPack>
     </Content>
   );
+};
+
+CvMain.propTypes = {
+  isMobile: PropTypes.bool,
+  titles: PropTypes.object,
+  works: PropTypes.array,
+  careers: PropTypes.array,
+  technologies: PropTypes.array,
+  educations: PropTypes.array,
+  getCardAnimationProps: PropTypes.func,
+  onCardClick: PropTypes.func,
+  bannerCurIndex: PropTypes.number,
+  setBannerIndex: PropTypes.func
 };
 
 export default CvMain;

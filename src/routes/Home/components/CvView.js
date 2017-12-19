@@ -20,7 +20,7 @@ import {
   careers,
   technologies,
   titles
-} from '../config';
+} from '../config-test';
 
 const { Footer, Sider } = Layout;
 
@@ -42,6 +42,15 @@ class CvView extends React.Component {
     this.showKey = '';
   }
 
+  componentDidMount () {
+    window.addEventListener('resize', this.adaptiveToUpdate.bind(this));
+    this.adaptiveToUpdate();
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.adaptiveToUpdate.bind(this));
+  }
+
   adaptiveToUpdate () {
     setTimeout(function (_this) {
       let cardWidth = document.getElementsByClassName('cv-content')[0].clientWidth;
@@ -54,15 +63,6 @@ class CvView extends React.Component {
         isMobile
       });
     }, 100, this);
-  }
-
-  componentDidMount () {
-    window.addEventListener('resize', this.adaptiveToUpdate.bind(this));
-    this.adaptiveToUpdate();
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('resize', this.adaptiveToUpdate.bind(this));
   }
 
   render () {

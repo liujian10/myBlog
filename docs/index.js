@@ -1,16 +1,15 @@
-'use strict'
+'use strict';
 
-const marked = require('marked')
-const loaderUtils = require('loader-utils')
+const marked = require('marked');
+const loaderUtils = require('loader-utils');
 
 module.exports = function (markdown) {
-  console.log(213)
   // merge params and default config
-  const options = loaderUtils.getOptions(this)
+  const options = loaderUtils.getOptions(this);
 
-  this.cacheable()
+  this.cacheable();
 
-  marked.setOptions(options)
+  marked.setOptions(options);
 
-  return marked(markdown)
-}
+  return marked(markdown);
+};

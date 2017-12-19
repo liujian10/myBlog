@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import QueueAnim from 'rc-queue-anim';
 import {
   Icon
@@ -49,6 +50,13 @@ const CvHeader = (props) => {
       ] : null}
     </QueueAnim>
   );
+};
+
+CvHeader.propTypes = {
+  modalWorks: PropTypes.array,
+  showModal: PropTypes.bool,
+  onModalLinkClick: PropTypes.func,
+  onModalCloseClick: PropTypes.func
 };
 
 export default CvHeader;

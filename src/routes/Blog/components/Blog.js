@@ -13,12 +13,6 @@ class Blog extends React.Component {
     };
   }
 
-  componentDidMount () {
-    this.setState({
-      scrollTarget: document.getElementsByName('blog-main')[0]
-    });
-  }
-
   componentWillMount () {
     this.props.getUserInfo();
     this.props.getMenus({}, ({ menus }) => {
@@ -29,26 +23,32 @@ class Blog extends React.Component {
     });
   }
 
-  onCollapse = collapsed => {
-    console.log('collapsed:');
-    console.log(collapsed);
-    this.setState({ collapsed, showSearch: !collapsed });
-  };
-  onSearch = folded => {
-    this.setState({ showSearch: typeof folded === 'boolean' ? folded : !this.state.showSearch });
-  };
-  routerPush = path => {
-    this.props.router.push(path);
-  };
+  componentDidMount () {
+    this.setState({
+      scrollTarget: window.document.getElementsByName('blog-main')[0]
+    });
+  }
 
   render () {
+    const onCollapse = collapsed => {
+      this.setState({ collapsed, showSearch: !collapsed });
+    };
+
+    const onSearch = folded => {
+      this.setState({ showSearch: typeof folded === 'boolean' ? folded : !this.state.showSearch });
+    };
+
+    const routerPush = path => {
+      this.props.router.push(path);
+    };
+
     if (this.props.children && this.props.blog) {
       return <BlogLayout {...{
         ...this.props,
         ...this.state,
-        routerPush: this.routerPush,
-        onCollapse: this.onCollapse,
-        onSearch: this.onSearch
+        routerPush,
+        onCollapse,
+        onSearch
       }} >
         {this.props.children}
       </BlogLayout>;
@@ -71,7 +71,6 @@ Blog.propTypes = {
   menus: PropTypes.array,
   router: PropTypes.object.isRequired,
   blog: PropTypes.object.isRequired,
-  currentKey: PropTypes.any,
   showSearch: PropTypes.bool
 };
 
