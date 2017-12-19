@@ -24,9 +24,6 @@ class Blog extends React.Component {
   }
 
   componentDidMount () {
-    this.setState({
-      scrollTarget: window.document.getElementsByName('blog-main')[0]
-    });
   }
 
   render () {
@@ -42,14 +39,18 @@ class Blog extends React.Component {
       this.props.router.push(path);
     };
 
-    if (this.props.children && this.props.blog) {
-      return <BlogLayout {...{
+    const blogProps = {
+      ...{
         ...this.props,
         ...this.state,
         routerPush,
         onCollapse,
         onSearch
-      }} >
+      }
+    };
+
+    if (this.props.children && this.props.blog) {
+      return <BlogLayout {...blogProps} >
         {this.props.children}
       </BlogLayout>;
     }

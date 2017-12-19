@@ -20,7 +20,7 @@ import {
   careers,
   technologies,
   titles
-} from '../config-test';
+} from '../config';
 
 const { Footer, Sider } = Layout;
 
