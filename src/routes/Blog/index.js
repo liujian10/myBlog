@@ -1,28 +1,27 @@
-import { injectReducer } from '../../store/reducers'
+import { injectReducer } from '../../store/reducers';
 
-let containers = false
+let containers = false;
 const getComponent = (store, name) => (nextState, cb) => {
-  console.log(name)
   if (containers) {
-    cb(null, containers[`${name}Container`])
-    return
+    cb(null, containers[`${name}Container`]);
+    return;
   }
   /*  Webpack - use 'require.ensure' to create a split point
  and embed an async module loader (jsonp) when bundling   */
   require.ensure([], (require) => {
     /*  Webpack - use require callback to define
      dependencies for bundling   */
-    containers = require('./containers')
-    const reducer = require('./modules/Blog').default
+    containers = require('./containers');
+    const reducer = require('./modules/Blog').default;
     /*  Add the reducer to the store on key 'blog'  */
-    injectReducer(store, { key: 'blog', reducer })
+    injectReducer(store, { key: 'blog', reducer });
 
     /*  Return getComponent   */
-    cb(null, containers[`${name}Container`])
+    cb(null, containers[`${name}Container`]);
 
     /* Webpack named bundle   */
-  }, 'blog')
-}
+  }, 'blog');
+};
 
 export default store => {
   return {
@@ -35,5 +34,5 @@ export default store => {
         getComponent: getComponent(store, 'BlogDetail')
       }
     ]
-  }
+  };
 }

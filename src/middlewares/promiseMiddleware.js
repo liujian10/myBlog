@@ -2,11 +2,11 @@
  * [promiseMiddleware 包装action ，检测当前action是否为一个promise,如果是则给当前action加上开始结束的状态，方便reducer根据状态来做相应的处理]
  * author  zhangbo15@le.com
  */
-import { isFSA } from 'flux-standard-action'
-import uniqueId from 'lodash/uniqueId'
+import { isFSA } from 'flux-standard-action';
+import uniqueId from 'lodash/uniqueId';
 
 function isPromise (val) {
-  return val && typeof val.then === 'function'
+  return val && typeof val.then === 'function';
 }
 
 export default function promiseMiddleware ({ dispatch }) {
@@ -15,10 +15,10 @@ export default function promiseMiddleware ({ dispatch }) {
     if (!isFSA(action)) {
       return isPromise(action)
         ? action.then(dispatch)
-        : next(action)
+        : next(action);
     }
-    const { meta = {}, payload } = action
-    const id = uniqueId()
+    const { meta = {}, payload } = action;
+    const id = uniqueId();
     if (isPromise(payload)) {
       dispatch({
         ...action,
@@ -27,10 +27,10 @@ export default function promiseMiddleware ({ dispatch }) {
           ...meta,
           sequence: {
             type: 'start',
-            id,
-          },
-        },
-      })
+            id
+          }
+        }
+      });
 
       return payload.then(
         result => dispatch({
@@ -40,12 +40,11 @@ export default function promiseMiddleware ({ dispatch }) {
             ...meta,
             sequence: {
               type: 'next',
-              id,
-            },
-          },
+              id
+            }
+          }
         }),
         error => {
-          console.log(error)
           return dispatch({
             ...action,
             payload: error,
@@ -54,13 +53,13 @@ export default function promiseMiddleware ({ dispatch }) {
               ...meta,
               sequence: {
                 type: 'next',
-                id,
-              },
-            },
-          })
+                id
+              }
+            }
+          });
         }
-      )
+      );
     }
-    return next(action)
-  }
+    return next(action);
+  };
 }

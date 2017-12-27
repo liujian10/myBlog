@@ -1,17 +1,17 @@
 /**
  * Created by liujian on 2017/6/8.
  */
-import 'isomorphic-fetch'
-import { message } from 'antd'
+import 'isomorphic-fetch';
+import { message } from 'antd';
 // import { hashHistory } from 'react-router'
-import { getUrlParam, getResult } from '../util'
-import local from './local'
+import { getUrlParam, getResult } from '../util';
+import local from './local';
 
-import userInfo from '../../json/userInfo.json'
-import menus from '../../json/menus.json'
+import userInfo from '../../json/userInfo.json';
+import menus from '../../json/menus.json';
 
-const SUCCESS_CODE = 0
-const BASE_HOST = 'http://' + location.host + '/json/'
+const SUCCESS_CODE = 0;
+const BASE_HOST = 'http://' + window.location.host + '/json/';
 
 // 后端定义的全局错误返回码
 const GLOBAL_CODES = {
@@ -20,7 +20,7 @@ const GLOBAL_CODES = {
   3: '请求参数错误',
   4: '调用次数达到上线',
   5: '无调用权限'
-}
+};
 
 /**
  * 处理fetch请求成功返回
@@ -31,20 +31,20 @@ const GLOBAL_CODES = {
  */
 const handleResponse = ({ head, body }, { globalError }) => new Promise((resolve, reject) => {
   if (head.ret === SUCCESS_CODE) {
-    resolve(body)
+    resolve(body);
   } else {
-    const error = getResult(GLOBAL_CODES, head.ret, '服务异常', head)
+    const error = getResult(GLOBAL_CODES, head.ret, '服务异常', head);
     if (globalError) {
-      message.error(error)
+      message.error(error);
     }
-    reject(error)
+    reject(error);
   }
-})
+});
 
 const jsonConfig = {
-  'userInfo' : userInfo,
-  'menus' : menus
-}
+  'userInfo': userInfo,
+  'menus': menus
+};
 
 const getJson = (url, { params }) => {
   if (url === 'blog') {
@@ -57,28 +57,28 @@ const getJson = (url, { params }) => {
         url,
         ...params
       }
-    }
+    };
   }
-  return jsonConfig[url]
-}
+  return jsonConfig[url];
+};
 
 const doFetch = (url, option) => {
   if (local.isLocal()) {
     return new Promise((resolve, reject) => {
       resolve({
         ...option,
-        status:200,
-        body:getJson(url, option),
-        json:() => {
-          let type = url.split('?')[0]
-          return getJson(type, option)
+        status: 200,
+        body: getJson(url, option),
+        json: () => {
+          let type = url.split('?')[0];
+          return getJson(type, option);
         }
-      })
-    })
+      });
+    });
   } else {
-    return fetch(BASE_HOST + url, option)
+    return fetch(BASE_HOST + url, option);
   }
-}
+};
 
 /**
  * fetch 请求封装
@@ -90,54 +90,54 @@ const doFetch = (url, option) => {
  * @param {boolean} [options.globalError] - 是否通过 message.error 全局提示错误
  * @returns {promise}
  */
-export const fetchRequest = async(url, options) => {
+export const fetchRequest = async (url, options) => {
   let defaultOptions = {
-    mode:'cors'
-  }
-  Object.assign(options, defaultOptions)
-  const newOptions = { ...options }
-  let newUrl = url
+    mode: 'cors'
+  };
+  Object.assign(options, defaultOptions);
+  const newOptions = { ...options };
+  let newUrl = url;
   if (options.params) {
-    const paramsStr = getUrlParam(options.params)
+    const paramsStr = getUrlParam(options.params);
     if (paramsStr) {
-      newUrl = `${url}${url.indexOf('?') === -1 ? '?' : ''}${paramsStr}`
+      newUrl = `${url}${url.indexOf('?') === -1 ? '?' : ''}${paramsStr}`;
     }
   }
   if (options.json) {
-    newOptions.body = JSON.stringify(options.json)
+    newOptions.body = JSON.stringify(options.json);
   }
 
   const response = await doFetch(newUrl, {
     ...newOptions,
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     }
   }).then(
     (res) => {
       // 检查 HTTP 状态码
       if (res.status >= 200 && res.status < 300) {
-        return res
+        return res;
       }
 
-      const error = new Error(res.statusText)
-      error.res = res
+      const error = new Error(res.statusText);
+      error.res = res;
 
       if (newOptions.globalError) {
-        message.error(`网络错误: ${res.status} ${res.statusText}`)
+        message.error(`网络错误: ${res.status} ${res.statusText}`);
       }
-      throw error
+      throw error;
     },
     (error) => {
       if (newOptions.globalError) {
-        message.error(error.message || '网络错误')
+        message.error(error.message || '网络错误');
       }
-      throw error
+      throw error;
     }
-  )
+  );
 
-  const res = await response.json()
-  return handleResponse(res, newOptions)
-}
+  const res = await response.json();
+  return handleResponse(res, newOptions);
+};
 
 /**
  * 请求用户基本信息
@@ -145,8 +145,8 @@ export const fetchRequest = async(url, options) => {
  * @returns {promise}
  */
 export const fetchUserInfo = id => {
-  return fetchRequest('userInfo', { ...arguments })
-}
+  return fetchRequest('userInfo', { ...arguments });
+};
 
 /**
  * 请求菜单数据
@@ -154,11 +154,11 @@ export const fetchUserInfo = id => {
  * @returns {promise}
  */
 export const fetchMenus = () => {
-  return fetchRequest('menus', { ...arguments })
-}
+  return fetchRequest('menus', { ...arguments });
+};
 
 export const fetchBlogDetail = params => {
-  return fetchRequest('blog', { params })
-}
+  return fetchRequest('blog', { params });
+};
 
-export default fetchRequest
+export default fetchRequest;

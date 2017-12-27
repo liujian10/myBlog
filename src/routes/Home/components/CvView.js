@@ -141,7 +141,7 @@ class CvView extends React.Component {
     const onModalLinkClick = () => {
       const { url = '#' } = works[this.showKey];
       if (url.indexOf('http') > -1) {
-        location.href = url;
+        window.location.href = url;
       } else {
         router.push(url);
       }
@@ -153,10 +153,14 @@ class CvView extends React.Component {
     // 获取项目&作品卡片动画动态属性
     const getCardAnimationProps = (key, style) => {
       let cardKey = 'card' + key;
+      const initStyle = Object.assign({}, style, {
+        boxShadow: '0 0 5px #ccc'
+      });
       return {
         key: cardKey,
         animation: {
-          scale: 1.3,
+          scale: 1.01,
+          boxShadow: '0 0 15px #ccc',
           duration: 500
         },
         ...(this.state.cardProps[cardKey] || {
@@ -166,7 +170,7 @@ class CvView extends React.Component {
         }),
         onMouseOver: onCardMouseOver.bind(null, cardKey),
         onMouseOut: onCardMouseOut.bind(null, cardKey),
-        style: style
+        style: initStyle
       };
     };
 
@@ -205,7 +209,7 @@ class CvView extends React.Component {
     return (
       <Layout className='cv-layout'>
         <Sider
-          width="230"
+          width='230'
           className='cv-sider'
           breakpoint='lg'
           collapsedWidth='0'

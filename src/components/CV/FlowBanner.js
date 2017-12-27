@@ -75,7 +75,7 @@ class FlowBanner extends React.Component {
     let bannerWidth = cardWidth * 0.3;
 
     const cardStyle = {
-      borderTopLeftRadius: '6px 50px'
+      // borderTopLeftRadius: '6px 50px'
     };
 
     const handleMouseOver = () => {
