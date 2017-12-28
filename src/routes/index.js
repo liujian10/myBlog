@@ -1,6 +1,6 @@
 // We only need to import the modules necessary for initial render
 import Home from './Home';
-import CounterRoute from './Counter';
+import CvRoute from './Cv';
 import BlogRoute from './Blog';
 import WaterFallRoute from './WaterFall';
 
@@ -11,7 +11,7 @@ const createRoutes = store => ({
   path: '/',
   indexRoute: Home,
   childRoutes: [
-    CounterRoute(store),
+    CvRoute(store),
     BlogRoute(store),
     WaterFallRoute(store)
   ]
