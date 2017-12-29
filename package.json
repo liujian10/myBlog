@@ -33,7 +33,7 @@
     "prop-types": "^15.6.0",
     "rc-banner-anim": "^0.5.16",
     "rc-queue-anim": "^1.4.1",
-    "rc-scroll-anim": "^1.0.7",
+    "rc-scroll-anim": "^2.2.0",
     "rc-tween-one": "^1.5.8",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",

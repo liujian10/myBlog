@@ -49,6 +49,7 @@
         ],
         "poster": "http://i3.letvimg.com/lc07_iscms/201710/27/15/34/75789c76310c4044889762bde23ad619.jpg",
         "url": "/blog",
+        "gitHub":"https://github.com/liujian10/myBlog",
         "detail": [
           {
             "title": "主页面",
@@ -146,7 +147,6 @@
           }
         ],
         "poster": "http://i3.letvimg.com/lc04_iscms/201710/27/18/13/552a36f67da841a9b316312ab98b6a67.jpg",
-        "url": "#",
         "detail": [
           {
             "title": "ABB中国班车项目",
@@ -169,6 +169,7 @@
         ],
         "poster": "http://i3.letvimg.com/lc04_iscms/201710/27/17/09/162391817c9f4eb1b0e82dbf434c9e9a.jpg",
         "url": "/fallWater",
+        "gitHub":"https://github.com/liujian10/demo",
         "detail": [
           {
             "title": "主页面",

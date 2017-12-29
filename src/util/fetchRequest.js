@@ -9,7 +9,7 @@ import { isLocal } from './local';
 
 import userInfo from '../static/json/userInfo.json';
 import menus from '../static/json/menus.json';
-import cvInfo from '../static/json/cvInfo-test.json';
+import cvInfo from '../static/json/cvInfo.json';
 
 const SUCCESS_CODE = 0;
 const BASE_HOST = 'http://' + window.location.host + '/json/';
