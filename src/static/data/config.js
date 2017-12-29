@@ -10,6 +10,7 @@ export const introduction = {
   website: 'mapleliu.com',
   gitHub: 'github.com/liujian10'
 };
+
 // 海报资源
 export const posters = [
   'http://i3.letvimg.com/lc07_iscms/201710/27/15/34/75789c76310c4044889762bde23ad619.jpg',
@@ -255,3 +256,12 @@ export const titles = {
   careers: '工作经历',
   technologies: '技术栈'
 };
+
+export default {
+  introduction,
+  educations,
+  works,
+  careers,
+  technologies,
+  titles
+}

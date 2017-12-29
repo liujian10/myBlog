@@ -5,8 +5,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createStore from './store/createStore';
-import { initRem } from './util/common';
-import './styles/main.scss';
+import './styles/main.less';
 
 // Store Initialization
 // ------------------------------------

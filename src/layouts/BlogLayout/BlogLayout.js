@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BlogSider from '../../components/Blog/Sider';
 import BlogHeader from '../../components/Blog/Header';
+import HomeFooter from '../../components/Home/Footer';
 import { Layout, BackTop } from 'antd';
 import './BlogLayout.less';
 
@@ -13,6 +14,7 @@ const BlogLayout = (props) => {
   return (
     <Layout className='blog-layout'>
       <Sider
+        width='230'
         className='blog-layout-sider'
         breakpoint='lg'
         collapsedWidth='0'
@@ -34,9 +36,7 @@ const BlogLayout = (props) => {
         >
           {children}
         </Content>
-        <Footer className='blog-main-footer'>
-          Created by Maple Liu
-        </Footer>
+        <HomeFooter {...props}/>
       </Layout>
       <BackTop target={getTarget}/>
     </Layout>

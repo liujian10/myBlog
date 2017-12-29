@@ -1,0 +1,137 @@
+import { createAction } from 'redux-actions';
+import {
+  fetchCvInfo as fetchCvInfoService
+} from '../../../util/fetchRequest';
+
+// ------------------------------------
+// Actions
+
+// 获取简历信息
+export const HOME_GET_CV_INFO = 'HOME_GET_CV_INFO';
+
+/**
+ * action: 获取简历信息
+ */
+export const getCvInfo = createAction(HOME_GET_CV_INFO, fetchCvInfoService, (params, resolved) => ({
+  resolved,
+  params
+}));
+
+// 更新页面元素尺寸信息
+export const HOME_ADAPTIVE_TO_UPDATE = 'HOME_ADAPTIVE_TO_UPDATE';
+
+/**
+ * action: 更新页面元素尺寸信息
+ */
+export const adaptiveToUpdate = createAction(HOME_ADAPTIVE_TO_UPDATE);
+
+// 设置卡片属性
+export const HOME_SET_CARD_PROPS = 'HOME_SET_CARD_PROPS';
+
+/**
+ * action: 设置卡片属性
+ */
+export const setCardProps = createAction(HOME_SET_CARD_PROPS);
+
+// 设置根属性
+export const HOME_ASSIGN_PROPS = 'HOME_ASSIGN_PROPS';
+
+/**
+ * action: 设置根属性
+ */
+export const assignProps = createAction(HOME_ASSIGN_PROPS);
+
+/**
+ * action 列表
+ * @type {{getCvInfo}}
+ */
+export const actions = {
+  getCvInfo,
+  adaptiveToUpdate,
+  setCardProps,
+  assignProps
+};
+
+// ------------------------------------
+// Action Handlers
+// ------------------------------------
+const ACTION_HANDLERS = {
+  [HOME_ASSIGN_PROPS]: (state, action) => {
+    const { payload } = action;
+    return {
+      ...state,
+      ...payload
+    };
+  },
+  [HOME_GET_CV_INFO]: (state, action) => {
+    const { meta = {}, payload, error } = action;
+    const { sequence = {} } = meta;
+    let newState = {
+      ...state,
+      pending: sequence.type === 'start'
+    };
+
+    if (!error && sequence.type === 'next') {
+      newState = {
+        ...newState,
+        ...payload
+      };
+    }
+    return newState;
+  },
+  [HOME_ADAPTIVE_TO_UPDATE]: (state, action) => {
+    const content = document.getElementsByClassName('home-footer')[0]; // 获取右侧容器宽度
+    let cardWidth = content && content.clientWidth - 80 || 0;
+    let bodyWidth = document.documentElement.clientWidth;
+    let bodyHeight = document.documentElement.clientHeight;
+    let isMobile = bodyWidth <= bodyHeight;
+
+    return {
+      ...state,
+      cardWidth,
+      bodyHeight,
+      isMobile
+    };
+  },
+  [HOME_SET_CARD_PROPS]: (state, action) => {
+    const { payload } = action;
+    const { key, value } = payload;
+    const cardProps = {
+      ...state.cardProps
+    };
+    cardProps[key] = value;
+    return {
+      ...state,
+      cardProps
+    };
+  }
+};
+
+// ------------------------------------
+// Reducer
+// ------------------------------------
+const initialState = {
+  introduction: {},
+  educations: [],
+  works: [],
+  careers: [],
+  technologies: [],
+  titles: {},
+  cardWidth: 0,
+  bodyHeight: 0,
+  isMobile: false,
+  collapsed: false,
+  logoPaused: true,
+  cardProps: {},
+  showModal: false,
+  showKey: -1,
+  currentDeg: 0,
+  bannerCurIndex: 0,
+  bannerLastIndex: 0,
+  pending: false
+};
+
+export default (state = initialState, action) => {
+  const handler = ACTION_HANDLERS[action.type];
+  return handler ? handler(state, action) : state;
+}

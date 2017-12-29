@@ -4,8 +4,22 @@ import { Card, Tag, Icon } from 'antd';
 import './FlowBanner.less';
 
 const WorkCard = props => {
-  const { title, desc, poster, style = {}, keyWords = [], fns = {} } = props;
-  const { onClick = null, onOpen = null, onMouseOver = null, onMouseOut = null } = fns;
+  const {
+    title,
+    desc,
+    poster,
+    style = {},
+    keyWords = [],
+    fns = {}
+  } = props;
+
+  const {
+    onClick = null,
+    onOpen = null,
+    onMouseOver = null,
+    onMouseOut = null
+  } = fns;
+
   const colors = [
     'pink',
     'red',
@@ -18,6 +32,7 @@ const WorkCard = props => {
     'red-inverse',
     'orange-inverse'
   ];
+
   const getTagProp = (index) => {
     return {
       color: colors[index % 10],
@@ -47,10 +62,10 @@ const WorkCard = props => {
     >
       <Tag key='open' color={colors[5]} style={{
         display: 'inline-block',
-        position:'absolute',
-        top:'5px',
-        right:'0px',
-        zIndex:'2'
+        position: 'absolute',
+        top: '5px',
+        right: '0px',
+        zIndex: '2'
       }}>
         <Icon type='arrows-alt' onClick={onOpen}/>
       </Tag>
@@ -69,9 +84,11 @@ const WorkCard = props => {
         <div>
           {
             keyWords.map((keyWord, index) => {
-              return keyWord.url ? <a href={keyWord.url} key={index}>
-                <Tag {...getTagProp(index)}>{keyWord.name}</Tag>
-              </a> : <Tag key={index}{...getTagProp(index)}>{keyWord.name}</Tag>;
+              return keyWord.url
+                ? <a href={keyWord.url.indexOf('http') > -1 ? keyWord.url : '#' + keyWord.url} key={index}>
+                  <Tag {...getTagProp(index)}>{keyWord.name}</Tag>
+                </a>
+                : <Tag key={index} {...getTagProp(index)}>{keyWord.name}</Tag>;
             })
           }
         </div>

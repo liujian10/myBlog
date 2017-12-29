@@ -9,12 +9,13 @@ const BgElement = Element.BgElement;
 
 class WorksBanner extends React.Component {
   render () {
-    const { works, showModal } = this.props;
+    const { works, showKey, showModal } = this.props;
+    const modalWorks = works[showKey].detail;
     let bannerElementKey = 0;
     return (
       <BannerAnim prefixCls='banner-work'>
         {
-          works.map(work => {
+          modalWorks.map(work => {
             const { title = '', desc = '', img = '' } = work;
             const BgStyle = {
               backgroundImage: 'url(' + img + ')',
@@ -68,6 +69,7 @@ class WorksBanner extends React.Component {
 }
 
 WorksBanner.propTypes = {
+  showKey: PropTypes.number,
   works: PropTypes.array,
   showModal: PropTypes.bool
 };

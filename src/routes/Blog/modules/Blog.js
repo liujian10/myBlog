@@ -4,12 +4,7 @@ import {
   fetchMenus as getMenusService,
   fetchBlogDetail as getDetailService
 } from '../../../util/fetchRequest';
-
-// ------------------------------------
-// Constants
-// ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT';
-export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC';
+import { getItemByKey } from '../../../util';
 
 // ------------------------------------
 // Actions
@@ -52,16 +47,6 @@ export const actions = {
   getUserInfo,
   getIndexPath,
   getDetail
-};
-
-const getItemByKey = (key, items) => {
-  let item = {};
-  for (item of items) {
-    if (item.key.toString() === key.toString()) {
-      return item;
-    }
-  }
-  return null;
 };
 
 // ------------------------------------

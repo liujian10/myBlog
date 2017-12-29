@@ -1,24 +1,33 @@
 import { injectReducer } from '../../store/reducers';
 
-export default (store) => ({
-  path: 'cv',
-  /*  Async getComponent is only invoked when route matches   */
-  getComponent (nextState, cb) {
-    /*  Webpack - use 'require.ensure' to create a split point
-     and embed an async module loader (jsonp) when bundling   */
-    require.ensure([], (require) => {
-      /*  Webpack - use require callback to define
-       dependencies for bundling   */
-      const Counter = require('./containers/CvContainer').default;
-      const reducer = require('./modules/Cv').default;
-
-      /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, { key: 'cv', reducer });
-
-      /*  Return getComponent   */
-      cb(null, Counter);
-
-      /* Webpack named bundle   */
-    }, 'cv');
+let containers = false;
+export const getComponent = (store, param) => (nextState, cb) => {
+  const { containerName, key } = param;
+  if (containers) {
+    cb(null, containers[`${containerName}Container`]);
+    return;
   }
-})
+  /*  Webpack - use 'require.ensure' to create a split point
+ and embed an async module loader (jsonp) when bundling   */
+  require.ensure([], (require) => {
+    /*  Webpack - use require callback to define
+     dependencies for bundling   */
+    containers = require('./containers');
+    const reducer = require(`../Home/modules/Home`).default;
+    /*  Add the reducer to the store on key 'blog'  */
+    injectReducer(store, { key, reducer });
+
+    /*  Return getComponent   */
+    cb(null, containers[`${containerName}Container`]);
+
+    /* Webpack named bundle   */
+  });
+};
+
+// Sync route definition
+export default store => {
+  return {
+    path: 'cv',
+    getComponent: getComponent(store, { containerName: 'Cv', reducerName: 'Home', key: 'home' })
+  };
+}

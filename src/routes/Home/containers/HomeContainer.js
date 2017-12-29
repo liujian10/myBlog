@@ -1,16 +1,12 @@
 import { connect } from 'react-redux';
-import { actions } from '../../Home/modules/Home';
+import { actions } from '../modules/Home';
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component - in this case, the counter:   */
 
-import CvView from '../components/CvView';
-
-/*  Object of action creators (can also be function that returns object).
-    Keys will be passed as props to presentational components. Here we are
-    implementing our wrapper around increment; the component doesn't care   */
+import Home from '../components/HomeView';
 
 const mapStateToProps = ({ home }) => ({
   ...home
@@ -30,4 +26,4 @@ const mapStateToProps = ({ home }) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export default connect(mapStateToProps, actions)(CvView);
+export default connect(mapStateToProps, actions)(Home);

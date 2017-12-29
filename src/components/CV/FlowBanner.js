@@ -7,9 +7,6 @@ import './FlowBanner.less';
 class FlowBanner extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      currentDeg: 0
-    };
   }
 
   componentDidMount () {
@@ -20,68 +17,84 @@ class FlowBanner extends React.Component {
     this.clearBannerTimer();
   }
 
+  // 设置自动旋转定时器
   setBannerTimer () {
-    if (this.props.isMobile) return;
-    // this.clearBannerTimer();
+    if (this.props.isMobile) return; // 移动端不处理
+    this.clearBannerTimer();
     this.bannerTimer = setInterval(() => {
       if (!this.cardMouseOver && !this.props.showModal) {
         const { works } = this.props;
-        const currentIndex = this.props.bannerCurIndex;
+        const currentIndex = this.props.bannerCurIndex; // 当前banner位置
         let itemNum = works.length; // 要旋转的div的数量
-        let centerNum = itemNum / 2;
+        let centerNum = itemNum / 2; // 数量中间值
         let itemDeg = 360 / itemNum; // 计算平均偏移角度，后面的itemDeg*index是不同索引div的偏移角度
-        let itemIndex = currentIndex === itemNum - 1 ? 0 : currentIndex + 1;
-        let nextStep = itemIndex - this.props.bannerCurIndex;
-        let dot = this.state.currentDeg -
+        let nextIndex = (currentIndex === itemNum - 1) ? 0 : (currentIndex + 1); // 下个banner位置
+        let nextStep = nextIndex - this.props.bannerCurIndex; // 下一步步数
+        let dot = this.props.currentDeg -
           (nextStep > -1 * centerNum && nextStep < centerNum
             ? nextStep
             : nextStep <= -1 * centerNum
               ? nextStep + itemNum
               : nextStep - itemNum) * itemDeg;
-        this.setState({
+        // 设置旋转度数
+        this.props.assignProps({
           currentDeg: dot
         });
-        this.props.setBannerIndex(this.props.bannerCurIndex, itemIndex);
+        this.props.setBannerIndex(this.props.bannerCurIndex, nextIndex);
       }
     }, 5000);
   }
 
+  // 清除定时器
   clearBannerTimer () {
     this.bannerTimer && clearInterval(this.bannerTimer);
   }
 
   render () {
-    const { works, cardWidth, getCardAnimationProps, clickFunc = () => {} } = this.props;
-    let itemNum = works.length; // 要旋转的div的数量
-    let centerNum = itemNum / 2;
-    let itemDeg = 360 / itemNum; // 计算平均偏移角度，后面的itemDeg*index是不同索引div的偏移角度
+    const {
+      works, // 作品信息
+      cardWidth, //卡片容器宽度
+      getCardAnimationProps, // 获取卡片动画属性
+      onOpenCard, // 打开卡片信息详情
+      bannerCurIndex, // 当前banner位置
+      currentDeg, // 当前旋转度数
+      assignProps, // 设置跟属性值
+      setBannerIndex // 设置banner位置
+    } = this.props;
 
+    const bannerWidth = cardWidth * 0.35; // banner卡片宽度
+
+    const itemNum = works.length; // 要旋转的div的数量
+    const centerNum = itemNum / 2; // 元素数量中间值
+    const itemDeg = 360 / itemNum; // 计算平均偏移角度，后面的itemDeg*index是不同索引div的偏移角度
+
+    /**
+     * 处理卡片点击事件
+     * @param workItem 点击卡片对应作品信息
+     * @param itemIndex 点击卡片对应作品位置
+     */
     const handleClick = (workItem, itemIndex) => {
       this.clearBannerTimer();
-      let nextStep = itemIndex - this.props.bannerCurIndex;
-      let dot = this.state.currentDeg -
+      const nextStep = itemIndex - bannerCurIndex;
+      const dot = currentDeg -
         (nextStep > -1 * centerNum && nextStep < centerNum
           ? nextStep
           : nextStep <= -1 * centerNum
             ? nextStep + itemNum
             : nextStep - itemNum) * itemDeg;
-      this.setState({
+      assignProps({
         currentDeg: dot
       });
-      this.props.setBannerIndex(this.props.bannerCurIndex, itemIndex);
+      setBannerIndex(bannerCurIndex, itemIndex);
       this.setBannerTimer();
     };
 
-    let bannerWidth = cardWidth * 0.3;
-
-    const cardStyle = {
-      // borderTopLeftRadius: '6px 50px'
-    };
-
+    // 处理卡片鼠标悬浮事件
     const handleMouseOver = () => {
       this.cardMouseOver = true;
     };
 
+    // 处理卡片鼠标移出事件
     const handleMouseOut = () => {
       this.cardMouseOver = false;
     };
@@ -92,33 +105,31 @@ class FlowBanner extends React.Component {
           className='flow-banner-items'
           style={{
             width: bannerWidth,
-            height: bannerWidth * 0.6,
+            height: bannerWidth * .5,
             transition: 'transform 1.5s ease-in-out',
-            transform: 'rotateY(' + this.state.currentDeg + 'deg)'
+            transform: 'rotateY(' + currentDeg + 'deg)'
           }}
         >
           {works.map((workItem, itemIndex) => {
             let transformValue = 'rotateY(' + itemDeg * itemIndex + 'deg) translateZ(' + bannerWidth * 1.2 + 'px)';
             let workCardFn = {
               onClick: handleClick.bind(null, workItem, itemIndex),
-              onOpen: clickFunc.bind(null, itemIndex),
+              onOpen: onOpenCard.bind(null, itemIndex),
               onMouseOver: handleMouseOver,
               onMouseOut: handleMouseOut
             };
-            // let baseSize = this.props.bannerCurIndex === itemIndex ? 1.2 : 1;
             return <div
               key={itemIndex}
               className='flow-banner-item'
               style={{
                 transform: transformValue,
                 width: bannerWidth,
-                height: bannerWidth * 0.56
+                height: bannerWidth * .5
               }}
             >
               <TweenOne {...getCardAnimationProps(itemIndex, { width: '100%', height: '100%' })}>
                 <WorkCard
                   {...workItem}
-                  style={cardStyle}
                   fns={workCardFn}
                 />
               </TweenOne>
@@ -134,13 +145,15 @@ class FlowBanner extends React.Component {
 FlowBanner.propTypes = {
   works: PropTypes.array,
   bodyWidth: PropTypes.number,
-  getCardAnimationProps: PropTypes.func,
-  clickFunc: PropTypes.func,
+  onOpenCard: PropTypes.func,
   setBannerIndex: PropTypes.func,
+  getCardAnimationProps: PropTypes.func,
+  assignProps: PropTypes.func,
   isMobile: PropTypes.bool,
   showModal: PropTypes.bool,
-  bannerCurIndex:PropTypes.number,
-  cardWidth:PropTypes.number
+  bannerCurIndex: PropTypes.number,
+  cardWidth: PropTypes.number,
+  currentDeg: PropTypes.number
 };
 
 export default FlowBanner;

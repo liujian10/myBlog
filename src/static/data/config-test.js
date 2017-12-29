@@ -10,6 +10,7 @@ export const introduction = {
   website: 'test.com',
   gitHub: 'github.com/test'
 };
+
 // 海报资源
 export const posters = [
   'http://i3.letvimg.com/lc07_iscms/201710/27/15/34/75789c76310c4044889762bde23ad619.jpg',
@@ -246,8 +247,17 @@ export const technologies = [
 ];
 
 export const titles = {
-  works:'我是标题一',
-  careers:'我是标题二',
-  technologies:'我是标题三',
-  educations:'我是标题四'
+  works: '我是标题一',
+  careers: '我是标题二',
+  technologies: '我是标题三',
+  educations: '我是标题四'
 };
+
+export default {
+  introduction,
+  educations,
+  works,
+  careers,
+  technologies,
+  titles
+}

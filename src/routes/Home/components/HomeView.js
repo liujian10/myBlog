@@ -1,46 +1,80 @@
-import React from 'react'
-import DuckImage from '../assets/Duck.jpg'
-import MapleImage from '../assets/maple.png'
-import { Link } from 'react-router'
-import { Layout, Card, Row, Col } from 'antd'
-import './HomeView.less'
+import './HomeView.less';
 
-const { Header, Content } = Layout
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  Layout,
+  BackTop,
+  Spin
+} from 'antd';
+import {
+  CvModal
+} from '../../../components/CV';
 
-const RowCol = (data) => {
-  let info = data.info
-  return <Col span={4}>
-    <Link to={info.link} activeClassName='page-content-row'>
-      <Card className='page-content-row-card'>
-        <div>
-          <img src={info.img} />
+import {
+  HomeSider,
+  HomeHeader,
+  HomeFooter,
+  HomeMain
+} from '../../../components/Home';
+
+class CvView extends React.Component {
+  constructor (props) {
+    super(props);
+  }
+
+  componentDidMount () {
+    this.props.getCvInfo().then(() => {
+      setTimeout(this.props.adaptiveToUpdate, 100);
+    });
+    window.addEventListener('resize', this.props.adaptiveToUpdate);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.props.adaptiveToUpdate);
+  }
+
+  render () {
+    const { pending } = this.props;
+
+    // 获取滚动条元素
+    const getTarget = () => document.getElementById('home-main') || window;
+
+    // Spin属性
+    const spinProps = {
+      className: 'home-spain',
+      style: {
+        display: 'flex',
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
+    };
+
+    return (
+      pending
+        ? <div {...spinProps}>
+          <Spin tip='Loading...'/>
         </div>
-        <div className='page-content-row-card-desc'>
-          <h3>{info.title}</h3>
-          <p>{info.desc}</p>
-        </div>
-      </Card>
-    </Link>
-  </Col>
+        : <Layout className='home-layout'>
+          <HomeSider {...this.props}/>
+          <Layout className='home-main' id='home-main'>
+            <HomeHeader {...this.props}/>
+            <HomeMain {...this.props} />
+            <HomeFooter {...this.props}/>
+          </Layout>
+          <BackTop target={getTarget}/>
+          <CvModal {...this.props}/>
+        </Layout>
+    );
+  }
 }
 
-export const HomeView = () => (
-  <Layout className='page-layout'>
-    <Header className='page-header'>
-      <h1 className='page-header-title'>Hello</h1>
-    </Header>
-    <Content className='page-content'>
-      <Row className='page-content-row' type='flex' align='middle' justify='space-around' gutter={24}>
-        <RowCol info={{ link:'/counter', img:DuckImage, title:'Counter', desc:'To demo counter' }} />
-        <RowCol info={{ link:'/fallWater', img:DuckImage, title:'fallWater', desc:'To demo fallWater' }} />
-        <RowCol info={{ link:'/blog', img:MapleImage, title:'My blog', desc:'To my blog' }} />
-        <RowCol info={{ link:'/cashier',
-          img:'http://i0.letvimg.com/lc07_pay/201704/18/12/22/levip-logo.png',
-          title:'Cashier',
-          desc:'To tv cashier' }} />
-      </Row>
-    </Content>
-  </Layout>
-)
+CvView.propTypes = {
+  getCvInfo: PropTypes.func,
+  adaptiveToUpdate: PropTypes.func,
+  pending: PropTypes.bool
+};
 
-export default HomeView
+export default CvView;

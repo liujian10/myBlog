@@ -5,10 +5,11 @@ import 'isomorphic-fetch';
 import { message } from 'antd';
 // import { hashHistory } from 'react-router'
 import { getUrlParam, getResult } from '../util';
-import local from './local';
+import { isLocal } from './local';
 
-import userInfo from '../../json/userInfo.json';
-import menus from '../../json/menus.json';
+import userInfo from '../static/json/userInfo.json';
+import menus from '../static/json/menus.json';
+import cvInfo from '../static/json/cvInfo-test.json';
 
 const SUCCESS_CODE = 0;
 const BASE_HOST = 'http://' + window.location.host + '/json/';
@@ -41,9 +42,11 @@ const handleResponse = ({ head, body }, { globalError }) => new Promise((resolve
   }
 });
 
+// json数据
 const jsonConfig = {
-  'userInfo': userInfo,
-  'menus': menus
+  userInfo,
+  menus,
+  cvInfo
 };
 
 const getJson = (url, { params }) => {
@@ -63,17 +66,19 @@ const getJson = (url, { params }) => {
 };
 
 const doFetch = (url, option) => {
-  if (local.isLocal()) {
+  if (isLocal()) {
     return new Promise((resolve, reject) => {
-      resolve({
-        ...option,
-        status: 200,
-        body: getJson(url, option),
-        json: () => {
-          let type = url.split('?')[0];
-          return getJson(type, option);
-        }
-      });
+      setTimeout(() => { //模拟数据请求
+        resolve({
+          ...option,
+          status: 200,
+          body: getJson(url, option),
+          json: () => {
+            let type = url.split('?')[0];
+            return getJson(type, option);
+          }
+        });
+      }, 100);
     });
   } else {
     return fetch(BASE_HOST + url, option);
@@ -144,21 +149,25 @@ export const fetchRequest = async (url, options) => {
  * @param id
  * @returns {promise}
  */
-export const fetchUserInfo = id => {
-  return fetchRequest('userInfo', { ...arguments });
-};
+export const fetchUserInfo = id => fetchRequest('userInfo', { ...arguments });
 
 /**
  * 请求菜单数据
- * @param id
  * @returns {promise}
  */
-export const fetchMenus = () => {
-  return fetchRequest('menus', { ...arguments });
-};
+export const fetchMenus = () => fetchRequest('menus', { ...arguments });
 
-export const fetchBlogDetail = params => {
-  return fetchRequest('blog', { params });
-};
+/**
+ * 请求日志详情信息
+ * @param params
+ * @returns {promise}
+ */
+export const fetchBlogDetail = params => fetchRequest('blog', { params });
+
+/**
+ * 请求简历信息
+ * @returns {promise}
+ */
+export const fetchCvInfo = () => fetchRequest('cvInfo', { ...arguments });
 
 export default fetchRequest;

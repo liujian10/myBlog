@@ -6,13 +6,32 @@ import {
 } from 'antd';
 import WorksBanner from './WorksBanner';
 
-const CvHeader = (props) => {
+const CvModal = (props) => {
   const {
-    modalWorks,
     showModal,
-    onModalLinkClick,
-    onModalCloseClick
+    assignProps,
+    router,
+    works,
+    showKey
   } = props;
+
+  // 模态窗口关闭按钮onClick事件
+  const onModalCloseClick = () => {
+    assignProps({
+      showModal: false
+    });
+  };
+
+  // 模态窗口链接按钮onClick事件
+  const onModalLinkClick = () => {
+    const { url = '#' } = works[showKey];
+    if (url.indexOf('http') > -1) {
+      window.location.href = url;
+    } else {
+      router.push(url);
+    }
+  };
+
   return (
     <QueueAnim type={['top', 'top']} delay={[0, 300]}>
       {showModal ? [
@@ -22,8 +41,7 @@ const CvHeader = (props) => {
             duration={[1000, 1000]}>
             {showModal ? [
               <div key='modal-box' className='cv-modal-box'>
-                <WorksBanner
-                  works={modalWorks} {...props} />
+                <WorksBanner {...props} />
               </div>
             ] : null}
           </QueueAnim>
@@ -52,11 +70,13 @@ const CvHeader = (props) => {
   );
 };
 
-CvHeader.propTypes = {
+CvModal.propTypes = {
   modalWorks: PropTypes.array,
   showModal: PropTypes.bool,
-  onModalLinkClick: PropTypes.func,
-  onModalCloseClick: PropTypes.func
+  assignProps: PropTypes.func,
+  router: PropTypes.object.isRequired,
+  works: PropTypes.array,
+  showKey: PropTypes.number
 };
 
-export default CvHeader;
+export default CvModal;

@@ -21,14 +21,94 @@ const CvMain = (props) => {
     careers,
     technologies,
     educations,
-    getCardAnimationProps,
-    onCardClick,
     bannerCurIndex,
-    setBannerIndex
+    cardProps,
+    assignProps,
+    setCardProps
   } = props;
 
   const cardStyle = {
     padding: '20px 0'
+  };
+
+  // 项目&作品卡片打开详情
+  const onOpenCard = key => {
+    const newCardProps = cardProps;
+    newCardProps['card' + key] = {
+      paused: false,
+      reverse: true,
+      moment: null
+    };
+    assignProps({
+      cardProps: newCardProps,
+      showModal: true,
+      showKey: key
+    });
+  };
+
+  // 项目&作品卡片onMouseOver事件
+  const onCardMouseOver = key => {
+    setCardProps({
+      key, value: {
+        paused: false,
+        reverse: false,
+        moment: null
+      }
+    });
+  };
+
+  // 项目&作品卡片onCardMouseOut事件
+  const onCardMouseOut = key => {
+    if (!cardProps[key].reverse) {
+      setCardProps({
+        key, value: {
+          paused: false,
+          reverse: true,
+          moment: null
+        }
+      });
+    }
+  };
+
+  // 获取项目&作品卡片动画动态属性
+  const getCardAnimationProps = (key, style) => {
+    let cardKey = 'card' + key;
+    const initStyle = {
+      ...style,
+      boxShadow: '0 0 5px #ccc'
+    };
+    return {
+      key: cardKey,
+      animation: {
+        scale: 1.01,
+        boxShadow: '0 0 15px #ccc',
+        duration: 500
+      },
+      ...(cardProps[cardKey] || {
+        paused: true,
+        reverse: false,
+        moment: null
+      }),
+      onMouseOver: onCardMouseOver.bind(null, cardKey),
+      onMouseOut: onCardMouseOut.bind(null, cardKey),
+      style: initStyle
+    };
+  };
+
+  // 设置 bannerIndex
+  const setBannerIndex = (lastIndex, curIndex) => {
+    assignProps({
+      bannerLastIndex: lastIndex,
+      bannerCurIndex: curIndex
+    });
+  };
+
+  // FlowBanner属性
+  const flowBannerProps = {
+    ...props,
+    getCardAnimationProps,
+    setBannerIndex,
+    onOpenCard
   };
 
   return (
@@ -58,7 +138,7 @@ const CvMain = (props) => {
                             {...work}
                             fns={{
                               onMouseOver: setBannerIndex.bind(null, 0, index),
-                              onOpen: onCardClick.bind(null, index)
+                              onOpen: onOpenCard.bind(null, index)
                             }}/>
                         </TweenOne>
                       </div>;
@@ -67,10 +147,7 @@ const CvMain = (props) => {
                 </QueueAnim> : <QueueAnim
                   className='cv-works-group' delay={300}
                   type='right' duration={1000}>
-                  <FlowBanner
-                    {...props}
-                    clickFunc={onCardClick}
-                  />
+                  <FlowBanner {...flowBannerProps}/>
                 </QueueAnim>
             }
           </CvCard>
@@ -163,10 +240,11 @@ CvMain.propTypes = {
   careers: PropTypes.array,
   technologies: PropTypes.array,
   educations: PropTypes.array,
-  getCardAnimationProps: PropTypes.func,
-  onCardClick: PropTypes.func,
+  onOpenCard: PropTypes.func,
   bannerCurIndex: PropTypes.number,
-  setBannerIndex: PropTypes.func
+  cardProps: PropTypes.object.isRequired,
+  assignProps: PropTypes.func,
+  setCardProps: PropTypes.func
 };
 
 export default CvMain;

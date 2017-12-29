@@ -9,46 +9,8 @@
   padding-left: @body-padding-size*0.9;
 }
 
-.cv-header, .cv-sider, .cv-main {
+.cv-header, .cv-main {
   background: none;
-}
-
-.cv-sider {
-  display: block;
-  text-align: center;
-  padding: 20px 0;
-  // box-shadow: 3px 0 3px #e9e9e9;
-}
-
-.cv-sider-head {
-  width: 200px;
-  height: auto;
-}
-
-.cv-text-caps {
-  font-size: 20px;
-  font-weight: normal;
-  font-variant: small-caps;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow: #e7e7e7 3px 5px 0,
-  #999 4px 6px 3px,
-  #ccc 8px 11px 10px;
-}
-
-.cv-sider-baseInfo {
-  font-size: 14px;
-  display: inline-block;
-  text-align: left;
-  padding: 10px 20px;
-  h3 {
-    border-bottom: 1px solid #e9e9e9;
-    padding: 5px 0;
-  }
-  & > li {
-    margin: 5px 0;
-    text-align: center;
-  }
 }
 
 .cv-main {
@@ -73,13 +35,8 @@
   min-width: 200px;
 }
 
-.cv-header, .cv-footer {
+.cv-header {
   text-align: center;
-}
-
-.cv-footer {
-  margin: 20px 0;
-  background-color: inherit;
 }
 
 .code-box-shape {
@@ -172,8 +129,15 @@
   }
 }
 
-.ant-layout-sider-zero-width-trigger {
-  z-index: 1;
+.cv-text-caps{
+  font-size: 20px;
+  font-weight: normal;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: #e7e7e7 3px 5px 0,
+  #999 4px 6px 3px,
+  #ccc 8px 11px 10px;
 }
 
 @media screen and (max-width: 500px) {
@@ -202,15 +166,5 @@
 
   .cv-main {
     padding-right: 0;
-  }
-
-  .cv-sider {
-    box-shadow: 3px 0 3px #e9e9e9;
-  }
-}
-
-@media screen and (min-height: 600px) {
-  .cv-sider {
-    padding-top: @body-padding-size*.5;
   }
 }

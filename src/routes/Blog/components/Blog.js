@@ -54,13 +54,16 @@ class Blog extends React.Component {
         {this.props.children}
       </BlogLayout>;
     }
-    return <Spin
+    return (<Spin
       size='large'
       style={{
-        display: 'block',
-        margin: '40% auto'
+        display: 'flex',
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}
-    />;
+    />);
   }
 }
 

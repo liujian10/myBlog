@@ -1,16 +1,16 @@
-import { connect } from 'react-redux'
-import { actions } from '../modules/Blog'
+import { connect } from 'react-redux';
+import { actions } from '../modules/Blog';
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component - in this case, the counter:   */
 
-import BlogDetail from '../components/BlogDetail'
+import BlogDetail from '../components/BlogDetail';
 
 const mapStateToProps = ({ blog }) => ({
   ...blog
-})
+});
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
 
@@ -26,4 +26,4 @@ const mapStateToProps = ({ blog }) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export default connect(mapStateToProps, actions)(BlogDetail)
+export default connect(mapStateToProps, actions)(BlogDetail);
