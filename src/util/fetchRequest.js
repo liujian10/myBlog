@@ -162,7 +162,11 @@ export const fetchMenus = () => fetchRequest('menus', { ...arguments });
  * @param params
  * @returns {promise}
  */
-export const fetchBlogDetail = params => fetchRequest('blog', { params });
+export const fetchBlogDetail = params => {
+  console.log('fetchBlogDetail:');
+  console.log(params);
+  return fetchRequest('blog', { params });
+};
 
 /**
  * 请求简历信息

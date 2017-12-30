@@ -10,16 +10,27 @@ class BlogDetail extends React.Component {
     };
   }
 
-  componentWillMount () {
-    this.props.getDetail({
-      key: this.props.params.id
-    });
+  shouldComponentUpdate (nProps) {
+    const { params } = nProps;
+    const { detail } = this.props;
+    const showUpdate = params.id !== detail.key;
+    console.log('showUpdate:' + showUpdate);
+    return showUpdate;
+  }
+
+  componentWillUpdate (nProps) {
+    const { currentKey } = this.props;
+    const { params = {} } = nProps;
+    if (params.id !== currentKey) {
+      this.props.setCurrentKey(params.id);
+      this.props.getDetail({
+        key: params.id
+      });
+    }
   }
 
   render () {
     const { detail } = this.props;
-    console.log('detail:');
-    console.log(detail);
     let content;
     try {
       content = detail && detail.name && require('../../../../docs/' + detail.name + '.md');
@@ -35,7 +46,8 @@ class BlogDetail extends React.Component {
 
 BlogDetail.propTypes = {
   getDetail: PropTypes.func,
-  params: PropTypes.object,
+  setCurrentKey: PropTypes.func,
+  currentKey: PropTypes.string,
   detail: PropTypes.object
 };
 

@@ -6,11 +6,11 @@ import HomeFooter from '../../components/Home/Footer';
 import { Layout, BackTop } from 'antd';
 import './BlogLayout.less';
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const BlogLayout = (props) => {
   const { children, collapsed, onCollapse } = props;
-  const getTarget = () => document.getElementsByClassName('blog-main')[0] || window;
+  const getTarget = () => window.document.getElementsByClassName('blog-main')[0] || window;
   return (
     <Layout className='blog-layout'>
       <Sider

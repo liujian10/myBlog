@@ -9,13 +9,10 @@ const BlogSider = (props) => {
   const { blog } = props;
   const { menus = [], userInfo = {} } = blog;
   const { nickName, gender, github, email, headPic } = userInfo;
-  const handleClick = ({ item, key }) => {
+  const handleClick = ({ key }) => {
     props.routerPush('/blog/detail/' + key);
-    props.getDetail({
-      name: item.props.name,
-      key: key
-    });
   };
+
   const getMenuItem = (data) => {
     let res;
     if (data.key) {

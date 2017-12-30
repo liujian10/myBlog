@@ -30,6 +30,9 @@ export const getDetail = createAction(BLOG_GET_DETAIL, getDetailService, (params
   params
 }));
 
+export const BLOG_SET_CURRENT_KEY = 'BLOG_SET_CURRENT_KEY';
+export const setCurrentKey = createAction(BLOG_SET_CURRENT_KEY);
+
 // 添加默认页面
 export const getIndexPath = (callback) => (dispatch, getState) => {
   const state = getState();
@@ -46,7 +49,8 @@ export const actions = {
   getMenus,
   getUserInfo,
   getIndexPath,
-  getDetail
+  getDetail,
+  setCurrentKey
 };
 
 // ------------------------------------
@@ -113,10 +117,16 @@ const ACTION_HANDLERS = {
       if (params.key) {
         const item = getItemByKey(params.key, menuItems);
         newState.detail.name = item && item.name;
-        newState.currentKey = params.key;
       }
     }
     return newState;
+  },
+  [BLOG_SET_CURRENT_KEY]: (state, action) => {
+    const { payload } = action;
+    return {
+      ...state,
+      currentKey: payload
+    };
   }
 };
 
