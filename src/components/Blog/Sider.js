@@ -91,7 +91,6 @@ BlogSider.propTypes = {
   blog: PropTypes.object,
   collapsed: PropTypes.bool,
   routerPush: PropTypes.func,
-  getDetail: PropTypes.func,
   logoBackground: PropTypes.string
 };
 
