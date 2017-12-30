@@ -257,11 +257,22 @@ export const titles = {
   technologies: '技术栈'
 };
 
+export const project = {
+  'author': 'Maple Liu',
+  'gitHub': 'http://github.com/liujian10',
+  'support': {
+      'Ant Design': 'https://ant.design/index-cn',
+      'Ant Motion': 'https://motion.ant.design/',
+      'React Redux Starter Kit': 'https://github.com/davezuko/react-redux-starter-kit'
+  }
+};
+
 export default {
   introduction,
   educations,
   works,
   careers,
   technologies,
-  titles
-}
+  titles,
+  project
+};

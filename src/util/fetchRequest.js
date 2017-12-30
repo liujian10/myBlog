@@ -170,4 +170,10 @@ export const fetchBlogDetail = params => fetchRequest('blog', { params });
  */
 export const fetchCvInfo = () => fetchRequest('cvInfo', { ...arguments });
 
+/**
+ * 请求项目信息
+ * @returns {promise}
+ */
+export const projectInfo = () => fetchRequest('project', { ...arguments });
+
 export default fetchRequest;

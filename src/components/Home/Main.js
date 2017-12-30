@@ -27,12 +27,14 @@ const HomeMain = (props) => {
     return actions;
   };
   const cardStyle = {
-    maxWidth: '800px',
+    width: '100%',
+    maxWidth: '600px',
     minWidth: '200px',
     margin: '50px auto 150px'
   };
 
   const listStyle = {
+    width: '100%',
     maxWidth: '800px',
     minWidth: '500px',
     margin: '50px auto'
@@ -40,8 +42,7 @@ const HomeMain = (props) => {
 
   const listProps = {
     itemLayout: 'vertical',
-    size: 'large',
-    dataSource: works
+    size: 'large'
   };
 
   const overPackProps = {
@@ -51,40 +52,41 @@ const HomeMain = (props) => {
   };
 
   const queueAnimProps = {
-    type: 'bottom',
+    delay: 100,
     duration: 1000,
+    type: ['bottom', 'top'],
+    ease: ['easeOutQuart', 'easeInOutQuart'],
     style: cardStyle
   };
 
-  const QueueAnimCard = ({ poster, url = '', title, desc }) => (
-    <a href={getLink(url)}>
-      <Card
-        cover={<img alt={title} src={poster}/>}
-        actions={
-          url ? [<Icon type='link' key='link'/>] : []
-        }
-        hoverable
-      >
-        <Meta
-          title={title}
-          description={desc}
-        />
-      </Card>
-    </a>
-  );
+  const QueueAnimCard = props => {
+    const { poster, title, desc } = props;
+    return (<Card
+      cover={<img alt={title} src={poster}/>}
+      actions={getActions(props)}
+      hoverable
+    >
+      <Meta
+        title={title}
+        description={desc}
+      />
+    </Card>);
+  };
 
   return (
     <Content className='home-content'>
-      {!isMobile ? <QueueAnim
-        {...queueAnimProps}
-        style={listStyle}
+      {!isMobile ? <List
+        key={`queueAnimList`}
+        {...listProps}
       >
-        <List
-          key={`queueAnimList`}
-          {...listProps}
-          renderItem={item => (
+        <QueueAnim
+          {...queueAnimProps}
+          type={['right', 'left']}
+          style={listStyle}
+        >
+          {works.map((item, index) => (
             <List.Item
-              key={item.title}
+              key={`listItem${index}`}
               actions={getActions(item)}
               extra={<img width={272} alt={item.title} src={item.poster} className='home-card-img'/>}
             >
@@ -93,9 +95,9 @@ const HomeMain = (props) => {
                 description={item.desc}
               />
             </List.Item>
-          )}
-        />
-      </QueueAnim> : works.map((work, index) => {
+          ))}
+        </QueueAnim>
+      </List> : works.map((work, index) => {
         return index === 0
           ? <QueueAnim
             {...queueAnimProps}

@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import {
-  fetchCvInfo as fetchCvInfoService
+  fetchCvInfo as fetchCvInfoService,
+  projectInfo as projectInfoService
 } from '../../../util/fetchRequest';
 
 // ------------------------------------
@@ -41,6 +42,17 @@ export const HOME_ASSIGN_PROPS = 'HOME_ASSIGN_PROPS';
  */
 export const assignProps = createAction(HOME_ASSIGN_PROPS);
 
+// 更新页面元素尺寸信息
+export const HOME_GET_PROJECT = 'HOME_GET_PROJECT';
+
+/**
+ * action: 获取简历信息
+ */
+export const getProjectInfo = createAction(HOME_GET_PROJECT, projectInfoService, (params, resolved) => ({
+  resolved,
+  params
+}));
+
 /**
  * action 列表
  * @type {{getCvInfo}}
@@ -49,7 +61,8 @@ export const actions = {
   getCvInfo,
   adaptiveToUpdate,
   setCardProps,
-  assignProps
+  assignProps,
+  getProjectInfo
 };
 
 // ------------------------------------
@@ -90,6 +103,7 @@ const ACTION_HANDLERS = {
       ...state,
       cardWidth,
       bodyHeight,
+      bodyWidth,
       isMobile
     };
   },
@@ -104,6 +118,22 @@ const ACTION_HANDLERS = {
       ...state,
       cardProps
     };
+  },
+  [HOME_GET_PROJECT]: (state, action) => {
+    const { meta = {}, payload, error } = action;
+    const { sequence = {} } = meta;
+    let newState = {
+      ...state
+    };
+
+    if (!error && sequence.type === 'next') {
+      newState.project = {
+        ...newState.project,
+        ...payload
+      };
+    }
+    console.log(newState);
+    return newState;
   }
 };
 
@@ -117,8 +147,10 @@ const initialState = {
   careers: [],
   technologies: [],
   titles: {},
+  project: {},
   cardWidth: 0,
   bodyHeight: 0,
+  bodyWidth: 0,
   isMobile: false,
   collapsed: false,
   logoPaused: true,
