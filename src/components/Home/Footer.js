@@ -1,7 +1,7 @@
 import './Footer.less';
 
 import React from 'react';
-import { Layout, Divider } from 'antd';
+import { Layout, Divider, Icon } from 'antd';
 import { project } from '../../static/data/config';
 
 const { Footer } = Layout;
@@ -21,12 +21,11 @@ const HomeFooter = () => {
 
   return (
     <Footer className='home-footer'>
+      <Divider dashed><Icon type='link'/></Divider>
       <div>
-        <Divider dashed>Support</Divider>
         {getSupports()}
-      </div>
-      <div>
-        Created by <a href={gitHub}>{author}</a> 2017
+        <Divider type='vertical'/>
+        <a href={gitHub}><Icon type='github'/></a>
       </div>
     </Footer>
   );
