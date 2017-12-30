@@ -8,7 +8,6 @@ const { Header } = Layout;
 const HomeHeader = props => {
   const { assignProps, isMobile, bodyWidth, bodyHeight } = props;
   const handleClick = () => assignProps({ isMobile: !isMobile });
-  console.log(bodyHeight+'|'+bodyWidth);
   return (
     <Header className='home-header'>
       <QueueAnim key='anim-header' type='top'>

@@ -45,12 +45,7 @@ const BlogHeader = (props) => {
   };
   const hideSearch = () => onSearch(!collapsed);
   return (
-    <Header
-      className='blog-main-header'
-      style={{
-        background: '#fff'
-      }}
-    >
+    <Header className='blog-main-header'>
       <Icon
         type={collapsed ? 'menu-unfold' : 'menu-fold'}
         className='blog-header-icon-menu'

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from '../../../components/Markdowm/Markdown';
+import { Markdown } from '../../../components/Markdowm/Markdown';
 
 class BlogDetail extends React.Component {
   constructor (props) {
@@ -13,9 +13,7 @@ class BlogDetail extends React.Component {
   shouldComponentUpdate (nProps) {
     const { params } = nProps;
     const { detail } = this.props;
-    const showUpdate = params.id !== detail.key;
-    console.log('showUpdate:' + showUpdate);
-    return showUpdate;
+    return params.id !== detail.key;
   }
 
   componentWillUpdate (nProps) {

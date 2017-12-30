@@ -1,7 +1,7 @@
 import { applyMiddleware, compose, createStore as createReduxStore } from 'redux';
 import thunk from 'redux-thunk';
 import { hashHistory } from 'react-router';
-import makeRootReducer from './reducers';
+import { makeRootReducer } from './reducers';
 import { updateLocation } from './location';
 import promiseMiddleware from '../middlewares/promiseMiddleware.js';
 import asyncActionCallbackMiddleware from '../middlewares/asyncActionCallbackMiddleware.js';

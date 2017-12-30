@@ -163,8 +163,6 @@ export const fetchMenus = () => fetchRequest('menus', { ...arguments });
  * @returns {promise}
  */
 export const fetchBlogDetail = params => {
-  console.log('fetchBlogDetail:');
-  console.log(params);
   return fetchRequest('blog', { params });
 };
 

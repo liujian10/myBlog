@@ -92,11 +92,11 @@ const ACTION_HANDLERS = {
     }
     return newState;
   },
-  [HOME_ADAPTIVE_TO_UPDATE]: (state, action) => {
-    const content = document.getElementsByClassName('home-footer')[0]; // 获取右侧容器宽度
+  [HOME_ADAPTIVE_TO_UPDATE]: (state) => {
+    const content = window.document.getElementsByClassName('home-footer')[0]; // 获取右侧容器宽度
     let cardWidth = content && content.clientWidth - 80 || 0;
-    let bodyWidth = document.documentElement.clientWidth;
-    let bodyHeight = document.documentElement.clientHeight;
+    let bodyWidth = window.document.documentElement.clientWidth;
+    let bodyHeight = window.document.documentElement.clientHeight;
     let isMobile = bodyWidth <= bodyHeight;
 
     return {
@@ -132,7 +132,6 @@ const ACTION_HANDLERS = {
         ...payload
       };
     }
-    console.log(newState);
     return newState;
   }
 };
