@@ -63,9 +63,9 @@ const HomeSider = (props) => {
         textAlign: 'justify'
       }
     },
-    {
+    /*{
       desc: <div><Icon type='mobile'/> {introduction.mobile}</div>
-    },
+    },*/
     {
       desc: <div><Icon type='link'/> <a href={'http://' + introduction.website}>{introduction.website}</a></div>
     },

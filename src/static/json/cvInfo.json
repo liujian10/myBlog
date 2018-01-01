@@ -31,7 +31,8 @@
     ],
     "works": [
       {
-        "title": "博客",
+        "title": "MyBlog",
+        "isOpen": true,
         "desc": "基于React的博客demo",
         "keyWords": [
           {
@@ -49,7 +50,7 @@
         ],
         "poster": "http://i3.letvimg.com/lc07_iscms/201710/27/15/34/75789c76310c4044889762bde23ad619.jpg",
         "url": "/blog",
-        "gitHub":"https://github.com/liujian10/myBlog",
+        "gitHub": "https://github.com/liujian10/myBlog",
         "detail": [
           {
             "title": "主页面",
@@ -66,6 +67,7 @@
       {
         "title": "TV收银台",
         "desc": "乐视影视会员TV收银台",
+        "isOpen": false,
         "keyWords": [
           {
             "name": "JavaScript"
@@ -97,6 +99,7 @@
       {
         "title": "影视会员中心",
         "desc": "乐视网影视会员中心",
+        "isOpen": false,
         "keyWords": [
           {
             "name": "JavaScript"
@@ -131,8 +134,28 @@
         ]
       },
       {
+        "title": "v-drawer",
+        "desc": "基于Vue的Drawer组件",
+        "isOpen": true,
+        "keyWords": [
+          {
+            "name": "Vue"
+          },
+          {
+            "name": "npm",
+            "url":"https://www.npmjs.com/package/v-drawer"
+          }
+        ],
+        "poster": "https://nodei.co/npm/v-drawer.png",
+        "url": "http://mapleliu.com/v-drawer",
+        "gitHub": "https://github.com/liujian10/v-drawer",
+        "detail": [
+        ]
+      },
+      {
         "title": "ABB中国班车项目",
         "desc": "使用Bootstrap开发的Java Web项目",
+        "isOpen": false,
         "keyWords": [
           {
             "name": "Java"
@@ -156,20 +179,21 @@
         ]
       },
       {
-        "title": "瀑布流",
-        "desc": "一个简单的瀑布流demo",
+        "title": "FallWater",
+        "desc": "js实现的瀑布流demo",
+        "isOpen": true,
         "keyWords": [
           {
             "name": "JavaScript"
           },
           {
-            "name": "waterFall",
+            "name": "fallWater",
             "url": "/fallWater"
           }
         ],
         "poster": "http://i3.letvimg.com/lc04_iscms/201710/27/17/09/162391817c9f4eb1b0e82dbf434c9e9a.jpg",
         "url": "/fallWater",
-        "gitHub":"https://github.com/liujian10/demo",
+        "gitHub": "https://github.com/liujian10/demo",
         "detail": [
           {
             "title": "主页面",

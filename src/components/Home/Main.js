@@ -24,6 +24,7 @@ const HomeMain = (props) => {
     let actions = [];
     if (item.url) actions.push(<a href={getLink(item.url)}><IconText type='link'/></a>);
     if (item.gitHub) actions.push(<a href={item.gitHub}><IconText type='github'/></a>);
+    if (item.npm) actions.push(<a href={`https://www.npmjs.com/package/${item.npm}`}><Icon type='medium' /></a>);
     return actions;
   };
   const cardStyle = {
@@ -84,8 +85,9 @@ const HomeMain = (props) => {
           type={['right', 'left']}
           style={listStyle}
         >
-          {works.map((item, index) => (
-            <List.Item
+          {works.map((item, index) => {
+            if(!item.isOpen) return "";
+            return <List.Item
               key={`listItem${index}`}
               actions={getActions(item)}
               extra={<img width={272} alt={item.title} src={item.poster} className='home-card-img'/>}
@@ -94,10 +96,11 @@ const HomeMain = (props) => {
                 title={item.url ? <a href={getLink(item.url)}>{item.title}</a> : item.title}
                 description={item.desc}
               />
-            </List.Item>
-          ))}
+            </List.Item>;
+          })}
         </QueueAnim>
       </List> : works.map((work, index) => {
+        if(!work.isOpen) return "";
         return index === 0
           ? <QueueAnim
             {...queueAnimProps}
