@@ -12,6 +12,24 @@ export const introduction = {
 };
 
 // 海报资源
+/*
+milk-vue01.jpg
+milk-vue02.jpg
+myBlog01.jpg
+myBlog02.jpg
+tvCahier03.jpg
+tvCahier05.jpg
+tvCashier01.jpg
+tvCashier02.jpg
+tvCashier04.jpg
+v-draver01.jpg
+v-drawer02.jpg
+vipCenter02.jpg
+vipCenter01.jpg
+vipCenter03.jpg
+vipCenter04.jpg
+waterFall.jpg
+*/
 export const posters = [
   'http://i3.letvimg.com/lc07_iscms/201710/27/15/34/75789c76310c4044889762bde23ad619.jpg',
   'http://i0.letvimg.com/lc02_iscms/201710/27/15/38/a32ed7012658428f9234e9f386825dff.jpg',

@@ -60,25 +60,13 @@ const WorkCard = props => {
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
-      <Tag key='open' color={colors[5]} style={{
-        display: 'inline-block',
-        position: 'absolute',
-        top: '5px',
-        right: '0px',
-        zIndex: '2'
-      }}>
+      <Tag
+        key='open'
+        color={colors[5]}
+        className='cv-works-open'>
         <Icon type='arrows-alt' onClick={onOpen}/>
       </Tag>
-      <div
-        style={{
-          background: 'rgba(255, 255, 255, 0.8)',
-          position: 'absolute',
-          bottom: '0',
-          left: '0',
-          display: 'block',
-          width: '100%',
-          padding: '10px 0'
-        }}>
+      <div className='cv-works-items'>
         <h3>{title}</h3>
         <p>{desc}</p>
         <div>

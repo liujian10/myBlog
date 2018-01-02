@@ -31,7 +31,7 @@
     ],
     "works": [
       {
-        "title": "MyBlog",
+        "title": "Blog",
         "isOpen": true,
         "desc": "基于React的博客demo",
         "keyWords": [
@@ -42,25 +42,21 @@
           {
             "name": "Ant Design",
             "url": "https://ant.design/"
-          },
-          {
-            "name": "Blog",
-            "url": "/myBlog"
           }
         ],
-        "poster": "http://i3.letvimg.com/lc07_iscms/201710/27/15/34/75789c76310c4044889762bde23ad619.jpg",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/myBlog01.jpg",
         "url": "/blog",
         "gitHub": "https://github.com/liujian10/myBlog",
         "detail": [
           {
             "title": "主页面",
             "desc": "左侧菜单栏，头部搜索栏，右侧为博客内容",
-            "img": "http://i3.letvimg.com/lc07_iscms/201710/27/15/34/75789c76310c4044889762bde23ad619.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/myBlog01.jpg"
           },
           {
             "title": "主页面",
             "desc": "隐藏菜单栏的主页面",
-            "img": "http://i0.letvimg.com/lc02_iscms/201710/27/15/38/a32ed7012658428f9234e9f386825dff.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/myBlog02.jpg"
           }
         ]
       },
@@ -76,23 +72,28 @@
             "name": "HTML5&CSS3"
           }
         ],
-        "poster": "http://i0.letvimg.com/lc07_iscms/201710/27/17/26/1cc9e6e2324142f2bc1c51cdd769c235.jpg",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/tvCashier01.jpg",
         "url": "http://minisite.cp21.ott.cibntv.net/tvCashierH5/index.shtml",
         "detail": [
           {
-            "title": "主页面",
+            "title": "多套餐收银台",
             "desc": "左侧包含宣传海报，底部套餐选择栏；右侧展示用户信息，套餐信息及收银二维码，用户可直接通过支付宝/微信扫描下单充值会员。",
-            "img": "http://i0.letvimg.com/lc07_iscms/201710/27/17/26/1cc9e6e2324142f2bc1c51cdd769c235.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/tvCashier01.jpg"
+          },
+          {
+            "title": "单套餐收银台",
+            "desc": "左侧包含宣传海报，底部套餐选择栏；右侧展示用户信息，套餐信息及收银二维码，用户可直接通过支付宝/微信扫描下单充值会员。",
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/tvCashier02.jpg"
           },
           {
             "title": "支付挽留页",
             "desc": "用户退出时，挽留用户页面，分为功能区与底部会员影片海报展示区",
-            "img": "http://i3.letvimg.com/lc06_iscms/201710/27/17/45/bf000ffd06af43eb8f06fc28dff9c39a.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/tvCashier03.jpg"
           },
           {
             "title": "支付成功页",
             "desc": "支付成功结果展示页，头部展示用户信息，订单信息，及赠品信息；底部展示会员影片海报",
-            "img": "http://i2.letvimg.com/lc04_iscms/201710/27/17/53/2936d26867734effaabaeba18dd40201.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/tvCashier04.jpg"
           }
         ]
       },
@@ -108,28 +109,57 @@
             "name": "HTML5&CSS3"
           }
         ],
-        "poster": "http://i0.letvimg.com/lc03_iscms/201710/27/18/33/41a8e0538b3645bf98aecf7ea7cbc20d.jpg",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/vipCenter01.jpg",
         "url": "http://minisite.cp21.ott.cibntv.net/tvCashierH5/index.shtml",
         "detail": [
           {
             "title": "主页面",
             "desc": "展示用户会员信息，会员权益，运营活动，会员影片等",
-            "img": "http://i0.letvimg.com/lc03_iscms/201710/27/18/33/41a8e0538b3645bf98aecf7ea7cbc20d.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/vipCenter01.jpg"
           },
           {
             "title": "会员福利社",
             "desc": "乐视影视会员福利专区，可领取会员福利",
-            "img": "http://i1.letvimg.com/lc07_iscms/201710/27/18/37/2b968fc07b2041fb812aea38e63d49c6.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/vipCenter02.jpg"
           },
           {
             "title": "会员续费管理",
             "desc": "管理影视会员续费，可开通及退订自动续费服务",
-            "img": "http://i2.letvimg.com/lc07_iscms/201710/27/18/40/3a3a82a953cf484aa5586b1dfa4dcda7.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/vipCenter03.jpg"
           },
           {
             "title": "会员俱乐部",
             "desc": "展示乐视影视会员专题，活动信息",
-            "img": "http://i2.letvimg.com/lc02_iscms/201710/27/18/44/3ee38b5e46cc4d77987179356225bfa8.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/vipCenter04.jpg"
+          }
+        ]
+      },
+      {
+        "title": "milk-vue",
+        "desc": "基于Vue 2.0的 Mobile 组件库",
+        "isOpen": true,
+        "keyWords": [
+          {
+            "name": "Vue"
+          },
+          {
+            "name": "npm",
+            "url":"https://www.npmjs.com/package/milk-vue"
+          }
+        ],
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue01.jpg",
+        "url": "https://vueclub.github.io/milk-vue",
+        "gitHub": "https://github.com/vueclub/milk-vue",
+        "detail": [
+          {
+            "title":"主页面",
+            "desc":"左侧为菜单项，中间为详细内容，右侧为组件示例演示",
+            "img":"https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue01.jpg"
+          },
+          {
+            "title":"主页面",
+            "desc":"Demo，列表组件",
+            "img":"https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue02.jpg"
           }
         ]
       },
@@ -146,16 +176,27 @@
             "url":"https://www.npmjs.com/package/v-drawer"
           }
         ],
-        "poster": "https://nodei.co/npm/v-drawer.png",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.2/image/v-drawer01.jpg",
         "url": "http://mapleliu.com/v-drawer",
         "gitHub": "https://github.com/liujian10/v-drawer",
         "detail": [
+          {
+            "title":"主页面",
+            "desc":"Demo，可设置抽屉开关状态/方向/是否嵌入文档",
+            "img":"https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/v-drawer01.jpg"
+          },
+          {
+            "title":"主页面",
+            "desc":"Demo，方向右侧，嵌入文档抽屉打开状态",
+            "img":"https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/v-drawer02.jpg"
+          }
         ]
       },
       {
         "title": "ABB中国班车项目",
         "desc": "使用Bootstrap开发的Java Web项目",
         "isOpen": false,
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.2/image/none.jpg",
         "keyWords": [
           {
             "name": "Java"
@@ -169,12 +210,10 @@
             "url": "http://lbs.amap.com/api/javascript-api/summary"
           }
         ],
-        "poster": "http://i3.letvimg.com/lc04_iscms/201710/27/18/13/552a36f67da841a9b316312ab98b6a67.jpg",
         "detail": [
           {
             "title": "ABB中国班车项目",
-            "desc": "使用Bootstrap搭建前端页面框架，结合高德地图api实现地图相关功能，后台采用SpringMVC搭建，数据库使用Mysql",
-            "img": "http://i3.letvimg.com/lc04_iscms/201710/27/18/13/552a36f67da841a9b316312ab98b6a67.jpg"
+            "desc": "使用Bootstrap搭建前端页面框架，结合高德地图api实现地图相关功能，后台采用SpringMVC搭建，数据库使用Mysql"
           }
         ]
       },
@@ -191,14 +230,14 @@
             "url": "/fallWater"
           }
         ],
-        "poster": "http://i3.letvimg.com/lc04_iscms/201710/27/17/09/162391817c9f4eb1b0e82dbf434c9e9a.jpg",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/waterFall.jpg",
         "url": "/fallWater",
         "gitHub": "https://github.com/liujian10/demo",
         "detail": [
           {
             "title": "主页面",
             "desc": "原生JS实现的瀑布流demo，等列宽，根据图片高度自动填充页面，优化了图片加载逻辑",
-            "img": "http://i3.letvimg.com/lc04_iscms/201710/27/17/09/162391817c9f4eb1b0e82dbf434c9e9a.jpg"
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/waterFall.jpg"
           }
         ]
       }
