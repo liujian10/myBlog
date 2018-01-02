@@ -1,9 +1,10 @@
-@banner: banner-work;
-.@{banner}, .banner-anim {
+@bannerWork: banner-work;
+@bannerAnim: banner-anim;
+.@{bannerWork}, .@{bannerAnim} {
   height: 100%;
 }
 
-.banner-anim-elem.@{banner}-elem {
+.@{bannerAnim}-elem.@{bannerWork}-elem {
   color: #fff;
 }
 
@@ -22,17 +23,22 @@ ul, li {
   }
 }
 
-.banner-anim-elem .bg {
+.@{bannerWork}-content {
+  padding: 5% 10%;
   width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
+  height: auto;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  h1 {
+    color: #25a186;
+    font-weight: bold;
+  }
+  p {
+    text-align: justify;
+  }
 }
 
-@banner: banner-anim;
-.@{banner} {
+.@{bannerAnim} {
   position: relative;
   overflow: hidden;
   min-height: 100px;
@@ -130,26 +136,18 @@ ul, li {
       }
     }
   }
-}
-
-.banner-anim-elem > div {
-  position: absolute;
-  color: rgba(0, 0, 0, 0.6);
-  text-align: center;
-}
-
-.banner-work-content {
-  padding: 5% 10%;
-  width: 100%;
-  height: auto;
-  bottom:0;
-  background: rgba(255, 255, 255, 0.8);
-  h1 {
-    color: #25a186;
-    font-weight: bold;
+  &-elem > div {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
   }
-  p {
-    text-align: justify;
+  &-elem .bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
   }
 }
 
@@ -157,10 +155,10 @@ ul, li {
   .banner-work-content {
     padding: 2% 10%;
     width: 100%;
-    h1{
+    h1 {
       font-size: 16px;
     }
-    p{
+    p {
       font-size: 14px;
     }
   }

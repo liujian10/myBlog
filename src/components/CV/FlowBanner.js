@@ -62,7 +62,8 @@ class FlowBanner extends React.Component {
       setBannerIndex // 设置banner位置
     } = this.props;
 
-    const bannerWidth = cardWidth * 0.35; // banner卡片宽度
+    const bannerWidth = cardWidth * 0.32; // banner卡片宽度
+    const bannerHeight = bannerWidth * 0.6; // banner卡片高度
 
     const itemNum = works.length; // 要旋转的div的数量
     const centerNum = itemNum / 2; // 元素数量中间值
@@ -105,7 +106,7 @@ class FlowBanner extends React.Component {
           className='flow-banner-items'
           style={{
             width: bannerWidth,
-            height: bannerWidth * .5,
+            height: bannerHeight,
             transition: 'transform 1.5s ease-in-out',
             transform: 'rotateY(' + currentDeg + 'deg)'
           }}
@@ -124,7 +125,7 @@ class FlowBanner extends React.Component {
               style={{
                 transform: transformValue,
                 width: bannerWidth,
-                height: bannerWidth * .5
+                height: bannerHeight
               }}
             >
               <TweenOne {...getCardAnimationProps(itemIndex, { width: '100%', height: '100%' })}>
