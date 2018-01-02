@@ -78,7 +78,7 @@ const doFetch = (url, option) => {
             return getJson(type, option);
           }
         });
-      }, 100);
+      }, 500);
     });
   } else {
     return fetch(BASE_HOST + url, option);

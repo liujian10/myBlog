@@ -40,22 +40,10 @@ class CvView extends React.Component {
     // 获取滚动条元素
     const getTarget = () => document.getElementById('cv-main') || window;
 
-    // Spin属性
-    const spinProps = {
-      className: 'cv-spain',
-      style: {
-        display: 'flex',
-        height: '100%',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }
-    };
-
     return (
       pending
-        ? <div {...spinProps}>
-          <Spin tip='Loading...'/>
+        ? <div className='maple-loading'>
+          <Spin tip='Loading...' size='large'/>
         </div>
         : <Layout className='cv-layout'>
           <HomeSider {...this.props}/>

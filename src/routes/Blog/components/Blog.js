@@ -54,16 +54,7 @@ class Blog extends React.Component {
         {this.props.children}
       </BlogLayout>;
     }
-    return (<Spin
-      size='large'
-      style={{
-        display: 'flex',
-        height: '100%',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    />);
+    return (<div className='maple-loading'><Spin tip='Loading...' size='large'/></div>);
   }
 }
 

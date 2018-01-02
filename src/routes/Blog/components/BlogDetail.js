@@ -1,3 +1,5 @@
+import './BlogDetail.less';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Markdown } from '../../../components/Markdowm/Markdown';
@@ -38,7 +40,7 @@ class BlogDetail extends React.Component {
     if (content) {
       return <Markdown content={content}/>;
     }
-    return <div>nothing</div>;
+    return <div className='blog-detail-loading'/>;
   }
 }
 
