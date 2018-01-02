@@ -44,7 +44,7 @@
             "url": "https://ant.design/"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/myBlog01.jpg",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.3/image/myBlog.jpg",
         "url": "/blog",
         "gitHub": "https://github.com/liujian10/myBlog",
         "detail": [
@@ -147,7 +147,7 @@
             "url": "https://www.npmjs.com/package/milk-vue"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue01.jpg",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.3/image/milk-vue.jpg",
         "url": "https://vueclub.github.io/milk-vue",
         "gitHub": "https://github.com/vueclub/milk-vue",
         "detail": [
@@ -230,7 +230,7 @@
             "url": "/waterfall"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/waterFall.jpg",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.3/image/waterFall.jpg",
         "url": "/waterfall",
         "gitHub": "https://github.com/liujian10/demo",
         "detail": [
