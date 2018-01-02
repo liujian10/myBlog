@@ -33,7 +33,7 @@
       {
         "title": "Blog",
         "isOpen": true,
-        "desc": "基于React的博客demo",
+        "desc": "基于 React 的个人博客",
         "keyWords": [
           {
             "name": "React",
@@ -61,7 +61,7 @@
         ]
       },
       {
-        "title": "TV收银台",
+        "title": "TV Cashier",
         "desc": "乐视影视会员TV收银台",
         "isOpen": false,
         "keyWords": [
@@ -136,7 +136,7 @@
       },
       {
         "title": "milk-vue",
-        "desc": "基于Vue 2.0的 Mobile 组件库",
+        "desc": "基于 Vue 2.0 的 Mobile 组件库",
         "isOpen": true,
         "keyWords": [
           {
@@ -144,7 +144,7 @@
           },
           {
             "name": "npm",
-            "url":"https://www.npmjs.com/package/milk-vue"
+            "url": "https://www.npmjs.com/package/milk-vue"
           }
         ],
         "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue01.jpg",
@@ -152,20 +152,20 @@
         "gitHub": "https://github.com/vueclub/milk-vue",
         "detail": [
           {
-            "title":"主页面",
-            "desc":"左侧为菜单项，中间为详细内容，右侧为组件示例演示",
-            "img":"https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue01.jpg"
+            "title": "主页面",
+            "desc": "左侧为菜单项，中间为详细内容，右侧为组件示例演示",
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue01.jpg"
           },
           {
-            "title":"主页面",
-            "desc":"Demo，列表组件",
-            "img":"https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue02.jpg"
+            "title": "主页面",
+            "desc": "Demo，列表组件",
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/milk-vue02.jpg"
           }
         ]
       },
       {
         "title": "v-drawer",
-        "desc": "基于Vue的Drawer组件",
+        "desc": "基于 Vue 2.0 的 Drawer 组件",
         "isOpen": true,
         "keyWords": [
           {
@@ -173,7 +173,7 @@
           },
           {
             "name": "npm",
-            "url":"https://www.npmjs.com/package/v-drawer"
+            "url": "https://www.npmjs.com/package/v-drawer"
           }
         ],
         "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.2/image/v-drawer01.jpg",
@@ -181,20 +181,20 @@
         "gitHub": "https://github.com/liujian10/v-drawer",
         "detail": [
           {
-            "title":"主页面",
-            "desc":"Demo，可设置抽屉开关状态/方向/是否嵌入文档",
-            "img":"https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/v-drawer01.jpg"
+            "title": "主页面",
+            "desc": "Demo，可设置抽屉开关状态/方向/是否嵌入文档",
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/v-drawer01.jpg"
           },
           {
-            "title":"主页面",
-            "desc":"Demo，方向右侧，嵌入文档抽屉打开状态",
-            "img":"https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/v-drawer02.jpg"
+            "title": "主页面",
+            "desc": "Demo，方向右侧，嵌入文档抽屉打开状态",
+            "img": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/v-drawer02.jpg"
           }
         ]
       },
       {
         "title": "ABB中国班车项目",
-        "desc": "使用Bootstrap开发的Java Web项目",
+        "desc": "基于 Bootstrap 的班车管理系统",
         "isOpen": false,
         "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.2/image/none.jpg",
         "keyWords": [
@@ -218,20 +218,20 @@
         ]
       },
       {
-        "title": "FallWater",
-        "desc": "js实现的瀑布流demo",
+        "title": "Waterfall",
+        "desc": "JavaScript 实现的瀑布流 demo",
         "isOpen": true,
         "keyWords": [
           {
             "name": "JavaScript"
           },
           {
-            "name": "fallWater",
-            "url": "/fallWater"
+            "name": "waterfall",
+            "url": "/waterfall"
           }
         ],
         "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.1/image/waterFall.jpg",
-        "url": "/fallWater",
+        "url": "/waterfall",
         "gitHub": "https://github.com/liujian10/demo",
         "detail": [
           {
