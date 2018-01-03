@@ -25,19 +25,20 @@ const HomeMain = (props) => {
     let actions = [];
     if (url) actions.push(<a href={getLink(url)}><IconText type='link'/></a>);
     if (gitHub) actions.push(<a href={gitHub}><IconText type='github'/></a>);
-    /*if (npm) actions.push(<a key='npm' href={`https://www.npmjs.com/package/${npm}`}>
+    if (npm) actions.push(<a key='npm' href={`https://www.npmjs.com/package/${npm}`}>
       <img src={`https://img.shields.io/npm/v/${npm}.svg`} style={{ height: '16px', marginBottom: '4px' }}/>
-    </a>);*/
+    </a>);
     return actions;
   };
 
   // 获取卡片内容
-  const QueueAnimCard = ({ poster, title, desc }) => {
+  const QueueAnimCard = work => {
+    const { poster, title, desc } = work;
     return [
       <Card
         key='card'
         cover={<img alt={title} src={poster}/>}
-        actions={getActions(props)}
+        actions={getActions(work)}
         hoverable
       >
         <Meta
@@ -53,9 +54,9 @@ const HomeMain = (props) => {
     let items = [];
 
     items.push(url ? <a key='url' href={getLink(url)}>{title}</a> : title);
-    items.push(npm ? <a key='npm' href={`https://www.npmjs.com/package/${npm}`}>
-      <img src={`https://img.shields.io/npm/v/${npm}.svg`} style={{ height: '12px',marginLeft:'10px' }}/>
-    </a> : '');
+    /*items.push(npm ? <a key='npm' href={`https://www.npmjs.com/package/${npm}`}>
+      <img src={`https://img.shields.io/npm/v/${npm}.svg`} style={{ height: '12px', marginLeft: '10px' }}/>
+    </a> : '');*/
 
     return items;
   };
