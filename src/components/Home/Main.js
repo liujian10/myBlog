@@ -17,16 +17,49 @@ const HomeMain = (props) => {
 
   const { works, isMobile } = props;
 
-  const IconText = ({ type }) => <span><Icon type={type} style={{ marginRight: 8 }}/></span>;
+  const IconText = ({ type }) => [<span key='icon'><Icon type={type} style={{ marginRight: 8 }}/></span>];
 
   const getLink = url => url ? url.indexOf('http') > -1 ? url : '#' + url : '';
-  const getActions = item => {
+
+  const getActions = ({ url, gitHub, npm }) => {
     let actions = [];
-    if (item.url) actions.push(<a href={getLink(item.url)}><IconText type='link'/></a>);
-    if (item.gitHub) actions.push(<a href={item.gitHub}><IconText type='github'/></a>);
-    if (item.npm) actions.push(<a href={`https://www.npmjs.com/package/${item.npm}`}><Icon type='medium' /></a>);
+    if (url) actions.push(<a href={getLink(url)}><IconText type='link'/></a>);
+    if (gitHub) actions.push(<a href={gitHub}><IconText type='github'/></a>);
+    /*if (npm) actions.push(<a key='npm' href={`https://www.npmjs.com/package/${npm}`}>
+      <img src={`https://img.shields.io/npm/v/${npm}.svg`} style={{ height: '16px', marginBottom: '4px' }}/>
+    </a>);*/
     return actions;
   };
+
+  // 获取卡片内容
+  const QueueAnimCard = ({ poster, title, desc }) => {
+    return [
+      <Card
+        key='card'
+        cover={<img alt={title} src={poster}/>}
+        actions={getActions(props)}
+        hoverable
+      >
+        <Meta
+          title={title}
+          description={desc}
+        />
+      </Card>
+    ];
+  };
+
+  // 获取卡片详情标题
+  const CardMeteTitle = ({ url, npm, title }) => {
+    let items = [];
+
+    items.push(url ? <a key='url' href={getLink(url)}>{title}</a> : title);
+    items.push(npm ? <a key='npm' href={`https://www.npmjs.com/package/${npm}`}>
+      <img src={`https://img.shields.io/npm/v/${npm}.svg`} style={{ height: '12px',marginLeft:'10px' }}/>
+    </a> : '');
+
+    return items;
+  };
+
   const cardStyle = {
     width: '100%',
     maxWidth: '600px',
@@ -60,20 +93,6 @@ const HomeMain = (props) => {
     style: cardStyle
   };
 
-  const QueueAnimCard = props => {
-    const { poster, title, desc } = props;
-    return (<Card
-      cover={<img alt={title} src={poster}/>}
-      actions={getActions(props)}
-      hoverable
-    >
-      <Meta
-        title={title}
-        description={desc}
-      />
-    </Card>);
-  };
-
   return (
     <Content className='home-content'>
       {!isMobile ? <List
@@ -86,21 +105,21 @@ const HomeMain = (props) => {
           style={listStyle}
         >
           {works.map((item, index) => {
-            if(!item.isOpen) return "";
+            if (!item.isOpen) return '';
             return <List.Item
               key={`listItem${index}`}
               actions={getActions(item)}
               extra={<img width={272} alt={item.title} src={item.poster} className='home-card-img'/>}
             >
               <List.Item.Meta
-                title={item.url ? <a href={getLink(item.url)}>{item.title}</a> : item.title}
+                title={<CardMeteTitle {...item}/>}
                 description={item.desc}
               />
             </List.Item>;
           })}
         </QueueAnim>
       </List> : works.map((work, index) => {
-        if(!work.isOpen) return "";
+        if (!work.isOpen) return '';
         return index === 0
           ? <QueueAnim
             {...queueAnimProps}

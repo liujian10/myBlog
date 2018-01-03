@@ -28,6 +28,6 @@ export const getComponent = (store, param) => (nextState, cb) => {
 export default store => {
   return {
     path: 'cv',
-    getComponent: getComponent(store, { containerName: 'Cv', reducerName: 'Home', key: 'home' })
+    getComponent: getComponent(store, { containerName: 'Cv', key: 'home' })
   };
 }

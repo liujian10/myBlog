@@ -150,6 +150,7 @@
         "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.3/image/milk-vue.jpg",
         "url": "https://vueclub.github.io/milk-vue",
         "gitHub": "https://github.com/vueclub/milk-vue",
+        "npm":"milk-vue",
         "detail": [
           {
             "title": "主页面",
@@ -179,6 +180,7 @@
         "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.2/image/v-drawer01.jpg",
         "url": "http://mapleliu.com/v-drawer",
         "gitHub": "https://github.com/liujian10/v-drawer",
+        "npm": "v-drawer",
         "detail": [
           {
             "title": "主页面",

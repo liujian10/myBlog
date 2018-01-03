@@ -38,7 +38,7 @@ class CvView extends React.Component {
     const { pending } = this.props;
 
     // 获取滚动条元素
-    const getTarget = () => document.getElementById('home-main') || window;
+    const getTarget = () => window.document.getElementById('home-main') || window;
 
     return (
       pending

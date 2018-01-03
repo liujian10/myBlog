@@ -2,11 +2,20 @@ import './Footer.less';
 
 import React from 'react';
 import { Layout, Divider, Icon } from 'antd';
-import { project } from '../../static/data/config';
 
 const { Footer } = Layout;
 
 const HomeFooter = () => {
+  const project = {
+    'author': 'Maple Liu',
+    'gitHub': 'https://github.com/liujian10/myBlog',
+    'support': {
+      'Ant Design': 'https://ant.design/index-cn',
+      'Ant Motion': 'https://motion.ant.design/',
+      'React Redux Starter Kit': 'https://github.com/davezuko/react-redux-starter-kit'
+    }
+  };
+
   const { author = '', gitHub = '', support = [] } = project;
 
   const getSupports = () => {
