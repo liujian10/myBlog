@@ -54,9 +54,7 @@ const BlogHeader = (props) => {
       <Select
         showSearch
         style={{
-          width: 300,
-          borderRadius: '20px'
-          // boxShadow: '0px 0px 10px 3px #e9e9e9'
+          width: 280
         }}
         placeholder='Search'
         optionFilterProp='children'
@@ -68,7 +66,7 @@ const BlogHeader = (props) => {
       >
         {getSelectOptions(menus)}
       </Select>
-      <div style={{ position: 'fixed', top: '20px', right: '5%' }}>
+      <div className='blog-header-breadcrumb'>
         <Breadcrumb {...props} />
       </div>
     </Header>
