@@ -17,8 +17,7 @@ class Blog extends React.Component {
     this.props.getUserInfo();
     this.props.getMenus({}, ({ menus }) => {
       if (Array.isArray(menus) && menus.length) {
-        let path = this.props.getIndexPath();
-        path && this.props.router.replace(path);
+        this.goToIndex(menus[0]);
       }
     });
   }
@@ -28,13 +27,22 @@ class Blog extends React.Component {
 
   componentWillUpdate (nextProps) {
     const { location } = nextProps;
-    if (location.pathname === '/blog') {
-      let path = this.props.getIndexPath();
-      path && this.props.router.replace(path);
+    if (/^\/blog((?!\/).)*$/.test(location.pathname)) {
+      this.goToIndex();
+    }
+  }
+
+  goToIndex (menu) {
+    const { router, blog } = this.props;
+    let home = menu || blog.menus[0] || {};
+    const pathname = router.location.pathname;
+    if (/^\/blog((?!\/).)*$/.test(pathname)) {
+      home && home.key && router.replace(pathname + '/detail/' + home.key);
     }
   }
 
   render () {
+    const { children, blog } = this.props;
     const onCollapse = collapsed => {
       this.setState({ collapsed, showSearch: !collapsed });
     };
@@ -57,9 +65,9 @@ class Blog extends React.Component {
       }
     };
 
-    if (this.props.children && this.props.blog) {
+    if (children && blog) {
       return <BlogLayout {...blogProps} >
-        {this.props.children}
+        {children}
       </BlogLayout>;
     }
     return (<div className='maple-loading'><Spin tip='Loading...' size='large'/></div>);

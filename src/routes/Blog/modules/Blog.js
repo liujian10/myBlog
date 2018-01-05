@@ -33,22 +33,9 @@ export const getDetail = createAction(BLOG_GET_DETAIL, getDetailService, (params
 export const BLOG_SET_CURRENT_KEY = 'BLOG_SET_CURRENT_KEY';
 export const setCurrentKey = createAction(BLOG_SET_CURRENT_KEY);
 
-// 添加默认页面
-export const getIndexPath = (callback) => (dispatch, getState) => {
-  const state = getState();
-  let home = state.blog.menus[0];
-  home = home && home.key;
-  const pathname = state.location.pathname;
-  if (/^\/blog((?!\/).)*$/.test(pathname)) {
-    return pathname + '/detail/' + home;
-  }
-  return null;
-};
-
 export const actions = {
   getMenus,
   getUserInfo,
-  getIndexPath,
   getDetail,
   setCurrentKey
 };
