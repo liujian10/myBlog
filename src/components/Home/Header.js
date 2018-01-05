@@ -15,7 +15,7 @@ const HomeHeader = props => {
         <div key='header-main'>
           <h2 className={`${prefixCls}-text-caps`}>{title}</h2>
         </div>
-        {isMobile ? <Affix
+        {isMobile ? null : <Affix
           className={`${prefixCls}-tool`}
           offsetTop={50}
           target={target}
@@ -31,7 +31,7 @@ const HomeHeader = props => {
               style={{ fontSize: 24 }}
             />
           </Popover>
-        </Affix> : null}
+        </Affix>}
       </QueueAnim>
     </Header>
   );
