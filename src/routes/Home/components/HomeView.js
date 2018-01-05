@@ -19,10 +19,13 @@ class HomeView extends React.Component {
     super(props);
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.props.getCvInfo().then(() => {
       setTimeout(this.props.adaptiveToUpdate, 100);
     });
+  }
+
+  componentDidMount () {
     window.addEventListener('resize', this.props.adaptiveToUpdate);
   }
 

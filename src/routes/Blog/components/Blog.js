@@ -22,9 +22,6 @@ class Blog extends React.Component {
     });
   }
 
-  componentDidMount () {
-  }
-
   componentWillUpdate (nextProps) {
     const { location } = nextProps;
     if (/^\/blog((?!\/).)*$/.test(location.pathname)) {

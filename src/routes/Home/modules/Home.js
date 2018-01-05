@@ -79,18 +79,11 @@ const ACTION_HANDLERS = {
   [HOME_GET_CV_INFO]: (state, action) => {
     const { meta = {}, payload, error } = action;
     const { sequence = {} } = meta;
-    let newState = {
+    return !error ? {
       ...state,
+      ...payload,
       pending: sequence.type === 'start'
-    };
-
-    if (!error && sequence.type === 'next') {
-      newState = {
-        ...newState,
-        ...payload
-      };
-    }
-    return newState;
+    } : state;
   },
   [HOME_ADAPTIVE_TO_UPDATE]: (state) => {
     const content = window.document.getElementsByClassName('home-footer')[0]; // 获取右侧容器宽度
