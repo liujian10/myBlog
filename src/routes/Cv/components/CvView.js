@@ -11,10 +11,9 @@ import {
   CvModal,
   CvMain
 } from '../../../components/CV';
-
 import {
-  HomeHeader,
   HomeSider,
+  HomeHeader,
   HomeFooter
 } from '../../../components/Home';
 
@@ -38,7 +37,7 @@ class CvView extends React.Component {
     const { pending } = this.props;
 
     // 获取滚动条元素
-    const getTarget = () => document.getElementById('cv-main') || window;
+    const getTarget = () => window.document.getElementById('cv-main') || window;
 
     return (
       pending

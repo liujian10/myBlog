@@ -8,17 +8,13 @@ import {
   Spin
 } from 'antd';
 import {
-  CvModal
-} from '../../../components/CV';
-
-import {
   HomeSider,
   HomeHeader,
   HomeFooter,
   HomeMain
 } from '../../../components/Home';
 
-class CvView extends React.Component {
+class HomeView extends React.Component {
   constructor (props) {
     super(props);
   }
@@ -53,16 +49,15 @@ class CvView extends React.Component {
             <HomeFooter {...this.props}/>
           </Layout>
           <BackTop target={getTarget}/>
-          <CvModal {...this.props}/>
         </Layout>
     );
   }
 }
 
-CvView.propTypes = {
+HomeView.propTypes = {
   getCvInfo: PropTypes.func,
   adaptiveToUpdate: PropTypes.func,
   pending: PropTypes.bool
 };
 
-export default CvView;
+export default HomeView;

@@ -8,17 +8,16 @@ import './Header.less';
 const { Header } = Layout;
 
 const HomeHeader = props => {
-  const { bodyWidth, bodyHeight, prefixCls = 'maple-header', title, target } = props;
+  const { prefixCls = 'maple-header', title, target, isMobile } = props;
   return (
     <Header className={prefixCls}>
       <QueueAnim key='anim-header' type='top'>
         <div key='header-main'>
           <h2 className={`${prefixCls}-text-caps`}>{title}</h2>
         </div>
-        <Affix
+        {isMobile ? <Affix
           className={`${prefixCls}-tool`}
           offsetTop={50}
-          style={{ display: bodyWidth > bodyHeight ? 'block' : 'none' }}
           target={target}
         >
           <Popover
@@ -32,18 +31,17 @@ const HomeHeader = props => {
               style={{ fontSize: 24 }}
             />
           </Popover>
-        </Affix>
+        </Affix> : null}
       </QueueAnim>
     </Header>
   );
 };
 
 HomeHeader.propTypes = {
-  bodyWidth: PropTypes.number,
-  bodyHeight: PropTypes.number,
   prefixCls: PropTypes.string,
   title: PropTypes.string,
-  target: PropTypes.func.isRequired
+  target: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool
 };
 
 export default HomeHeader;
