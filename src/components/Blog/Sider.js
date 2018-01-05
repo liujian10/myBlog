@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Avatar, Popover, Icon, Divider } from 'antd';
+import { Menu, Avatar, Popover, Icon } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import './Sider.less';
 

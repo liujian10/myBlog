@@ -9,7 +9,7 @@
   padding-left: @body-padding-size*0.9;
 }
 
-.home-main {
+.home-header, .home-main {
   background: none;
 }
 
@@ -18,18 +18,19 @@
   overflow-x: hidden;
   overflow-y: auto;
   padding-right: @body-padding-size;
-  .ant-card-body {
+  .ant-card-cover {
     border-radius: 1px;
-    box-shadow: 0 0 3px 3px #e8e8e8;
-    border-top: 1px solid #e8e8e8;
-    width: 102%;
-    margin: 0 -1%;
+    box-shadow: -5px 5px 30px 1px #e8e8e8;
+    border: 1px solid rgba(232, 232, 232, 0.5);
+    width: 90%;
+    margin: -5% 6% 0;
     background: #fff;
   }
   .ant-list-item-extra{
     height: 154px;
     border-radius: 2px;
-    box-shadow: 0 0 3px 2px #e8e8e8;
+    box-shadow: -5px 5px 30px 1px #e8e8e8;
+    border: 1px solid rgba(232, 232, 232, 0.5);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50px;
@@ -50,6 +51,21 @@
 
 .home-card {
   min-width: 200px;
+}
+
+.home-header {
+  text-align: center;
+}
+
+.home-text-caps {
+  font-size: 20px;
+  font-weight: normal;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: #e7e7e7 3px 5px 0,
+  #999 4px 6px 3px,
+  #ccc 8px 11px 10px;
 }
 
 @media screen and (max-width: 1200px) {
