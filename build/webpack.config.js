@@ -13,6 +13,7 @@ const renderer = new marked.Renderer();
 const __DEV__ = project.env === 'development';
 const __TEST__ = project.env === 'test';
 const __PROD__ = project.env === 'production';
+const __DEBUG__ = project.env === 'debug';
 
 const config = {
   entry: {

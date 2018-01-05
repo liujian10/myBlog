@@ -6,6 +6,8 @@
   "body": {
     "introduction": {
       "name": "刘建",
+      "nickname": "Maple Liu",
+      "location": "Beijing",
       "age": "24岁",
       "nationality": "汉族",
       "party": "党员",
@@ -150,7 +152,7 @@
         "poster": "https://cdn.jsdelivr.net/npm/maple-statics@1.0.3/image/milk-vue.jpg",
         "url": "https://vueclub.github.io/milk-vue",
         "gitHub": "https://github.com/vueclub/milk-vue",
-        "npm":"milk-vue",
+        "npm": "milk-vue",
         "detail": [
           {
             "title": "主页面",

@@ -8,12 +8,12 @@ import {
   Spin
 } from 'antd';
 import {
-  CvHeader,
   CvModal,
   CvMain
 } from '../../../components/CV';
 
 import {
+  HomeHeader,
   HomeSider,
   HomeFooter
 } from '../../../components/Home';
@@ -48,7 +48,7 @@ class CvView extends React.Component {
         : <Layout className='cv-layout'>
           <HomeSider {...this.props}/>
           <Layout className='cv-main' id='cv-main'>
-            <CvHeader {...this.props}/>
+            <HomeHeader {...this.props} title='cultivated variety' target={getTarget}/>
             <CvMain {...this.props} />
             <HomeFooter {...this.props}/>
           </Layout>

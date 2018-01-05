@@ -21,7 +21,8 @@ const HomeSider = (props) => {
     introduction,
     collapsed,
     assignProps,
-    adaptiveToUpdate
+    adaptiveToUpdate,
+    router
   } = props;
 
   // 头像动画配置
@@ -48,14 +49,21 @@ const HomeSider = (props) => {
   });
 
   // 获取描述元素
-  const getDesc = text => <div style={{ textAlign: 'left' }}>{text}</div>;
+  const getDesc = text => {
+    return <div style={{ textAlign: 'left' }}>{text}</div>;
+  };
+
+  // isHome
+  const isHome = router.location.pathname === '/';
 
   const listData = [
     {
-      title: getDesc(<h2 key='user-name' className='home-sider-username'>{introduction.name} <Icon type='man'/></h2>)
+      title: getDesc(<h2 key='user-name' className='home-sider-username'>
+        {isHome ? introduction.nickname : introduction.name} <Icon type='man'/>
+      </h2>)
     },
     {
-      title: getDesc(`${introduction.age}，${introduction.nationality}，${introduction.party}`),
+      title: isHome ? '' : getDesc(`${introduction.age}，${introduction.nationality}，${introduction.party}`),
       desc: introduction.desc,
       style: {
         marginBottom: '12px',
@@ -63,17 +71,17 @@ const HomeSider = (props) => {
         textAlign: 'justify'
       }
     },
-    /*{
-      desc: <div><Icon type='mobile'/> {introduction.mobile}</div>
-    },*/
     {
-      desc: <div><Icon type='link'/> <a href={'http://' + introduction.website}>{introduction.website}</a></div>
+      desc: <div><Icon type='environment'/> {introduction.location}</div>
+    },
+    {
+      desc: <div><Icon type='mail'/> <a href={`mailto:${introduction.email}`}>{introduction.email}</a></div>
     },
     {
       desc: <div><Icon type='github'/> <a href={`https://${introduction.gitHub}`}>{introduction.gitHub}</a></div>
     },
     {
-      desc: <div><Icon type='mail'/> <a href={`mailto:${introduction.email}`}>{introduction.email}</a></div>
+      desc: <div><Icon type='link'/> <a href={'http://' + introduction.website}>{introduction.website}</a></div>
     }
   ];
 
@@ -136,7 +144,8 @@ HomeSider.propTypes = {
   logoPaused: PropTypes.bool,
   collapsed: PropTypes.bool,
   introduction: PropTypes.object,
-  adaptiveToUpdate: PropTypes.func
+  adaptiveToUpdate: PropTypes.func,
+  router: PropTypes.object.isRequired
 };
 
 export default HomeSider;

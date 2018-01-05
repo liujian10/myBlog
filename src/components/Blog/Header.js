@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout, Icon, Select } from 'antd';
-import './Header.less';
 
 const { Header } = Layout;
 const { Option, OptGroup } = Select;

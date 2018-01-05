@@ -48,7 +48,7 @@ class CvView extends React.Component {
         : <Layout className='home-layout'>
           <HomeSider {...this.props}/>
           <Layout className='home-main' id='home-main'>
-            <HomeHeader {...this.props}/>
+            <HomeHeader {...this.props} title='maple' target={getTarget}/>
             <HomeMain {...this.props} />
             <HomeFooter {...this.props}/>
           </Layout>
