@@ -26,7 +26,7 @@ const HomeMain = (props) => {
     if (url) actions.push(<a href={getLink(url)}><IconText type='link'/></a>);
     if (gitHub) actions.push(<a href={gitHub}><IconText type='github'/></a>);
     if (npm) actions.push(<a key='npm' href={`https://www.npmjs.com/package/${npm}`}>
-      <img src={`https://img.shields.io/npm/v/${npm}.svg`} style={{ height: '16px', marginBottom: '4px' }}/>
+      <img src={`https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg`} style={{ height: '13px', marginBottom: '4px' }}/>
     </a>);
     return actions;
   };

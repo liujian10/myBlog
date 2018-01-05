@@ -21,7 +21,7 @@ const HomeHeader = props => {
           target={target}
         >
           <Popover
-            placement='bottom'
+            placement='right'
             trigger='click'
             content={<QrCode value={window.location.href}/>}
             arrowPointAtCenter
