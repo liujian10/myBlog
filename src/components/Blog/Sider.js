@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Avatar, Popover, Icon } from 'antd';
+import { Menu, Avatar, Popover, Icon, Divider } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import './Sider.less';
 
@@ -21,7 +21,7 @@ const BlogSider = (props) => {
           key={data.key}
           title={<span>
             <Icon type='bars'/>
-            <span>{data.name || data.desc}</span>
+            <span>{data.title || data.file || data.desc}</span>
           </span>}>
           {
             data.children.map(function (child) {
@@ -31,8 +31,7 @@ const BlogSider = (props) => {
         </SubMenu>;
       } else {
         res = <Menu.Item {...data} >
-          <Icon type='book'/>
-          <span>{data.name || data.desc} </span>
+          <span>{data.title || data.file || data.desc} </span>
         </Menu.Item>;
       }
     }

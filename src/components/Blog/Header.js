@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Icon, Select } from 'antd';
+import { Layout, Icon, Select, Breadcrumb } from 'antd';
 
 const { Header } = Layout;
 const { Option, OptGroup } = Select;
@@ -15,11 +15,12 @@ const BlogHeader = (props) => {
     for (item of array) {
       if (item && item.key) {
         if (item.children) {
-          options.push(<OptGroup key={item.key} label={item.name}>
+          options.push(<OptGroup key={item.key} label={item.title || item.file || item.desc}>
             {getSelectOptions(item.children)}
           </OptGroup>);
         } else {
-          options.push(<Option key={item.key} value={item.key.toString()}>{item.name || item.desc}</Option>);
+          options.push(<Option key={item.key} value={item.key.toString()}>{item.title || item.file ||
+          item.desc}</Option>);
         }
       }
     }
@@ -38,7 +39,7 @@ const BlogHeader = (props) => {
     let item = getItemByKey(key, menuItems);
     props.routerPush('/blog/detail/' + item.key);
     props.getDetail({
-      name: item.name,
+      title: item.title,
       key: key
     });
   };
@@ -53,7 +54,7 @@ const BlogHeader = (props) => {
       <Select
         showSearch
         style={{
-          width: 200,
+          width: 300,
           borderRadius: '20px'
           // boxShadow: '0px 0px 10px 3px #e9e9e9'
         }}
@@ -67,6 +68,9 @@ const BlogHeader = (props) => {
       >
         {getSelectOptions(menus)}
       </Select>
+      <div style={{ position: 'fixed', top: '20px', right: '5%' }}>
+        <Breadcrumb {...props} />
+      </div>
     </Header>
   );
 };

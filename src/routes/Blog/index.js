@@ -27,6 +27,7 @@ export const getComponent = (store, param) => (nextState, cb) => {
 export default store => {
   return {
     path: 'blog',
+    breadcrumbName: '博客',
     getComponent: getComponent(store, { containerName: 'Blog', key: 'blog' }),
     childRoutes: [
       {

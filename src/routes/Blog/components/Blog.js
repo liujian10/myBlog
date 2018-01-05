@@ -26,6 +26,14 @@ class Blog extends React.Component {
   componentDidMount () {
   }
 
+  componentWillUpdate (nextProps) {
+    const { location } = nextProps;
+    if (location.pathname === '/blog') {
+      let path = this.props.getIndexPath();
+      path && this.props.router.replace(path);
+    }
+  }
+
   render () {
     const onCollapse = collapsed => {
       this.setState({ collapsed, showSearch: !collapsed });

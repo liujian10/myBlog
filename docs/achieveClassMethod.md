@@ -1,6 +1,4 @@
-# 原生js实现addClass,removeClass,hasClass方法
-
-## 原生js实现addClass,removeClass,hasClass方法
+## 原生 js 实现 addClass, removeClass, hasClass 方法
 
 ```js
 function hasClass(elem, cls) {
@@ -26,7 +24,7 @@ function removeClass(ele, cls) {
 }
 ```
 
-## 原生JS实现jQuery的addClass, removeClass, hasClass函数功能
+## 原生 js 实现 jQuery 的 addClass, removeClass, hasClass 函数功能
 
 ```js
 function addClass(obj, cls){

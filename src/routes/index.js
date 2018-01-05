@@ -9,6 +9,7 @@ import WaterFallRoute from './WaterFall';
 
 const createRoutes = store => ({
   path: '/',
+  breadcrumbName: 'Home',
   indexRoute: HomeRouter(store),
   childRoutes: [
     CvRoute(store),

@@ -7,49 +7,53 @@
     "menus": [
       {
         "key": 1,
-        "icon": "star",
-        "desc": "star",
-        "name": "myBlog"
+        "file": "myBlog",
+        "title": "My Blog"
       },
       {
         "key": 2,
-        "icon": "desktop",
-        "desc": "desktop",
-        "name": "git-common-command"
+        "file": "git-common-command",
+        "title": "Common git commands"
       },
       {
         "key": 4,
-        "icon": "desktop",
-        "desc": "vDrawer",
-        "name": "feStack"
+        "file": "feStack",
+        "title": "Front-end technology stack"
       },
       {
         "key": 5,
-        "icon": "desktop",
-        "desc": "",
-        "name": "feui"
+        "file": "feui",
+        "title":"Front-end UI framework"
       },
       {
         "key": 6,
-        "icon": "desktop",
-        "desc": "",
-        "name": "marquee-js"
+        "file": "v-drawer",
+        "title": "A drawer component for Vue"
+      },
+      {
+        "key": 7,
+        "file": "marquee-js",
+        "title": "A marquee plugin for js"
+      },
+      {
+        "key": 8,
+        "file": "achieveClassMethod",
+        "title": "Achieve addClass,removeClass,hasClass method"
       },
       {
         "key": 10,
-        "name": "Collection",
-        "desc": "Collection",
+        "file": "Collection",
+        "title": "Collections",
         "children": [
           {
             "key": 101,
-            "icon": "tag",
-            "desc": "The tv area of limit free activity",
-            "name": "React Redux Starter Kit"
+            "file": "React Redux Starter Kit",
+            "title": "React Redux Starter Kit"
           },
           {
             "key": 102,
-            "desc": "The h5'cashier of tv",
-            "name": "markdown-loader"
+            "file": "markdown-loader",
+            "title": "markdown-loader for webpack"
           }
         ]
       }

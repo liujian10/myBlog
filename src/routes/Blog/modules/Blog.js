@@ -116,7 +116,7 @@ const ACTION_HANDLERS = {
       const { menuItems } = state;
       if (params.key) {
         const item = getItemByKey(params.key, menuItems);
-        newState.detail.name = item && item.name;
+        newState.detail.file = item && item.file;
       }
     }
     return newState;

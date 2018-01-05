@@ -33,9 +33,9 @@ class BlogDetail extends React.Component {
     const { detail } = this.props;
     let content;
     try {
-      content = detail && detail.name && require('../../../../docs/' + detail.name + '.md');
+      content = detail && detail.file && require('../../../../docs/' + detail.file + '.md');
     } catch (e) {
-      console.log('Cannot find file \'../../../../docs/' + detail.name + '.md\' ');
+      console.log('Cannot find file \'../../../../docs/' + detail.file + '.md\' ');
     }
     if (content) {
       return <Markdown content={content}/>;
