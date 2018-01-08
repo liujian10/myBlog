@@ -56,11 +56,13 @@ const BlogSider = (props) => {
         <div
           key='sider-logo'
           className={props.collapsed ? 'blog-logo-normal' : 'blog-logo-collapsed'}
-          style={{ background: props.logoBackground }}>
+          style={{
+            textAlign: 'center'
+          }}>
           <Popover
             title={userTitle}
-            placement={props.collapsed ? 'rightTop' : 'bottom'}
             content={userContent}
+            arrowPointAtCenter
           >
             <Avatar src={headPicImg} style={{ background: props.logoBackground }}/>
             <span className='blog-log-text'>{nickName}</span>

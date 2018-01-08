@@ -25,6 +25,11 @@ class Blog extends React.Component {
   }
 
   componentWillUpdate () {
+    const { router, blog } = this.props;
+    if (/^#\/blog((?!\/).)*$/.test(window.location.hash)) {
+      const defaultBlog = blog.menus[0];
+      defaultBlog && defaultBlog.key && router.replace(`/blog/detail/${defaultBlog.key}`);
+    }
   }
 
   render () {
