@@ -13,28 +13,28 @@
   background: none;
 }
 
+.card-border() {
+  border-radius: 1px;
+  box-shadow: -5px 5px 30px 1px #e8e8e8;
+  border: 1px solid rgba(232, 232, 232, 0.8);
+}
+
 .home-main {
   max-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   padding-right: @body-padding-size;
   .ant-card-cover {
-    border-radius: 1px;
-    box-shadow: -5px 5px 30px 1px #e8e8e8;
-    border: 1px solid rgba(232, 232, 232, 0.5);
+    .card-border();
     width: 90%;
     margin: -5% 6% 0;
     background: #fff;
   }
-  .ant-list-item-extra{
+  .ant-list-item-extra {
     height: 154px;
-    border-radius: 2px;
-    box-shadow: -5px 5px 30px 1px #e8e8e8;
-    border: 1px solid rgba(232, 232, 232, 0.5);
-    background-repeat: no-repeat;
-    background-position: center;
+    .card-border();
+    background: url(https://cdn.jsdelivr.net/npm/maple-statics@1.0.4/image/oval.svg) no-repeat center;
     background-size: 50px;
-    background-image: url(https://cdn.jsdelivr.net/npm/maple-statics@1.0.4/image/oval.svg);
   }
 }
 

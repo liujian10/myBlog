@@ -14,32 +14,22 @@ class Blog extends React.Component {
   }
 
   componentWillMount () {
-    this.props.getUserInfo();
-    this.props.getMenus({}, ({ menus }) => {
-      if (Array.isArray(menus) && menus.length) {
-        this.goToIndex(menus[0]);
+    const { getUserInfo, router, getMenus } = this.props;
+    getUserInfo();
+    getMenus({}, ({ menus }) => {
+      if (/^#\/blog((?!\/).)*$/.test(window.location.hash)) {
+        const defaultBlog = menus[0];
+        defaultBlog && defaultBlog.key && router.replace(`/blog/detail/${defaultBlog.key}`);
       }
     });
   }
 
-  componentWillUpdate (nextProps) {
-    const { location } = nextProps;
-    if (/^\/blog((?!\/).)*$/.test(location.pathname)) {
-      this.goToIndex();
-    }
-  }
-
-  goToIndex (menu) {
-    const { router, blog } = this.props;
-    let home = menu || blog.menus[0] || {};
-    const pathname = router.location.pathname;
-    if (/^\/blog((?!\/).)*$/.test(pathname)) {
-      home && home.key && router.replace(pathname + '/detail/' + home.key);
-    }
+  componentWillUpdate () {
   }
 
   render () {
     const { children, blog } = this.props;
+    const loadSpain = <div className='maple-loading'><Spin tip='Loading...' size='large'/></div>;
     const onCollapse = collapsed => {
       this.setState({ collapsed, showSearch: !collapsed });
     };
@@ -67,19 +57,16 @@ class Blog extends React.Component {
         {children}
       </BlogLayout>;
     }
-    return (<div className='maple-loading'><Spin tip='Loading...' size='large'/></div>);
+    return (loadSpain);
   }
 }
 
 Blog.propTypes = {
   getUserInfo: PropTypes.func,
   getMenus: PropTypes.func,
-  getIndexPath: PropTypes.func,
   children: PropTypes.element,
-  menus: PropTypes.array,
   router: PropTypes.object.isRequired,
-  blog: PropTypes.object.isRequired,
-  showSearch: PropTypes.bool
+  blog: PropTypes.object.isRequired
 };
 
 export default Blog;

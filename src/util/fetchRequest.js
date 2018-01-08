@@ -7,10 +7,6 @@ import { message } from 'antd';
 import { getUrlParam, getResult } from '../util';
 import { isLocal } from './local';
 
-import userInfo from '../static/json/userInfo.json';
-import menus from '../static/json/menus.json';
-import cvInfo from '../static/json/cvInfo.json';
-
 const SUCCESS_CODE = 0;
 const BASE_HOST = 'http://' + window.location.host + '/json/';
 
@@ -42,40 +38,40 @@ const handleResponse = ({ head, body }, { globalError }) => new Promise((resolve
   }
 });
 
-// json数据
-const jsonConfig = {
-  userInfo,
-  menus,
-  cvInfo
-};
-
-const getJson = (url, { params }) => {
-  if (url === 'blog') {
-    return {
-      'head': {
-        'ret': 0,
-        'msg': 'OK'
-      },
-      'body': {
-        url,
-        ...params
-      }
-    };
-  }
-  return jsonConfig[url];
-};
-
 const doFetch = (url, option) => {
   if (isLocal()) {
     return new Promise((resolve, reject) => {
       setTimeout(() => { //模拟数据请求
+        const { params } = option;
+        const type = url.split('?')[0];
+        if (type === 'blog') {
+          const { file } = params;
+          if (file !== null && file !== undefined) {
+            resolve({
+              ...option,
+              status: 200,
+              body: 'blog',
+              json: () => ({
+                head: {
+                  ret: 0,
+                  msg: 'OK'
+                },
+                body: require(`../../docs/${file}.md`)
+              })
+            });
+          } else {
+            reject({
+              'ret': 1,
+              message: 'No file available!'
+            });
+          }
+        }
         resolve({
           ...option,
           status: 200,
-          body: getJson(url, option),
+          body: 'json',
           json: () => {
-            let type = url.split('?')[0];
-            return getJson(type, option);
+            return require(`../static/json/${type}.json`);
           }
         });
       }, 500);
@@ -163,7 +159,10 @@ export const fetchMenus = () => fetchRequest('menus', { ...arguments });
  * @returns {promise}
  */
 export const fetchBlogDetail = params => {
-  return fetchRequest('blog', { params });
+  return fetchRequest('blog', {
+    params,
+    globalError: true
+  });
 };
 
 /**

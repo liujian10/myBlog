@@ -44,8 +44,16 @@ const BlogHeader = (props) => {
     });
   };
   const hideSearch = () => onSearch(!collapsed);
+
+  const headerStyle = {
+    position: 'fixed',
+    display: 'block',
+    width: '60%',
+    minWidth: '500px',
+    textAlign: 'left'
+  };
   return (
-    <Header className='blog-main-header'>
+    <Header className='blog-main-header' style={headerStyle}>
       <Icon
         type={collapsed ? 'menu-unfold' : 'menu-fold'}
         className='blog-header-icon-menu'

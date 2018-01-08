@@ -31,7 +31,7 @@ export default store => {
     getComponent: getComponent(store, { containerName: 'Blog', key: 'blog' }),
     childRoutes: [
       {
-        path: 'detail/:id',
+        path: 'detail/:key',
         breadcrumbName: 'Detail',
         getComponent: getComponent(store, { containerName: 'BlogDetail', reducerName: 'Blog', key: 'blog' })
       }

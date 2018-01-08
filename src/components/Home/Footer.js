@@ -28,8 +28,15 @@ const HomeFooter = () => {
     return supports.slice(0, supports.length - 1);
   };
 
+  const footerStyle = {
+    width: '100%',
+    margin: '20px 0',
+    backgroundColor: 'inherit',
+    textAlign: 'center'
+  };
+
   return (
-    <Footer className='home-footer'>
+    <Footer style={footerStyle}>
       <Divider dashed><Icon type='link'/></Divider>
       <div>
         {getSupports()}

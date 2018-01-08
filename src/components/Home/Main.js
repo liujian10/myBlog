@@ -26,7 +26,8 @@ const HomeMain = (props) => {
     if (url) actions.push(<a href={getLink(url)}><IconText type='link'/></a>);
     if (gitHub) actions.push(<a href={gitHub}><IconText type='github'/></a>);
     if (npm) actions.push(<a key='npm' href={`https://www.npmjs.com/package/${npm}`}>
-      <img src={`https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg`} style={{ height: '13px', marginBottom: '4px' }}/>
+      <img src={`https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg`}
+           style={{ height: '13px', marginBottom: '4px' }}/>
     </a>);
     return actions;
   };
@@ -75,6 +76,11 @@ const HomeMain = (props) => {
     margin: '50px auto'
   };
 
+  const carImgStyle = {
+    minWidth: '270px',
+    height: '100%'
+  };
+
   const listProps = {
     itemLayout: 'vertical',
     size: 'large'
@@ -110,7 +116,7 @@ const HomeMain = (props) => {
             return <List.Item
               key={`listItem${index}`}
               actions={getActions(item)}
-              extra={<img width={272} alt={item.title} src={item.poster} className='home-card-img'/>}
+              extra={<img style={carImgStyle} alt={item.title} src={item.poster} />}
             >
               <List.Item.Meta
                 title={<CardMeteTitle {...item}/>}

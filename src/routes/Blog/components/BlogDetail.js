@@ -2,52 +2,64 @@ import './BlogDetail.less';
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import QueueAnim from 'rc-queue-anim';
+import { getItemByKey } from '../../../util';
 import { Markdown } from '../../../components/Markdowm/Markdown';
 
 class BlogDetail extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      ...props
-    };
   }
 
-  shouldComponentUpdate (nProps) {
-    const { params } = nProps;
-    const { detail } = this.props;
-    return params.id !== detail.key;
-  }
-
-  componentWillUpdate (nProps) {
-    const { currentKey } = this.props;
-    const { params = {} } = nProps;
-    if (params.id !== currentKey) {
-      this.props.setCurrentKey(params.id);
-      this.props.getDetail({
-        key: params.id
+  componentWillMount () {
+    const { params = {}, getDetail, menuItems } = this.props;
+    if (params.key && menuItems.length > 0) {
+      const item = getItemByKey(params.key, menuItems);
+      getDetail({
+        ...params,
+        file: item.file
       });
     }
   }
 
-  render () {
-    const { detail } = this.props;
-    let content;
-    try {
-      content = detail && detail.file && require('../../../../docs/' + detail.file + '.md');
-    } catch (e) {
-      console.log('Cannot find file \'../../../../docs/' + detail.file + '.md\' ');
+  shouldComponentUpdate (nProps) {
+    const { detail, getDetail } = this.props;
+    const { params = {}, menuItems = [] } = nProps;
+    const { pending, currentKey } = detail;
+
+    if (menuItems.length === 0) {
+      return false;
+    } else {
+      const { key } = params;
+      const item = getItemByKey(key, menuItems);
+      !pending && currentKey !== key && getDetail({
+        ...params,
+        file: item.file
+      });
+      return true;
     }
-    if (content) {
+  }
+
+  render () {
+    const { detail = {}, params } = this.props;
+    const { currentKey, content } = detail;
+    const { key } = params;
+    if (currentKey === key && content) {
       return <Markdown content={content}/>;
     }
-    return <div className='blog-detail-loading'/>;
+    return <QueueAnim type={['top', 'bottom']}>
+      {currentKey === key && content
+        ? <Markdown key='content' content={content}/>
+        : <div key='loading' className='blog-detail-loading'/>
+      }
+    </QueueAnim>;
   }
 }
 
 BlogDetail.propTypes = {
   getDetail: PropTypes.func,
-  setCurrentKey: PropTypes.func,
-  currentKey: PropTypes.string,
+  menuItems: PropTypes.array,
+  params: PropTypes.object,
   detail: PropTypes.object
 };
 

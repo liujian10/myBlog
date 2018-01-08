@@ -7,7 +7,7 @@ import './Sider.less';
 const { SubMenu } = Menu;
 const BlogSider = (props) => {
   const { blog } = props;
-  const { menus = [], userInfo = {} } = blog;
+  const { menus = [], userInfo = {}, detail = {} } = blog;
   const { nickName, gender, github, email, headPic } = userInfo;
   const handleClick = ({ key }) => {
     props.routerPush('/blog/detail/' + key);
@@ -66,11 +66,11 @@ const BlogSider = (props) => {
             <span className='blog-log-text'>{nickName}</span>
           </Popover>
         </div>,
-        <Menu
+        menus.length > 0 ? <Menu
           key='sider-menu'
           // collapsible
-          defaultSelectedKeys={[blog.currentKey]}
-          selectedKeys={[blog.currentKey]}
+          defaultSelectedKeys={[detail.currentKey]}
+          selectedKeys={[detail.currentKey]}
           onClick={handleClick}
           mode='inline'
           style={{ height: '100%' }}
@@ -80,7 +80,7 @@ const BlogSider = (props) => {
               return getMenuItem(item);
             })
           }
-        </Menu>
+        </Menu> : null
       ]}
     </QueueAnim>
   );

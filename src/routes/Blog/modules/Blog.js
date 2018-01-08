@@ -30,14 +30,10 @@ export const getDetail = createAction(BLOG_GET_DETAIL, getDetailService, (params
   params
 }));
 
-export const BLOG_SET_CURRENT_KEY = 'BLOG_SET_CURRENT_KEY';
-export const setCurrentKey = createAction(BLOG_SET_CURRENT_KEY);
-
 export const actions = {
   getMenus,
   getUserInfo,
-  getDetail,
-  setCurrentKey
+  getDetail
 };
 
 // ------------------------------------
@@ -90,29 +86,15 @@ const ACTION_HANDLERS = {
   [BLOG_GET_DETAIL]: (state, action) => {
     const { meta = {}, payload, error } = action;
     const { sequence = {}, params = {} } = meta;
-    const newState = {
+    const { detail = {} } = state;
+    return error ? state : {
       ...state,
-      pending: sequence.type === 'start'
-    };
-
-    if (!error && sequence.type === 'next') {
-      newState.detail = {
-        ...state.detail,
-        ...payload
-      };
-      const { menuItems } = state;
-      if (params.key) {
-        const item = getItemByKey(params.key, menuItems);
-        newState.detail.file = item && item.file;
+      detail: {
+        ...detail,
+        content: payload,
+        currentKey: payload ? params.key : detail.currentKey,
+        pending: sequence.type === 'start'
       }
-    }
-    return newState;
-  },
-  [BLOG_SET_CURRENT_KEY]: (state, action) => {
-    const { payload } = action;
-    return {
-      ...state,
-      currentKey: payload
     };
   }
 };
@@ -123,8 +105,12 @@ const ACTION_HANDLERS = {
 const initialState = {
   userInfo: {},
   menus: [],
-  detail: {},
-  currentKey: '',
+  menuItems: [],
+  detail: {
+    currentKey: '',
+    content: '',
+    pending: false
+  },
   pending: false
 };
 

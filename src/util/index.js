@@ -37,8 +37,7 @@ export const getResult = (obj, path, defaultResult, ...rest) => {
  * 通过
  */
 export const getItemByKey = (key, items) => {
-  let item = {};
-  for (item of items) {
+  for (let item of items) {
     if (item.key.toString() === key.toString()) {
       return item;
     }

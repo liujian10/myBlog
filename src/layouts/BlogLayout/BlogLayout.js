@@ -14,7 +14,7 @@ const BlogLayout = (props) => {
   return (
     <Layout className='blog-layout'>
       <Sider
-        width='230'
+        width='250'
         className='blog-layout-sider'
         breakpoint='lg'
         collapsedWidth='0'
