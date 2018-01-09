@@ -86,7 +86,7 @@ const ACTION_HANDLERS = {
     } : state;
   },
   [HOME_ADAPTIVE_TO_UPDATE]: (state) => {
-    const content = window.document.getElementsByClassName('home-footer')[0]; // 获取右侧容器宽度
+    const content = window.document.getElementsByClassName('ant-layout-footer')[0]; // 获取右侧容器宽度
     let cardWidth = content && content.clientWidth - 80 || 0;
     let bodyWidth = window.document.documentElement.clientWidth;
     let bodyHeight = window.document.documentElement.clientHeight;
