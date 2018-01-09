@@ -10,28 +10,25 @@ const BlogSider = (props) => {
   const { menus = [], userInfo = {}, detail = {} } = blog;
   const { nickName, gender, github, email, headPic } = userInfo;
   const handleClick = ({ key }) => {
-    props.routerPush('/blog/detail/' + key);
+    props.goToDetail(key);
   };
 
   const getMenuItem = (data) => {
     let res;
+    const title = data.title || data.file || data.desc;
+    const menuTitle = <span><Icon type='bars'/><span>{title}</span></span>;
     if (data.key) {
       if (data.children) {
         res = <SubMenu
           key={data.key}
-          title={<span>
-            <Icon type='bars'/>
-            <span>{data.title || data.file || data.desc}</span>
-          </span>}>
-          {
-            data.children.map(function (child) {
-              return getMenuItem(child);
-            })
-          }
+          title={menuTitle}>
+          {data.children.map(function (child) {
+            return getMenuItem(child);
+          })}
         </SubMenu>;
       } else {
         res = <Menu.Item {...data} >
-          <span>{data.title || data.file || data.desc} </span>
+          <span>{title} </span>
         </Menu.Item>;
       }
     }
@@ -91,7 +88,7 @@ const BlogSider = (props) => {
 BlogSider.propTypes = {
   blog: PropTypes.object,
   collapsed: PropTypes.bool,
-  routerPush: PropTypes.func,
+  goToDetail: PropTypes.func,
   logoBackground: PropTypes.string
 };
 

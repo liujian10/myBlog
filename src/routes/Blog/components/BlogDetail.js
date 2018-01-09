@@ -44,15 +44,13 @@ class BlogDetail extends React.Component {
     const { detail = {}, params } = this.props;
     const { currentKey, content } = detail;
     const { key } = params;
-    if (currentKey === key && content) {
-      return <Markdown content={content}/>;
-    }
-    return <QueueAnim type={['top', 'bottom']}>
-      {currentKey === key && content
+    return (
+      currentKey === key && content
         ? <Markdown key='content' content={content}/>
-        : <div key='loading' className='blog-detail-loading'/>
-      }
-    </QueueAnim>;
+        : <QueueAnim type='top' duration={1000}>
+          <div key='loading' className='blog-detail-loading'/>
+        </QueueAnim>
+    );
   }
 }
 

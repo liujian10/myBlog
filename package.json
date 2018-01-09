@@ -26,6 +26,7 @@
     "express": "^4.16.2",
     "flux-standard-action": "^1.2.0",
     "lodash": "^4.17.4",
+    "nprogress": "^0.2.0",
     "object-assign": "^4.1.1",
     "path": "^0.12.7",
     "promise": "^7.1.1",

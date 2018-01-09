@@ -8,7 +8,8 @@ class Blog extends React.Component {
     super(props);
     this.state = {
       collapsed: false,
-      showSearch: true,
+      showSearch: false,
+      showSearchIcon: true,
       logoBackground: '#fff'
     };
   }
@@ -35,25 +36,45 @@ class Blog extends React.Component {
   render () {
     const { children, blog } = this.props;
     const loadSpain = <div className='maple-loading'><Spin tip='Loading...' size='large'/></div>;
+
     const onCollapse = collapsed => {
-      this.setState({ collapsed, showSearch: !collapsed });
+      const newState = {
+        collapsed
+      };
+      if (collapsed) {
+        newState.showSearch = false;
+      } else {
+        newState.showSearchIcon = false;
+      }
+      this.setState({ ...newState });
     };
 
-    const onSearch = folded => {
-      this.setState({ showSearch: typeof folded === 'boolean' ? folded : !this.state.showSearch });
+    const changeSearchShow = folded => {
+      if (this.state.showSearch !== folded) {
+        const showSearch = typeof folded === 'boolean' ? folded : !this.state.showSearch;
+        this.setState({ showSearch });
+      }
     };
 
-    const routerPush = path => {
-      this.props.router.push(path);
+    const changeIconShow = folded => {
+      if (this.state.showSearchIcon !== folded) {
+        const showSearchIcon = typeof folded === 'boolean' ? folded : !this.state.showSearchIcon;
+        this.setState({ showSearchIcon });
+      }
+    };
+
+    const goToDetail = key => {
+      this.props.router.push(`/blog/detail/${key}`);
     };
 
     const blogProps = {
       ...{
         ...this.props,
         ...this.state,
-        routerPush,
+        goToDetail,
         onCollapse,
-        onSearch
+        changeSearchShow,
+        changeIconShow
       }
     };
 

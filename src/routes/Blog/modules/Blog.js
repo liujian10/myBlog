@@ -4,7 +4,6 @@ import {
   fetchMenus as getMenusService,
   fetchBlogDetail as getDetailService
 } from '../../../util/fetchRequest';
-import { getItemByKey } from '../../../util';
 
 // ------------------------------------
 // Actions

@@ -3,7 +3,6 @@
  */
 import 'isomorphic-fetch';
 import { message } from 'antd';
-// import { hashHistory } from 'react-router'
 import { getUrlParam, getResult } from '../util';
 import { isLocal } from './local';
 
