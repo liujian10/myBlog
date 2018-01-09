@@ -47,11 +47,6 @@ const HomeSider = (props) => {
     logoPaused: true
   });
 
-  // 获取描述元素
-  const getDesc = text => {
-    return <div style={{ textAlign: 'left' }}>{text}</div>;
-  };
-
   // isHome
   const isHome = router.location.pathname === '/';
 
