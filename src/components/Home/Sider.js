@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import {
   Icon,
   List,
-  Avatar,
   Layout
 } from 'antd';
 
@@ -33,7 +32,7 @@ const HomeSider = (props) => {
   };
 
   // 左侧菜单onCollapse事件
-  const onCollapse = (collapsed, type) => {
+  const onCollapse = (collapsed) => {
     assignProps({ collapsed });
     setTimeout(adaptiveToUpdate, 100);
   };
@@ -56,15 +55,26 @@ const HomeSider = (props) => {
   // isHome
   const isHome = router.location.pathname === '/';
 
+  const {
+    nickname,
+    name,
+    age,
+    nationality,
+    party,
+    desc,
+    location,
+    email,
+    gitHub,
+    website
+  } = introduction;
+
   const listData = [
     {
-      title: getDesc(<h2 key='user-name' className='home-sider-username'>
-        {isHome ? introduction.nickname : introduction.name} <Icon type='man'/>
-      </h2>)
-    },
-    {
-      title: isHome ? '' : getDesc(`${introduction.age}，${introduction.nationality}，${introduction.party}`),
-      desc: introduction.desc,
+      title: <span key='user-name' className='home-sider-username'>
+        {isHome ? nickname : name} <Icon type='man'/>
+      </span>,
+      desc: isHome ? '' : `${age}，${nationality}，${party}`,
+      content: desc,
       style: {
         marginBottom: '12px',
         paddingBottom: '12px',
@@ -72,16 +82,12 @@ const HomeSider = (props) => {
       }
     },
     {
-      desc: <div><Icon type='environment'/> {introduction.location}</div>
-    },
-    {
-      desc: <div><Icon type='mail'/> <a href={`mailto:${introduction.email}`}>{introduction.email}</a></div>
-    },
-    {
-      desc: <div><Icon type='github'/> <a href={`https://${introduction.gitHub}`}>{introduction.gitHub}</a></div>
-    },
-    {
-      desc: <div><Icon type='link'/> <a href={'http://' + introduction.website}>{introduction.website}</a></div>
+      desc: [
+        <div key='local'><Icon type='environment'/> {location}</div>,
+        <div key='email'><Icon type='mail'/> <a href={`mailto:${email}`}>{email}</a></div>,
+        <div key='github'><Icon type='github'/> <a href={`https://${gitHub}`}>{gitHub}</a></div>,
+        <div key='website'><Icon type='link'/> <a href={'http://' + website}>{website}</a></div>
+      ]
     }
   ];
 
@@ -112,20 +118,18 @@ const HomeSider = (props) => {
               marginTop: '16px'
             }}
             size='small'
-            itemLayout='horizontal'
+            itemLayout='vertical'
             dataSource={listData}
-            renderItem={item => (
-              <List.Item style={item.style || {
-                border: 'none',
-                padding: '1px 0'
-              }}>
+            renderItem={(item, index) => (
+              <List.Item
+                key={index}
+                style={item.style || {
+                  border: 'none',
+                  padding: '1px 0',
+                  textAlign: 'justify'
+                }}
+              >
                 <List.Item.Meta
-                  avatar={item.text && <Avatar
-                    size='small'
-                    style={{
-                      backgroundColor: '#25a186'
-                    }}
-                  >{item.text}</Avatar>}
                   title={item.title}
                   description={item.desc}
                 />
