@@ -3,6 +3,7 @@ import HomeRouter from './Home';
 import CvRoute from './Cv';
 import BlogRoute from './Blog';
 import WaterFallRoute from './WaterFall';
+import DemoRoute from './demo';
 
 /*  Note: Instead of using JSX, we recommend using react-router
  PlainRoute objects to build route definitions.   */
@@ -14,7 +15,8 @@ const createRoutes = store => ({
   childRoutes: [
     CvRoute(store),
     BlogRoute(store),
-    WaterFallRoute(store)
+    WaterFallRoute(store),
+    DemoRoute(store),
   ]
 });
 

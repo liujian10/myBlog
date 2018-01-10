@@ -1,7 +1,7 @@
 {
-  "name": "myBlog",
-  "version": "1.0.2",
-  "description": "Get started with React, Redux, and React-Router!",
+  "name": "maple-blog",
+  "version": "1.0.1",
+  "description": "http://mapleliu.com",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",

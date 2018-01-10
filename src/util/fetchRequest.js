@@ -7,7 +7,9 @@ import { getUrlParam, getResult } from '../util';
 import { isLocal } from './local';
 
 const SUCCESS_CODE = 0;
-const BASE_HOST = 'http://' + window.location.host + '/json/';
+const BASE_HOST = 'https://cdn.jsdelivr.net/npm/maple-blog@1/';
+const BASE_HOST_JSON = BASE_HOST + 'src/static/json/';
+const BASE_HOST_MD = BASE_HOST + 'docs/';
 
 // 后端定义的全局错误返回码
 const GLOBAL_CODES = {
@@ -38,46 +40,15 @@ const handleResponse = ({ head, body }, { globalError }) => new Promise((resolve
 });
 
 const doFetch = (url, option) => {
+  const type = url.split('?')[0];
   if (isLocal()) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => { //模拟数据请求
-        const { params } = option;
-        const type = url.split('?')[0];
-        if (type === 'blog') {
-          const { file } = params;
-          if (file !== null && file !== undefined) {
-            resolve({
-              ...option,
-              status: 200,
-              body: 'blog',
-              json: () => ({
-                head: {
-                  ret: 0,
-                  msg: 'OK'
-                },
-                body: require(`../../docs/${file}.md`)
-              })
-            });
-          } else {
-            reject({
-              'ret': 1,
-              message: 'No file available!'
-            });
-          }
-        }
-        resolve({
-          ...option,
-          status: 200,
-          body: 'json',
-          json: () => {
-            return require(`../static/json/${type}.json`);
-          }
-        });
-      }, 500);
-    });
-  } else {
-    return fetch(BASE_HOST + url, option);
+    if (type === 'blog') {
+      const { params } = option;
+      return fetch(`${BASE_HOST_MD}${params.file}.md`);
+    }
+    return fetch(`${BASE_HOST_JSON}${type}.json`);
   }
+  return fetch(BASE_HOST + url, option);
 };
 
 /**
@@ -134,8 +105,18 @@ export const fetchRequest = async (url, options) => {
       throw error;
     }
   );
-
-  const res = await response.json();
+  const type = url.split('?')[0];
+  let res;
+  try {
+    if (type === 'blog') {
+      res = await response.text();
+      return res;
+    } else {
+      res = await response.json();
+    }
+  } catch (e) {
+    console.log(e);
+  }
   return handleResponse(res, newOptions);
 };
 

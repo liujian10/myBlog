@@ -41,6 +41,11 @@
         "title": "Achieve addClass,removeClass,hasClass method"
       },
       {
+        "key": 9,
+        "file": "deepCopy",
+        "title": "Achieve deep copy"
+      },
+      {
         "key": 10,
         "file": "Collection",
         "title": "Collections",

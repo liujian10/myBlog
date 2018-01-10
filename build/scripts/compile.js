@@ -33,10 +33,11 @@ const compile = () => Promise.resolve().
   then(() => runWebpackCompiler(webpackConfig)).
   then((stats) => {
     logger.info(`Copying static assets from ./public to ./${project.outDir}.`);
+    /* Replace to CDN
     fs.copySync(
       path.resolve(project.basePath, project.docDir),
       path.resolve(project.basePath, `${project.outDir}/${project.docDir}`)
-    );
+    );*/
     fs.copySync(
       path.resolve(project.basePath, 'public'),
       path.resolve(project.basePath, project.outDir)
