@@ -1,9 +1,9 @@
-import WaterFall from './components/WaterFall';
+import Waterfall from './demo';
 
 // Sync route definition
-export default store => {
+export default () => {
   return {
     path: 'waterfall',
-    component: WaterFall
+    component: Waterfall
   };
 }

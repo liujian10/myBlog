@@ -115,7 +115,7 @@ export const fetchRequest = async (url, options) => {
       res = await response.json();
     }
   } catch (e) {
-    console.log(e);
+    message.error('Fetch failed!');
   }
   return handleResponse(res, newOptions);
 };

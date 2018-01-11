@@ -1,7 +1,6 @@
 import React from 'react';
-import './Demo.less';
 
-import Waterfall from '../../WaterFall/components/Waterfall';
+import Waterfall from '../components/Waterfall';
 
 class Demo extends React.Component {
   render () {
@@ -43,7 +42,6 @@ class Demo extends React.Component {
       source: images,
       renderItem
     };
-
     return <Waterfall {...waterFallProps} />;
   }
 }
