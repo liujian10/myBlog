@@ -26,7 +26,7 @@ class Waterfall extends React.Component {
   }
 
   componentDidMount () {
-    const { target = window } = this.props;
+    const target = this.props.getTarget ? this.getScrollTarget() : window;
     this.scrollEvent = addEventListener(target, 'scroll', this.handleScroll.bind(this));
     this.resizeEvent = addEventListener(window, 'resize', this.adaptiveToUpdate.bind(this));
     this.adaptiveToUpdate();
@@ -71,6 +71,8 @@ class Waterfall extends React.Component {
    */
   initDomColumns () {
     const { columns } = this.state;
+    const { isOnlyImg } = this.props;
+    if (!isOnlyImg) return;
     columns.forEach((column, index) => {
       this.domColumns[index] = [];
       column.forEach(item => {
@@ -86,11 +88,21 @@ class Waterfall extends React.Component {
    * @returns {number}
    */
   getColumnHeight (column = []) {
-    let height = 0;
-    column.forEach(img => {
-      height += img.height;
-    });
-    return height;
+    let columnHeight = 0;
+    const { columnWidth, isOnlyImg } = this.props;
+    if (isOnlyImg) { // 只基于图片计算高度模式
+      // 累加列中所有图片高度
+      column.forEach(img => {
+        // 获取图片真实宽度，高度
+        const { width, height } = img;
+        // 算出图片插入dom后高度
+        columnHeight += width / columnWidth * height;
+      });
+    } else {
+      // 此时column为渲染后列的dom
+      columnHeight = column.clientHeight;
+    }
+    return columnHeight;
   }
 
   /**
@@ -99,13 +111,17 @@ class Waterfall extends React.Component {
    */
   getShortestIndex () {
     let column, minIndex, minHeight;
+    // 遍历:找出高度最短的列
     for (let index in this.domColumns) {
       column = this.domColumns[index];
+      // 获取列的高度
       const columnHeight = this.getColumnHeight(column);
+      // 如果为第一个元素
       if (parseInt(index) === 0) {
         minIndex = 0;
         minHeight = columnHeight;
       }
+      // 比较当前列高度与当前最小高度
       if (columnHeight < minHeight) {
         minIndex = index;
         minHeight = columnHeight;
@@ -118,7 +134,7 @@ class Waterfall extends React.Component {
    * 是否加载完成
    */
   isLoadEnd () {
-    const { source = [] } = this.props;
+    const { source } = this.props;
     return source.length < this.imageIndex;
   }
 
@@ -127,11 +143,17 @@ class Waterfall extends React.Component {
    * @returns {boolean}
    */
   shouldAppend () {
+    // 获取最小高度列序号
     const shortestIndex = this.getShortestIndex();
+    // 最小高度列
     const shortestColumn = this.domColumns[shortestIndex];
+    // 如果最后一个图片已经append 或 未获取到最小高度列 或 瀑布流容器未渲染完成
     if (this.props.source.length <= this.imageIndex || !shortestColumn || !this.container) return false;
+    // 获取瀑布流容器高度
     const clientHeight = this.container.clientHeight;
+    // 获取滚动条滚动高度
     const scrollTop = this.getScrollTarget().scrollTop;
+    // 比较滚动条是否到达最小需要添加图片高度
     return shortestColumn && this.getColumnHeight(shortestColumn) < 100 + scrollTop + clientHeight * 1.5;
   }
 
@@ -157,7 +179,7 @@ class Waterfall extends React.Component {
    * 缓存图片
    */
   cacheImage () {
-    const { source = [] } = this.props;
+    const { source, isOnlyImg } = this.props;
     const CACHE_IMAGE_NUM = 3 * this.columnNum || 10; //一次缓存图片数量
     if (this.shouldCache(CACHE_IMAGE_NUM)) {
       const nextIndex = this.imageCaches.current++;
@@ -168,7 +190,7 @@ class Waterfall extends React.Component {
         img.onload = () => {
           this.imageCaches[nextIndex] = img;
           console.log('nextIndex height:' + img.height);
-          if (nextIndex < this.columnNum) {
+          if (nextIndex < this.columnNum && isOnlyImg) {
             this.domColumns[nextIndex] = [img];
           }
           clearInterval(timer);
@@ -199,9 +221,9 @@ class Waterfall extends React.Component {
     if (!this.shouldAppend()) return;
     const shortestIndex = this.getShortestIndex();
     const { columns } = this.state;
-    const { source } = this.props;
+    const { source, isOnlyImg } = this.props;
 
-    this.domColumns[shortestIndex].push(cacheImg);
+    isOnlyImg && this.domColumns[shortestIndex].push(cacheImg);
 
     const shortestColumn = columns[shortestIndex];
     shortestColumn.push({
@@ -220,7 +242,7 @@ class Waterfall extends React.Component {
    * @returns {number}
    */
   getColumnNum () {
-    const { columnWidth = 210 } = this.props;
+    const { columnWidth } = this.props;
     let containerWidth = this.container.clientWidth;
     return Math.floor((containerWidth - 20) / (columnWidth + 20));
   }
@@ -232,7 +254,7 @@ class Waterfall extends React.Component {
     if (!this.container) return;
     const newColumnNum = this.getColumnNum();
     if (newColumnNum === this.columnNum) return;
-    const { source = [] } = this.props;
+    const { source } = this.props;
     this.domColumns = []; // 瀑布列dom列表
     this.columnNum = newColumnNum;
     this.imageIndex = 0;
@@ -263,12 +285,13 @@ class Waterfall extends React.Component {
 
   render () {
     const {
+      columnWidth,
+      isOnlyImg,
       renderItem = (ci, img) => {
         return <img src={img}/>;
       }
     } = this.props;
     const { columns } = this.state;
-    const { columnWidth = 210 } = this.props;
     const prefixCls = 'waterfall';
     return <div
       className={`${prefixCls}-container`}
@@ -278,6 +301,13 @@ class Waterfall extends React.Component {
         columns.map((column = [], index) => {
           return <div
             key={index}
+            ref={
+              column => {
+                if (!isOnlyImg) {
+                  this.domColumns[index] = column;
+                }
+              }
+            }
           >{
             column.map((item, cIndex) => <Item key={item.index} {...{ ...item, cIndex, renderItem, columnWidth }}/>)
           }
@@ -288,12 +318,18 @@ class Waterfall extends React.Component {
   }
 }
 
+Waterfall.defaultProps = {
+  source: [],
+  columnWidth: 210,
+  isOnlyImg: false
+};
+
 Waterfall.propTypes = {
-  target: PropTypes.element,
   source: PropTypes.array,
   columnWidth: PropTypes.number,
   renderItem: PropTypes.func,
-  getTarget: PropTypes.func
+  getTarget: PropTypes.func,
+  isOnlyImg: PropTypes.bool
 };
 
 export default Waterfall;

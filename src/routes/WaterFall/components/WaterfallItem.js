@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Animate from 'react-simple-animate';
+
 
 class WaterfallItem extends React.Component {
   constructor (props) {

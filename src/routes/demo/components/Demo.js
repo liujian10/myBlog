@@ -27,10 +27,10 @@ class Demo extends React.Component {
         style={{ margin: '10px' }}
         cover={<img alt={imgNum} src={src}/>}
       >
-        {/*<Card.Meta
+        <Card.Meta
           title={imgNum}
           description={src}
-        />*/}
+        />
       </Card>;
     };
 
