@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import addEventListener from 'rc-util/lib/Dom/addEventListener';
+import Item from './WaterfallItem';
 import './Waterfall.less';
 
 class Waterfall extends React.Component {
@@ -40,6 +41,10 @@ class Waterfall extends React.Component {
   }
 
   componentDidUpdate () {
+    console.log('componentDidUpdate:waterfall');
+    if (this.domColumns.length === 0) {
+      this.initDomColumns();
+    }
     this.doAppend();
   }
 
@@ -62,6 +67,33 @@ class Waterfall extends React.Component {
   }
 
   /**
+   * 初始化this.domColumns
+   */
+  initDomColumns () {
+    const { columns } = this.state;
+    columns.forEach((column, index) => {
+      this.domColumns[index] = [];
+      column.forEach(item => {
+        const img = this.imageCaches[item.index];
+        img && this.domColumns[index].push(img);
+      });
+    });
+  }
+
+  /**
+   * 获取列高度
+   * @param column
+   * @returns {number}
+   */
+  getColumnHeight (column = []) {
+    let height = 0;
+    column.forEach(img => {
+      height += img.height;
+    });
+    return height;
+  }
+
+  /**
    * 获取最短列序号
    * @returns {element}
    */
@@ -69,13 +101,14 @@ class Waterfall extends React.Component {
     let column, minIndex, minHeight;
     for (let index in this.domColumns) {
       column = this.domColumns[index];
+      const columnHeight = this.getColumnHeight(column);
       if (parseInt(index) === 0) {
         minIndex = 0;
-        minHeight = column.clientHeight;
+        minHeight = columnHeight;
       }
-      if (column.clientHeight < minHeight) {
+      if (columnHeight < minHeight) {
         minIndex = index;
-        minHeight = column.clientHeight;
+        minHeight = columnHeight;
       }
     }
     return minIndex;
@@ -99,8 +132,7 @@ class Waterfall extends React.Component {
     if (this.props.source.length <= this.imageIndex || !shortestColumn || !this.container) return false;
     const clientHeight = this.container.clientHeight;
     const scrollTop = this.getScrollTarget().scrollTop;
-    return shortestColumn && shortestColumn.offsetTop + shortestColumn.clientHeight < 100 + scrollTop + clientHeight *
-      1.5;
+    return shortestColumn && this.getColumnHeight(shortestColumn) < 100 + scrollTop + clientHeight * 1.5;
   }
 
   /**
@@ -135,6 +167,10 @@ class Waterfall extends React.Component {
         let timer;
         img.onload = () => {
           this.imageCaches[nextIndex] = img;
+          console.log('nextIndex height:' + img.height);
+          if (nextIndex < this.columnNum) {
+            this.domColumns[nextIndex] = [img];
+          }
           clearInterval(timer);
           if (this.shouldCache(CACHE_IMAGE_NUM)) this.cacheImage();
         };
@@ -151,8 +187,7 @@ class Waterfall extends React.Component {
   doAppend () {
     const index = this.imageIndex;
     const cacheImg = this.imageCaches[index];
-    if (!this.shouldAppend()) return;
-    if (!cacheImg) {
+    if (!cacheImg || this.domColumns.length === 0) {
       if (!this.imageCaches.pending) {
         this.cacheImage();
       }
@@ -161,9 +196,13 @@ class Waterfall extends React.Component {
       }, 100);
       return;
     }
+    if (!this.shouldAppend()) return;
     const shortestIndex = this.getShortestIndex();
     const { columns } = this.state;
     const { source } = this.props;
+
+    this.domColumns[shortestIndex].push(cacheImg);
+
     const shortestColumn = columns[shortestIndex];
     shortestColumn.push({
       img: source[index],
@@ -229,6 +268,7 @@ class Waterfall extends React.Component {
       }
     } = this.props;
     const { columns } = this.state;
+    const { columnWidth = 210 } = this.props;
     const prefixCls = 'waterfall';
     return <div
       className={`${prefixCls}-container`}
@@ -238,11 +278,10 @@ class Waterfall extends React.Component {
         columns.map((column = [], index) => {
           return <div
             key={index}
-            ref={column => {
-              if (column) this.domColumns[index] = column;
-            }}>{
-            column.map((item, cIndex) => renderItem(cIndex, item.img, item.index))
-          }</div>;
+          >{
+            column.map((item, cIndex) => <Item key={item.index} {...{ ...item, cIndex, renderItem, columnWidth }}/>)
+          }
+          </div>;
         })
       }
     </div>;

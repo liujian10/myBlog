@@ -1,7 +1,9 @@
 import React from 'react';
 import './Demo.less';
+import { Card } from 'antd';
 
 import Waterfall from '../../WaterFall/components/Waterfall';
+import QueueAnim from 'rc-queue-anim/es/QueueAnim';
 
 class Demo extends React.Component {
   render () {
@@ -16,27 +18,20 @@ class Demo extends React.Component {
       images.push('http://cued.xunlei.com/demos/publ/img/P_' + index + '.jpg');
     }
 
-    const renderItem = (cIndex, img, index) => {
-      const aStyle = {
-        display: 'block',
-        padding: '5px',
-        marginBottom: '10px',
-        border: '1px solid #ccc',
-        backgroundColor: '#fff',
-        textDecoration: 'none'
-      };
-      const imgNum = index < 10 ? ('00' + index) : index < 100 ? ('0' + index) : index;
-      return <a href='#' style={aStyle} key={imgNum}>
-        <img src={img} style={{
-          display: 'block',
-          margin: '0 auto 5px',
-          border: 'none',
-          verticalAlign: 'bottom'
-        }}/>
-        <strong style={{
-          color: '#333'
-        }}>{imgNum}</strong>
-      </a>;
+    const renderItem = (cIndex, index, src) => {
+      const itemIndex = index + 1;
+      const imgNum = itemIndex < 10 ? ('00' + itemIndex) : itemIndex < 100 ? ('0' + itemIndex) : itemIndex;
+      return <Card
+        key={imgNum}
+        hoverable
+        style={{ margin: '10px' }}
+        cover={<img alt={imgNum} src={src}/>}
+      >
+        {/*<Card.Meta
+          title={imgNum}
+          description={src}
+        />*/}
+      </Card>;
     };
 
     const waterFallProps = {
