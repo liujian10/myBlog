@@ -7,8 +7,8 @@ import { getUrlParam, getResult } from '../util';
 import { isLocal } from './local';
 
 const SUCCESS_CODE = 0;
-const BASE_HOST = 'https://cdn.jsdelivr.net/npm/maple-blog@1/';
-const BASE_HOST_JSON = BASE_HOST + 'src/static/json/';
+const BASE_HOST = 'https://cdn.jsdelivr.net/npm/maple-blog@latest/';
+const BASE_HOST_JSON = BASE_HOST + 'static/json/';
 const BASE_HOST_MD = BASE_HOST + 'docs/';
 
 // 后端定义的全局错误返回码

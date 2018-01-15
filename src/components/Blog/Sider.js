@@ -46,7 +46,6 @@ const BlogSider = (props) => {
       <Icon type={gender ? 'man' : 'woman'} style={{ marginLeft: '5px' }}/>
     </div>
   );
-  const headPicImg = headPic && require('../../static/images/' + headPic);
   return (
     <QueueAnim type={['left', 'right']} ease={['easeOutQuart', 'easeInOutQuart']}>
       {props.collapsed ? null : [
@@ -61,7 +60,7 @@ const BlogSider = (props) => {
             content={userContent}
             arrowPointAtCenter
           >
-            <Avatar src={headPicImg} style={{ background: props.logoBackground }}/>
+            <Avatar src={headPic} style={{ background: props.logoBackground }}/>
             <span className='blog-log-text'>{nickName}</span>
           </Popover>
         </div>,

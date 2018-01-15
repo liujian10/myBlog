@@ -7,7 +7,7 @@
     "userName": "Liu Jian",
     "nickName": "Maple",
     "gender": 1,
-    "headPic": "logo.jpg",
+    "headPic": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/logo.jpg",
     "email":"mapleliu1@gmail.com",
     "github":"http://github.com/liujian10",
     "mobile":"12345678901"
