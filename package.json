@@ -1,6 +1,6 @@
 {
   "name": "maple-blog",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "http://mapleliu.com",
   "main": "index.js",
   "scripts": {

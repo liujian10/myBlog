@@ -234,14 +234,14 @@
             "url": "https://www.npmjs.com/package/rc-waterfall"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/waterFall.jpg",
+        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/waterfall.jpg",
         "url": "http://mapleliu.com/waterfall",
-        "gitHub": "https://github.com/liujian10/rc-waterfall",
+        "gitHub": "https://www.npmjs.com/package/rc-waterfall",
         "detail": [
           {
             "title": "主页面",
-            "desc": "原生JS实现的瀑布流demo，等列宽，根据图片高度自动填充页面，优化了图片加载逻辑",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/waterFall.jpg"
+            "desc": "React实现的瀑布流组件，等列宽，根据图片高度自动填充页面，优化了图片加载逻辑",
+            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/waterfall.jpg"
           }
         ]
       }
