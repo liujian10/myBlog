@@ -2,8 +2,7 @@ import React from 'react';
 import './Demo.less';
 import { Card } from 'antd';
 
-import Waterfall from '../../WaterFall/components/Waterfall';
-import QueueAnim from 'rc-queue-anim/es/QueueAnim';
+//import Waterfall from 'rc-waterfall';
 
 class Demo extends React.Component {
   render () {
@@ -39,7 +38,7 @@ class Demo extends React.Component {
       renderItem
     };
 
-    return <Waterfall {...waterFallProps} />;
+    return <div {...waterFallProps} />;
   }
 }
 

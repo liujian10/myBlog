@@ -1,5 +1,7 @@
 coverage/**
 node_modules/**
 dist/**
+docs/**
+static/**
 src/index.html
 tests
