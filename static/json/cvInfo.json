@@ -46,19 +46,19 @@
             "url": "https://ant.design/"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/myBlog.jpg",
+        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/myBlog.jpg",
         "url": "/blog",
         "gitHub": "https://github.com/liujian10/myBlog",
         "detail": [
           {
             "title": "主页面",
             "desc": "左侧菜单栏，头部搜索栏，右侧为博客内容",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/myBlog01.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/myBlog01.jpg"
           },
           {
             "title": "主页面",
             "desc": "隐藏菜单栏的主页面",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/myBlog02.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/myBlog02.jpg"
           }
         ]
       },
@@ -74,28 +74,28 @@
             "name": "HTML5&CSS3"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/tvCashier01.jpg",
+        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/tvCashier01.jpg",
         "url": "http://minisite.cp21.ott.cibntv.net/tvCashierH5/index.shtml",
         "detail": [
           {
             "title": "多套餐收银台",
             "desc": "左侧包含宣传海报，底部套餐选择栏；右侧展示用户信息，套餐信息及收银二维码，用户可直接通过支付宝/微信扫描下单充值会员。",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/tvCashier01.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/tvCashier01.jpg"
           },
           {
             "title": "单套餐收银台",
             "desc": "左侧包含宣传海报，底部套餐选择栏；右侧展示用户信息，套餐信息及收银二维码，用户可直接通过支付宝/微信扫描下单充值会员。",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/tvCashier02.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/tvCashier02.jpg"
           },
           {
             "title": "支付挽留页",
             "desc": "用户退出时，挽留用户页面，分为功能区与底部会员影片海报展示区",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/tvCashier03.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/tvCashier03.jpg"
           },
           {
             "title": "支付成功页",
             "desc": "支付成功结果展示页，头部展示用户信息，订单信息，及赠品信息；底部展示会员影片海报",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/tvCashier04.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/tvCashier04.jpg"
           }
         ]
       },
@@ -111,28 +111,28 @@
             "name": "HTML5&CSS3"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/vipCenter01.jpg",
+        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/vipCenter01.jpg",
         "url": "http://minisite.cp21.ott.cibntv.net/tvCashierH5/index.shtml",
         "detail": [
           {
             "title": "主页面",
             "desc": "展示用户会员信息，会员权益，运营活动，会员影片等",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/vipCenter01.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/vipCenter01.jpg"
           },
           {
             "title": "会员福利社",
             "desc": "乐视影视会员福利专区，可领取会员福利",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/vipCenter02.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/vipCenter02.jpg"
           },
           {
             "title": "会员续费管理",
             "desc": "管理影视会员续费，可开通及退订自动续费服务",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/vipCenter03.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/vipCenter03.jpg"
           },
           {
             "title": "会员俱乐部",
             "desc": "展示乐视影视会员专题，活动信息",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/vipCenter04.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/vipCenter04.jpg"
           }
         ]
       },
@@ -149,7 +149,7 @@
             "url": "https://www.npmjs.com/package/milk-vue"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/milk-vue.jpg",
+        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/milk-vue.jpg",
         "url": "https://vueclub.github.io/milk-vue",
         "gitHub": "https://github.com/vueclub/milk-vue",
         "npm": "milk-vue",
@@ -157,12 +157,12 @@
           {
             "title": "主页面",
             "desc": "左侧为菜单项，中间为详细内容，右侧为组件示例演示",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/milk-vue01.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/milk-vue01.jpg"
           },
           {
             "title": "主页面",
             "desc": "Demo，列表组件",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/milk-vue02.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/milk-vue02.jpg"
           }
         ]
       },
@@ -179,7 +179,7 @@
             "url": "https://www.npmjs.com/package/v-drawer"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/v-drawer01.jpg",
+        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/v-drawer01.jpg",
         "url": "http://mapleliu.com/v-drawer",
         "gitHub": "https://github.com/liujian10/v-drawer",
         "npm": "v-drawer",
@@ -187,12 +187,12 @@
           {
             "title": "主页面",
             "desc": "Demo，可设置抽屉开关状态/方向/是否嵌入文档",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/v-drawer01.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/v-drawer01.jpg"
           },
           {
             "title": "主页面",
             "desc": "Demo，方向右侧，嵌入文档抽屉打开状态",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/v-drawer02.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/v-drawer02.jpg"
           }
         ]
       },
@@ -200,7 +200,7 @@
         "title": "ABB中国班车项目",
         "desc": "基于 Bootstrap 的班车管理系统",
         "isOpen": false,
-        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/none.jpg",
+        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/none.jpg",
         "keyWords": [
           {
             "name": "Java"
@@ -234,14 +234,14 @@
             "url": "https://www.npmjs.com/package/rc-waterfall"
           }
         ],
-        "poster": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/waterfall.jpg",
+        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/waterfall.jpg",
         "url": "http://mapleliu.com/waterfall",
         "gitHub": "https://www.npmjs.com/package/rc-waterfall",
         "detail": [
           {
             "title": "主页面",
             "desc": "React实现的瀑布流组件，等列宽，根据图片高度自动填充页面，优化了图片加载逻辑",
-            "img": "https://cdn.jsdelivr.net/npm/maple-blog@latest/static/images/waterfall.jpg"
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/waterfall.jpg"
           }
         ]
       }
