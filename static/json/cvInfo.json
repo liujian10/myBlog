@@ -197,6 +197,31 @@
         ]
       },
       {
+        "title": "rc-waterfall",
+        "desc": "基于 React 的 Waterfall 组件",
+        "isOpen": true,
+        "keyWords": [
+          {
+            "name": "React"
+          },
+          {
+            "name": "npm",
+            "url": "https://www.npmjs.com/package/rc-waterfall"
+          }
+        ],
+        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/waterfall.jpg",
+        "url": "http://mapleliu.com/rc-waterfall",
+        "gitHub": "https://www.npmjs.com/package/rc-waterfall",
+        "npm": "rc-waterfall",
+        "detail": [
+          {
+            "title": "主页面",
+            "desc": "React实现的瀑布流组件，等列宽，根据图片高度自动填充页面，优化了图片加载逻辑",
+            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/waterfall.jpg"
+          }
+        ]
+      },
+      {
         "title": "ABB中国班车项目",
         "desc": "基于 Bootstrap 的班车管理系统",
         "isOpen": false,
@@ -218,30 +243,6 @@
           {
             "title": "ABB中国班车项目",
             "desc": "使用Bootstrap搭建前端页面框架，结合高德地图api实现地图相关功能，后台采用SpringMVC搭建，数据库使用Mysql"
-          }
-        ]
-      },
-      {
-        "title": "rc-waterfall",
-        "desc": "基于 React 的 Waterfall 组件",
-        "isOpen": true,
-        "keyWords": [
-          {
-            "name": "React"
-          },
-          {
-            "name": "npm",
-            "url": "https://www.npmjs.com/package/rc-waterfall"
-          }
-        ],
-        "poster": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/waterfall.jpg",
-        "url": "http://mapleliu.com/waterfall",
-        "gitHub": "https://www.npmjs.com/package/rc-waterfall",
-        "detail": [
-          {
-            "title": "主页面",
-            "desc": "React实现的瀑布流组件，等列宽，根据图片高度自动填充页面，优化了图片加载逻辑",
-            "img": "https://raw.githubusercontent.com/liujian10/myBlog/master/static/images/waterfall.jpg"
           }
         ]
       }

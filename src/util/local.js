@@ -55,11 +55,11 @@ const setTTL = (key, ttl) => {
 
 const getTTL = key => storage[TTL][key] - (+new Date());
 
-// const localIp = '10.58.93.124'
+//export const localIp = '10.58.93.124';
 
 export const isLocal = () => {
   return true;
-  // location.href.indexOf('localhost') > -1 || location.href.indexOf(localIp) > -1
+  // location.href.indexOf('localhost') > -1 || location.href.indexOf(localIp) > -1;
 };
 
 export default { set, get, clear, setTTL, getTTL, isLocal };
