@@ -65,3 +65,5 @@ CvView.propTypes = {
 };
 
 export default CvView;
+
+

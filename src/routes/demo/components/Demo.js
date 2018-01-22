@@ -2,7 +2,7 @@ import React from 'react';
 import './Demo.less';
 import { Card } from 'antd';
 
-//import Waterfall from 'rc-waterfall';
+import Waterfall from 'rc-waterfall';
 
 class Demo extends React.Component {
   render () {
@@ -38,7 +38,9 @@ class Demo extends React.Component {
       renderItem
     };
 
-    return <div {...waterFallProps} />;
+    return <div style={{ padding: 20 }}>
+      <Waterfall {...waterFallProps} />
+    </div>;
   }
 }
 
